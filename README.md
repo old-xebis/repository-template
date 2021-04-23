@@ -39,6 +39,7 @@ Strategies and tactics to achieve objectives:
   - Releases new version by tagging using [semantic-release/gitlab](https://github.com/semantic-release/gitlab)
   - Releases new version by tagging using [semantic-release/github](https://github.com/semantic-release/github)
   - Semantic-release skips release if commit contains `[skip release]` or `[release skip]` in the commit message
+- Repository `tools/setup-repo` script provides environment check, and setup
 - Repository `tools/update-repo` script updates used dependencies
 
 ## Setup
