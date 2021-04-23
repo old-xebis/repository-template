@@ -22,6 +22,47 @@ Strategies and tactics to achieve objectives:
 2. Automate
 3. Automate
 
+## Features
+
+- Automated workflow using [GitLab CI](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)
+  - GitLab CI skips CI if commit contains `[skip ci]` in the commit message
+- When merged to `main` branch releases using [semantic-release/semantic-release](https://github.com/semantic-release/semantic-release)
+  - Determines major, minor, or patch version bump using [semantic-release/commit-analyzer](https://github.com/semantic-release/commit-analyzer)
+  - Generates release notes using [semantic-release/release-notes-generator](https://github.com/semantic-release/release-notes-generator)
+  - Generates changelog using [semantic-release/changelog](https://github.com/semantic-release/changelog)
+  - Commits changelog and new version using [semantic-release/git](https://github.com/semantic-release/git)
+  - Releases new version by tagging using [semantic-release/gitlab](https://github.com/semantic-release/gitlab)
+  - Releases new version by tagging using [semantic-release/github](https://github.com/semantic-release/github)
+  - Semantic-release skips release if commit contains `[skip release]` or `[release skip]` in the commit message
+
+## Setup
+
+### GitLab Releases
+
+Set up [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` and `write_repository` as the group or the project variable:
+
+- Settings
+  - CI/CD
+    - Variables, *Expand*
+      - *Add Variable*:
+        - Key: **GL_TOKEN**
+        - Value: *token*
+        - Flags:
+          - Protect variable: **On**
+
+### GitHub Releases
+
+Set up [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/about-authentication-to-github#authenticating-with-the-api) with at least scopes `repo` for a private repository or `public_repo` for a public repository, as the group or the project variable:
+
+- Settings
+  - CI/CD
+    - Variables, *Expand*
+      - *Add Variable*:
+        - Key: **GH_TOKEN**
+        - Value: *token*
+        - Flags:
+          - Protect variable: **On**
+
 ## Authors
 
 [Martin Bružina](https://bruzina.cz/)
@@ -33,7 +74,17 @@ Strategies and tactics to achieve objectives:
 ## Dependencies
 
 - [git](https://git-scm.com/)
+- [GitLab: The complete DevOps platform](https://about.gitlab.com/)
+  - [GitLab: Continuous Integration (CI) with GitLab](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)
+  - [GitLab: GitLab Runner](https://docs.gitlab.com/runner/)
+- [GitHub - semantic-release/semantic-release: Fully automated version management and package publishing](https://github.com/semantic-release/semantic-release)
+
+### Recommended
+
+- [Commitizen](https://commitizen-tools.github.io/commitizen/)
 
 ## See Also
 
 - [Git - Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
+- [Conventional Commits - Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/)
+- [Semantic Versioning - Semantic Versioning 2.0.0](https://semver.org/)

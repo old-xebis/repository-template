@@ -1,0 +1,20 @@
+---
+default:
+  image: ubuntu:latest
+  before_script:
+    - TZ="Europe/Prague"
+    - ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+    - apt update
+    - apt upgrade -y
+    - apt install --no-install-recommends -y nodejs npm
+
+stages:
+  - release
+
+release:
+  stage: release
+  script:
+    - npm install -g semantic-release @semantic-release/gitlab @semantic-release/github @semantic-release/git @semantic-release/changelog
+    - npx semantic-release
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
