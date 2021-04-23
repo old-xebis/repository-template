@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -e
+set -o pipefail
+set -u
+
+LANG=C
+
+# update-repo
+pre-commit autoupdate

@@ -26,6 +26,11 @@ Strategies and tactics to achieve objectives:
 
 - Automated workflow using [GitLab CI](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)
   - GitLab CI skips CI if commit contains `[skip ci]` in the commit message
+- Each codebase change is scanned and rules are applied:
+  - Enforces max file size using [pre-commit/pre-commit-hooks: check-added-large-files](https://github.com/pre-commit/pre-commit-hooks#check-added-large-files)
+  - Checks YAML using [pre-commit/pre-commit-hooks: check-yaml](https://github.com/pre-commit/pre-commit-hooks#check-yaml)
+  - Enforces files end with empty newline using [pre-commit/pre-commit-hooks: end-of-file-fixer](https://github.com/pre-commit/pre-commit-hooks#end-of-file-fixer)
+  - Prevents trailing whitespaces using [pre-commit/pre-commit-hooks: trailing-whitespace](https://github.com/pre-commit/pre-commit-hooks#trailing-whitespace)
 - When merged to `main` branch releases using [semantic-release/semantic-release](https://github.com/semantic-release/semantic-release)
   - Determines major, minor, or patch version bump using [semantic-release/commit-analyzer](https://github.com/semantic-release/commit-analyzer)
   - Generates release notes using [semantic-release/release-notes-generator](https://github.com/semantic-release/release-notes-generator)
@@ -34,6 +39,7 @@ Strategies and tactics to achieve objectives:
   - Releases new version by tagging using [semantic-release/gitlab](https://github.com/semantic-release/gitlab)
   - Releases new version by tagging using [semantic-release/github](https://github.com/semantic-release/github)
   - Semantic-release skips release if commit contains `[skip release]` or `[release skip]` in the commit message
+- Repository `tools/update-repo` script updates used dependencies
 
 ## Setup
 
@@ -78,6 +84,9 @@ Set up [GitHub Personal Access Token](https://docs.github.com/en/github/authenti
   - [GitLab: Continuous Integration (CI) with GitLab](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)
   - [GitLab: GitLab Runner](https://docs.gitlab.com/runner/)
 - [GitHub - semantic-release/semantic-release: Fully automated version management and package publishing](https://github.com/semantic-release/semantic-release)
+- [pre-commit: A framework for managing and maintaining multi-language pre-commit hooks](https://pre-commit.com/)
+  - [pre-commit: Supported hooks](https://pre-commit.com/hooks.html)
+- [GitHub - pre-commit/pre-commit-hooks: Some out-of-the-box hooks for pre-commit](https://github.com/pre-commit/pre-commit-hooks)
 
 ### Recommended
 
