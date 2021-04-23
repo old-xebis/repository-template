@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -e
+set -o pipefail
+set -u
+
+LANG=C
+
+# shellcheck disable=SC2034
+ECHO_PRE_OK="$0 ✓"
+# shellcheck disable=SC2034
+ECHO_PRE_INST="$0 +"
+# shellcheck disable=SC2034
+ECHO_PRE_ERR="$0 ❌"
+
+# Setup repository
+if [[ "$EUID" -eq "0" ]]; then
+    # Do not run as a superuser
+    echo >&2 echo "Superpowers might be more harmful than useful. Please run as a regular user."
+    exit 1
+else
+    # Check pip is installed
+    if pip3 -V >/dev/null; then
+        echo "$ECHO_PRE_OK pip is installed"
+    else
+        echo "$ECHO_PRE_ERR pip is NOT installed"
+        exit 1
+    fi
+
+    # Install pre-commit if it's not present
+    if pip3 list | grep "^pre-commit\\s.*$" >/dev/null; then
+        echo "$ECHO_PRE_OK pre-commit is installed"
+    else
+        if pip3 install pre-commit; then
+            echo "$ECHO_PRE_INST pre-commit has been installed"
+        else
+            echo "$ECHO_PRE_ERR pre-commit installation failed."
+            exit 1
+        fi
+    fi
+
+    # Install pre-commit into git hooks
+    pre-commit install
+fi

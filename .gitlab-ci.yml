@@ -6,10 +6,17 @@ default:
     - ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
     - apt update
     - apt upgrade -y
-    - apt install --no-install-recommends -y git nodejs npm
+    - apt install --no-install-recommends -y git nodejs npm python3-pip
+    - pip3 install pre-commit
 
 stages:
+  - verify
   - release
+
+lint:
+  stage: verify
+  script:
+    - pre-commit run --all-files
 
 release:
   stage: release
