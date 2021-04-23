@@ -1,0 +1,10 @@
+[general]
+ignore=body-is-missing
+
+contrib=contrib-title-conventional-commits
+
+[title-must-not-contain-word]
+words=wip,todo,tbd
+
+[contrib-title-conventional-commits]
+types=build,chore,ci,docs,feat,fix,perf,refactor,style,test

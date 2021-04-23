@@ -7,7 +7,7 @@ default:
     - apt update
     - apt upgrade -y
     - apt install --no-install-recommends -y git nodejs npm python3-pip
-    - pip3 install pre-commit
+    - pip3 install pre-commit gitlint
 
 stages:
   - verify
@@ -16,6 +16,7 @@ stages:
 lint:
   stage: verify
   script:
+    - gitlint
     - pre-commit run --all-files
 
 release:

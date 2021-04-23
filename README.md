@@ -26,6 +26,7 @@ Strategies and tactics to achieve objectives:
 
 - Automated workflow using [GitLab CI](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)
   - GitLab CI skips CI if commit contains `[skip ci]` in the commit message
+- Commit messages are checked using [gitlint](https://github.com/jorisroovers/gitlint) and [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 - Each codebase change is scanned and rules are applied:
   - Enforces max file size using [pre-commit/pre-commit-hooks: check-added-large-files](https://github.com/pre-commit/pre-commit-hooks#check-added-large-files)
   - Checks YAML using [pre-commit/pre-commit-hooks: check-yaml](https://github.com/pre-commit/pre-commit-hooks#check-yaml)
@@ -88,6 +89,7 @@ Set up [GitHub Personal Access Token](https://docs.github.com/en/github/authenti
 - [pre-commit: A framework for managing and maintaining multi-language pre-commit hooks](https://pre-commit.com/)
   - [pre-commit: Supported hooks](https://pre-commit.com/hooks.html)
 - [GitHub - pre-commit/pre-commit-hooks: Some out-of-the-box hooks for pre-commit](https://github.com/pre-commit/pre-commit-hooks)
+- [GitHub - jorisroovers/gitlint: Linting for your git commit messages](https://github.com/jorisroovers/gitlint)
 
 ### Recommended
 
