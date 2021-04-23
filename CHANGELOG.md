@@ -1,3 +1,10 @@
+# [0.3.0](https://gitlab.com/xebis/repository-template/compare/v0.2.0...v0.3.0) (2021-04-23)
+
+
+### Features
+
+* add gitlint ([3a58bf2](https://gitlab.com/xebis/repository-template/commit/3a58bf23994a734dffe3220ef199675f89caa808))
+
 # [0.2.0](https://gitlab.com/xebis/repository-template/compare/v0.1.0...v0.2.0) (2021-04-23)
 
 
