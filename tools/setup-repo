@@ -37,4 +37,7 @@ else
             exit 1
         fi
     fi
+
+    # Install pre-commit into git hooks
+    pre-commit install
 fi
