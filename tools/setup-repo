@@ -38,6 +38,19 @@ else
         fi
     fi
 
-    # Install pre-commit into git hooks
+    # Install gitlint if it's not present
+    if pip3 list | grep "^gitlint\\s.*$" >/dev/null; then
+        echo "$ECHO_PRE_OK gitlint is installed"
+    else
+        if pip3 install gitlint; then
+            echo "$ECHO_PRE_INST gitlint has been installed"
+        else
+            echo "$ECHO_PRE_ERR gitlint installation failed."
+            exit 1
+        fi
+    fi
+
+    # Install pre-commit and gitlint into git hooks
     pre-commit install
+    gitlint install-hook
 fi
