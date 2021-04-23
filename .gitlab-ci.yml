@@ -6,7 +6,7 @@ default:
     - ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
     - apt update
     - apt upgrade -y
-    - apt install --no-install-recommends -y nodejs npm
+    - apt install --no-install-recommends -y git nodejs npm
 
 stages:
   - release
