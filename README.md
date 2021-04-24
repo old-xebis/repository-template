@@ -1,5 +1,15 @@
 # Repository Template
 
+![GitHub top language](https://img.shields.io/github/languages/top/xebis/repository-template)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+
+![GitHub](https://img.shields.io/github/license/xebis/repository-template)
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/xebis/repository-template)
+![GitHub issues](https://img.shields.io/github/issues/xebis/repository-template)
+![GitHub last commit](https://img.shields.io/github/last-commit/xebis/repository-template)
+
 Well-manageable and well-maintainable repository template.
 
 ## The Purpose
@@ -78,7 +88,7 @@ Strategies and tactics to achieve objectives:
 
 ## Setup
 
-Setup releases as the group or the project variable
+Set up releases as the group or the project variable:
 
 - Settings
   - CI/CD
@@ -89,6 +99,13 @@ Setup releases as the group or the project variable
         - Flags:
           - Protect variable: **On**
 
+Set up scheduled pipeline:
+
+- CI/CD
+  - Schedules
+    - *New schedule*
+      - *Fill* and *Save pipeline schedule*
+
 ### GitLab Releases
 
 Set up **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` and `write_repository`.
@@ -96,6 +113,31 @@ Set up **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile
 ### GitHub Releases
 
 Set up **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/about-authentication-to-github#authenticating-with-the-api) with at least scopes `repo` for a private repository or `public_repo` for a public repository.
+
+## Test GitLab CI Locally
+
+There is not a simple way how to test GitLab CI locally, you might try:
+
+- Install GitLab Runner
+
+```bash
+curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
+export GITLAB_RUNNER_DISABLE_SKEL=true
+sudo -E apt-get install gitlab-runner
+```
+
+- Hack `.gitlab-ci.yml` for *local run*: Copy [`.gitlab-ci.yml`](.gitlab-ci.yml) section `default.before_script` contents as first lines of `job.script` section
+- Run GitLab Runner Locally
+
+```bash
+gitlab-runner exec shell job
+```
+
+or
+
+```bash
+sudo gitlab-runner exec docker job --docker-image ubuntu:latest
+```
 
 ## Authors
 
