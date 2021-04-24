@@ -1,3 +1,10 @@
+# [0.6.0](https://gitlab.com/xebis/repository-template/compare/v0.5.0...v0.6.0) (2021-04-24)
+
+
+### Features
+
+* add yamllint ([c0daf9b](https://gitlab.com/xebis/repository-template/commit/c0daf9b020a4cfeca63a1a31a3ddc8b56ea8becd))
+
 # [0.5.0](https://gitlab.com/xebis/repository-template/compare/v0.4.0...v0.5.0) (2021-04-24)
 
 
