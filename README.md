@@ -24,10 +24,14 @@ Strategies and tactics to achieve objectives:
 
 ## Features
 
-- Automated workflow using [GitLab CI](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)
+- Automated workflow using [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks), and [GitLab CI](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)
   - GitLab CI skips CI if commit contains `[skip ci]` in the commit message
 - Commit messages are checked using [gitlint](https://github.com/jorisroovers/gitlint) and [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-- Each codebase change is scanned and rules are applied:
+- Git `push` is checked:
+  - Lints last commit message
+  - Prevents `todo` preceded with `#` at the codebase
+  - Prevents existence of unstaged files
+- Git `commit` scans each codebase change, git `push` scans whole codebase, and following rules are applied:
   - Enforces max file size to 1024 kB using [pre-commit/pre-commit-hooks: check-added-large-files](https://github.com/pre-commit/pre-commit-hooks#check-added-large-files)
   - Prevents case insensitive filename conflict using [pre-commit/pre-commit-hooks: check-case-conflict](https://github.com/pre-commit/pre-commit-hooks#check-case-conflict)
   - Enforces executables have shebangs using [pre-commit/pre-commit-hooks: check-executables-have-shebangs](https://github.com/pre-commit/pre-commit-hooks#check-executables-have-shebangs)
@@ -51,6 +55,7 @@ Strategies and tactics to achieve objectives:
   - Lints [`.gitlab-ci.yml`](`.gitlab-ci.yml`) file using [devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter)
   - Lints shell scripts formatting using [mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
   - Checks shell scripts using [koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
+  - For other formats and rules see [pre-commit: Supported hooks](https://pre-commit.com/hooks.html), there are many for .NET, Ansible, AWS, C, CMake, CSV, C++, Chef, Dart, Docker, Flutter, git, GitHub, GitLab, Go, HTML, INI, Java, JavaScript, Jenkins, Jinja, JSON, Kotlin, Lisp, Lua, Mac, Markdown, Node.js, Perl, PHP, Prometheus, Protobufs, Puppet, Python, R, Ruby, Rust, Shell, Swift, Terraform, TOML, Typescript, XML, YAML, ... or create new using regular expressions.
 - When merged to `main` branch releases using [semantic-release/semantic-release](https://github.com/semantic-release/semantic-release)
   - Determines major, minor, or patch version bump using [semantic-release/commit-analyzer](https://github.com/semantic-release/commit-analyzer)
   - Generates release notes using [semantic-release/release-notes-generator](https://github.com/semantic-release/release-notes-generator)
@@ -59,7 +64,7 @@ Strategies and tactics to achieve objectives:
   - Releases new version by tagging using [semantic-release/gitlab](https://github.com/semantic-release/gitlab)
   - Releases new version by tagging using [semantic-release/github](https://github.com/semantic-release/github)
   - Semantic-release skips release if commit contains `[skip release]` or `[release skip]` in the commit message
-- Repository `tools/setup-repo` script provides environment check, and setup
+- Repository `tools/setup-repo` script provides environment check, setup, and hooks installation
 - Repository `tools/update-repo` script updates used dependencies
 
 ## Setup

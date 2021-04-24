@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -e
+set -o pipefail
+set -u
+
+LANG=C
+
+# shellcheck disable=SC2034
+ECHO_PRE_OK="$0 ✓"
+# shellcheck disable=SC2034
+ECHO_PRE_INST="$0 +"
+# shellcheck disable=SC2034
+ECHO_PRE_ERR="$0 ❌"
+
+# Pre-push git hook
+
+# Local sanity check
+# Uncommited changes check
+GIT_UNCOMMITED=$(git ls-files -dmo --exclude-standard)
+if [ -n "$GIT_UNCOMMITED" ]; then
+    echo "$ECHO_PRE_ERR git unstaged changes"
+    exit 1
+fi
+echo "$ECHO_PRE_OK git unstaged changes"
+
+# General sanity check
+tools/check-sanity
+
+# Lint full
+pre-commit run --all-files

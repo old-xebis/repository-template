@@ -18,6 +18,7 @@ lint:
     - apt install --no-install-recommends -y ca-certificates golang python3-pip shellcheck
     - pip3 install gitlint pre-commit yamllint
     - gitlint
+    - tools/check-sanity
     - npm install -g markdownlint-cli
     - GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt
     - PATH="$PATH:/root/go/bin"

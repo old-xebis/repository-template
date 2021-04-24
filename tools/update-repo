@@ -5,5 +5,5 @@ set -u
 
 LANG=C
 
-# update-repo
+# Update repository dependencies
 pre-commit autoupdate
