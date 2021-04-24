@@ -114,6 +114,31 @@ Set up **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile
 
 Set up **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/about-authentication-to-github#authenticating-with-the-api) with at least scopes `repo` for a private repository or `public_repo` for a public repository.
 
+## Test GitLab CI Locally
+
+There is not a simple way how to test GitLab CI locally, you might try:
+
+- Install GitLab Runner
+
+```bash
+curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
+export GITLAB_RUNNER_DISABLE_SKEL=true
+sudo -E apt-get install gitlab-runner
+```
+
+- Hack `.gitlab-ci.yml` for *local run*: Copy [`.gitlab-ci.yml`](.gitlab-ci.yml) section `default.before_script` contents as first lines of `job.script` section
+- Run GitLab Runner Locally
+
+```bash
+gitlab-runner exec shell job
+```
+
+or
+
+```bash
+sudo gitlab-runner exec docker job --docker-image ubuntu:latest
+```
+
 ## Authors
 
 [Martin Bružina](https://bruzina.cz/)
