@@ -1,3 +1,15 @@
+# [0.9.0](https://gitlab.com/xebis/repository-template/compare/v0.8.0...v0.9.0) (2021-04-24)
+
+
+### Bug Fixes
+
+* ci should perform sanity check as well ([af503ed](https://gitlab.com/xebis/repository-template/commit/af503ed0f35390fb8566dab719ad4f1ec25a0799))
+
+
+### Features
+
+* add pre-push hook with additional checks ([4310948](https://gitlab.com/xebis/repository-template/commit/4310948c096a2b076dcb3cbcc199b2b2ca3aa919))
+
 # [0.8.0](https://gitlab.com/xebis/repository-template/compare/v0.7.0...v0.8.0) (2021-04-24)
 
 
