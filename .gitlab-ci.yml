@@ -19,7 +19,7 @@ lint:
     - pip3 install gitlint pre-commit yamllint
     - gitlint
     - npm install -g markdownlint-cli
-    - GO111MODULE=on go get mvdan.cc/sh/v3/cmd/gosh
+    - GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt
     - PATH="$PATH:/root/go/bin"
     - pre-commit run --all-files
 
