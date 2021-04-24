@@ -1,3 +1,10 @@
+# [0.11.0](https://gitlab.com/xebis/repository-template/compare/v0.10.0...v0.11.0) (2021-04-24)
+
+
+### Features
+
+* add ci schedule runs nightly test set ([aa2a745](https://gitlab.com/xebis/repository-template/commit/aa2a7450b1b0f7e3714e38ae2128f289fdc9fa57))
+
 # [0.10.0](https://gitlab.com/xebis/repository-template/compare/v0.9.0...v0.10.0) (2021-04-24)
 
 
