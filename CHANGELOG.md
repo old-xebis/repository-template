@@ -1,3 +1,12 @@
+# [0.10.0](https://gitlab.com/xebis/repository-template/compare/v0.9.0...v0.10.0) (2021-04-24)
+
+
+### Features
+
+* add gitlab ci runs full test set ([4ed1651](https://gitlab.com/xebis/repository-template/commit/4ed165187e42ac644b13b64e941f8a26e5b1e702))
+* add pre-commit runs quick test set ([328fb5f](https://gitlab.com/xebis/repository-template/commit/328fb5fc20bada7d24bcb26a2488c2b1bac116f7))
+* add pre-push runs reduced test set ([0bd0f89](https://gitlab.com/xebis/repository-template/commit/0bd0f8917da3b372cad840acb48f0beb1601f54e))
+
 # [0.9.0](https://gitlab.com/xebis/repository-template/compare/v0.8.0...v0.9.0) (2021-04-24)
 
 
