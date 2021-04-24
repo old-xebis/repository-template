@@ -15,7 +15,7 @@ stages:
 lint:
   stage: verify
   script:
-    - pip3 install pre-commit gitlint
+    - pip3 install gitlint pre-commit yamllint
     - gitlint
     - npm install -g markdownlint-cli
     - pre-commit run --all-files

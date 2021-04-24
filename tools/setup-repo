@@ -61,16 +61,28 @@ else
     # Install markdownlint-cli if it's not present
     set +o pipefail
     if npm list -g 2>/dev/null | grep "markdownlint-cli" >/dev/null; then
-        echo "$ECHO_PRE_OK MarkdownLint CLI is installed"
+        echo "$ECHO_PRE_OK markdownlint-cli is installed"
     else
         if $SUDO npm install -g markdownlint-cli; then
-            echo "$ECHO_PRE_INST MarkdownLint CLI has been installed"
+            echo "$ECHO_PRE_INST markdownlint-cli has been installed"
         else
-            echo "$ECHO_PRE_ERR MarkdownLint CLI installation failed."
+            echo "$ECHO_PRE_ERR markdownlint-cli installation failed."
             exit 1
         fi
     fi
     set -o pipefail
+
+    # Install yamllint if it's not present
+    if pip3 list | grep "^yamllint\\s.*$" >/dev/null; then
+        echo "$ECHO_PRE_OK yamllint is installed"
+    else
+        if pip3 install yamllint; then
+            echo "$ECHO_PRE_INST yamllint has been installed"
+        else
+            echo "$ECHO_PRE_ERR yamllint installation failed."
+            exit 1
+        fi
+    fi
 
     # Install pre-commit and gitlint into git hooks
     pre-commit install

@@ -10,7 +10,6 @@ repos:
       - id: check-merge-conflict
       - id: check-symlinks
       - id: check-vcs-permalinks
-      - id: check-yaml
       - id: destroyed-symlinks
       - id: detect-private-key
       - id: end-of-file-fixer
@@ -30,3 +29,8 @@ repos:
     rev: v0.27.1
     hooks:
       - id: markdownlint
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.26.1
+    hooks:
+      - id: yamllint
+        args: [--strict]
