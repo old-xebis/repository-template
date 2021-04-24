@@ -34,7 +34,6 @@ Strategies and tactics to achieve objectives:
   - Prevents merge conflict strings using [pre-commit/pre-commit-hooks: check-merge-conflict](https://github.com/pre-commit/pre-commit-hooks#check-merge-conflict)
   - Prevents stale symlinks using [pre-commit/pre-commit-hooks: check-symlinks](https://github.com/pre-commit/pre-commit-hooks#check-symlinks)
   - Prevents non-permanent GitHub links using [pre-commit/pre-commit-hooks: check-vcs-permalinks](https://github.com/pre-commit/pre-commit-hooks#check-vcs-permalinks)
-  - Checks YAML using [pre-commit/pre-commit-hooks: check-yaml](https://github.com/pre-commit/pre-commit-hooks#check-yaml)
   - Prevents destroyed symlinks using [pre-commit/pre-commit-hooks: destroyed-symlinks](https://github.com/pre-commit/pre-commit-hooks#destroyed-symlinks)
   - Prevents the existence of private keys using [pre-commit/pre-commit-hooks: detect-private-key](https://github.com/pre-commit/pre-commit-hooks#detect-private-key)
   - Enforces files end with empty newline using [pre-commit/pre-commit-hooks: end-of-file-fixer](https://github.com/pre-commit/pre-commit-hooks#end-of-file-fixer)
@@ -48,6 +47,7 @@ Strategies and tactics to achieve objectives:
   - Enforces non-executable script libraries have extension using [jumanjihouse/pre-commit-hooks: script-must-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-have-extension)
   - Lints Markdown using [igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli)
     - Except [CHANGELOG.md](CHANGELOG.md)
+  - Lints YAML using [adrienverge/yamllint](https://github.com/adrienverge/yamllint)
 - When merged to `main` branch releases using [semantic-release/semantic-release](https://github.com/semantic-release/semantic-release)
   - Determines major, minor, or patch version bump using [semantic-release/commit-analyzer](https://github.com/semantic-release/commit-analyzer)
   - Generates release notes using [semantic-release/release-notes-generator](https://github.com/semantic-release/release-notes-generator)
@@ -101,6 +101,7 @@ Set up **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/g
 - [GitHub - jumanjihouse/pre-commit-hooks: git pre-commit hooks that work with http://pre-commit.com/](https://github.com/jumanjihouse/pre-commit-hooks)
 - [GitHub - jorisroovers/gitlint: Linting for your git commit messages](https://github.com/jorisroovers/gitlint)
 - [GitHub - igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli)
+- [GitHub - adrienverge/yamllint: A linter for YAML files.](https://github.com/adrienverge/yamllint)
 
 ### Recommended
 
