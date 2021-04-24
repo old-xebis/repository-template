@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -e
+set -o pipefail
+set -u
+
+LANG=C
+
+# shellcheck disable=SC2034
+ECHO_PRE_OK="$0 ✓"
+# shellcheck disable=SC2034
+ECHO_PRE_INST="$0 +"
+# shellcheck disable=SC2034
+ECHO_PRE_ERR="$0 ❌"
+
+# Pre-commit git hook
+
+# Normalize
+
+# Check codebase changes
+pre-commit
+
+# Run quick test set
+echo "$ECHO_PRE_OK Quick test set"

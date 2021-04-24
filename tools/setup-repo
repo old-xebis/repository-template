@@ -124,8 +124,17 @@ else
         fi
     fi
 
-    # Install pre-commit and gitlint into git hooks
-    pre-commit install
+    # Install pre-commit hook if it's not present or doesn't point to the right location
+    if [[ ! -L ".git/hooks/pre-commit" ]] || [ "$(readlink .git/hooks/pre-commit)" != "../../tools/pre-commit" ]; then
+        if ln -s ../../tools/pre-commit .git/hooks/pre-commit; then
+            echo "$ECHO_PRE_INST pre-commit hook has been installed."
+        else
+            echo "$ECHO_PRE_ERR pre-commit hook installation failed, cannot create symbolic link."
+            exit 1
+        fi
+    else
+        echo "$ECHO_PRE_OK pre-commit hook is installed."
+    fi
 
     # Install commit-msg hook if it's not present or doesn't point to the right location
     if [[ ! -L ".git/hooks/commit-msg" ]] || [ "$(readlink .git/hooks/commit-msg)" != "../../tools/commit-msg" ]; then
