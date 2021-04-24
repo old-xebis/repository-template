@@ -3,6 +3,10 @@ ignore=body-is-missing
 
 contrib=contrib-title-conventional-commits
 
+[ignore-by-title]
+regex=^chore\(release\).*\[skip ci\]$
+ignore=body-max-line-length
+
 [title-must-not-contain-word]
 words=wip,todo,tbd
 
