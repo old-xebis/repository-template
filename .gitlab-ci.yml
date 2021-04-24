@@ -27,6 +27,19 @@ test-full:
   stage: verify
   script:
     - echo "$0 ✓ Full test set"
+  rules:
+    - if: $CI_PIPELINE_SOURCE != "schedule"
+      when: always
+    - when: never
+
+test-nightly:
+  stage: verify
+  script:
+    - echo "$0 ✓ Nightly test set"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: always
+    - when: never
 
 release:
   stage: release
@@ -37,4 +50,6 @@ release:
     - npm install -g semantic-release @semantic-release/gitlab @semantic-release/github @semantic-release/git @semantic-release/changelog
     - npx semantic-release
   rules:
-    - if: $CI_COMMIT_BRANCH == "main"
+    - if: $CI_PIPELINE_SOURCE != "schedule" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: always
+    - when: never
