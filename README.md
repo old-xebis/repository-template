@@ -34,7 +34,9 @@ Strategies and tactics to achieve objectives:
   - Prevents `todo` preceded with `#` at the codebase
   - Prevents existence of unstaged files
   - Runs reduced test set
-- Git `commit` scans each codebase change, git `push` scans whole codebase, and following rules are applied:
+- GitLab CI run is tested:
+  - Runs full test set
+- Git `commit` scans each codebase change; git `push`, and GitLab CI scans whole codebase, and following rules are applied:
   - Enforces max file size to 1024 kB using [pre-commit/pre-commit-hooks: check-added-large-files](https://github.com/pre-commit/pre-commit-hooks#check-added-large-files)
   - Prevents case insensitive filename conflict using [pre-commit/pre-commit-hooks: check-case-conflict](https://github.com/pre-commit/pre-commit-hooks#check-case-conflict)
   - Enforces executables have shebangs using [pre-commit/pre-commit-hooks: check-executables-have-shebangs](https://github.com/pre-commit/pre-commit-hooks#check-executables-have-shebangs)

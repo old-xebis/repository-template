@@ -4,9 +4,6 @@ default:
   before_script:
     - TZ="Europe/Prague"
     - ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-    - apt update
-    - apt upgrade -y
-    - apt install --no-install-recommends -y git nodejs npm
 
 stages:
   - verify
@@ -15,7 +12,9 @@ stages:
 lint:
   stage: verify
   script:
-    - apt install --no-install-recommends -y ca-certificates golang python3-pip shellcheck
+    - apt update
+    - apt upgrade -y
+    - apt install --no-install-recommends -y ca-certificates git golang nodejs npm python3-pip shellcheck
     - pip3 install gitlint pre-commit yamllint
     - gitlint
     - tools/check-sanity
@@ -24,9 +23,17 @@ lint:
     - PATH="$PATH:/root/go/bin"
     - pre-commit run --all-files
 
+test-full:
+  stage: verify
+  script:
+    - echo "$0 ✓ Full test set"
+
 release:
   stage: release
   script:
+    - apt update
+    - apt upgrade -y
+    - apt install --no-install-recommends -y git nodejs npm
     - npm install -g semantic-release @semantic-release/gitlab @semantic-release/github @semantic-release/git @semantic-release/changelog
     - npx semantic-release
   rules:
