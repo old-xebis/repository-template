@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -e
+set -o pipefail
+set -u
+
+LANG=C
+
+# shellcheck disable=SC2034
+ECHO_PRE_OK="$0 ✓"
+# shellcheck disable=SC2034
+ECHO_PRE_INST="$0 +"
+# shellcheck disable=SC2034
+ECHO_PRE_ERR="$0 ❌"
+
+# Check sanity
+# Anti-todo check
+TODO="todo"
+
+if grep -riq "#$TODO"; then
+    grep -ri "#$TODO"
+    echo "$ECHO_PRE_ERR todos sanitization"
+    exit 1
+else
+    echo "$ECHO_PRE_OK todos sanitization"
+fi
