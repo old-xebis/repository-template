@@ -38,3 +38,15 @@ repos:
     rev: v1.0.3
     hooks:
       - id: gitlab-ci-linter
+  - repo: local
+    hooks:
+      - id: shfmt
+        name: shfmt
+        entry: shfmt -i 4
+        language: system
+        types: [shell]
+      - id: shellcheck
+        name: shellcheck
+        entry: shellcheck
+        language: system
+        types: [shell]

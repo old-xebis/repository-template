@@ -34,6 +34,22 @@ else
         exit 1
     fi
 
+    # Check snap is installed
+    if snap --version >/dev/null; then
+        echo "$ECHO_PRE_OK snap is installed"
+    else
+        echo "$ECHO_PRE_ERR snap is NOT installed"
+        exit 1
+    fi
+
+    # Check apt is installed
+    if apt -v >/dev/null; then
+        echo "$ECHO_PRE_OK apt is installed"
+    else
+        echo "$ECHO_PRE_ERR apt is NOT installed"
+        exit 1
+    fi
+
     # Install pre-commit if it's not present
     if pip3 list | grep "^pre-commit\\s.*$" >/dev/null; then
         echo "$ECHO_PRE_OK pre-commit is installed"
@@ -80,6 +96,30 @@ else
             echo "$ECHO_PRE_INST yamllint has been installed"
         else
             echo "$ECHO_PRE_ERR yamllint installation failed."
+            exit 1
+        fi
+    fi
+
+    # Install shfmt if it's not present
+    if snap list 2>/dev/null | grep "shfmt" >/dev/null; then
+        echo "$ECHO_PRE_OK shfmt is installed"
+    else
+        if $SUDO snap install shfmt; then
+            echo "$ECHO_PRE_INST shfmt has been installed"
+        else
+            echo "$ECHO_PRE_ERR shfmt installation failed."
+            exit 1
+        fi
+    fi
+
+    # Install shellcheck if it's not present
+    if apt search ^shellcheck$ 2>/dev/null | grep "shellcheck.*installed" >/dev/null; then
+        echo "$ECHO_PRE_OK shellcheck is installed"
+    else
+        if $SUDO apt install -y shellcheck; then
+            echo "$ECHO_PRE_INST shellcheck has been installed"
+        else
+            echo "$ECHO_PRE_ERR shellcheck installation failed."
             exit 1
         fi
     fi

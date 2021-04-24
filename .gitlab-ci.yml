@@ -6,7 +6,7 @@ default:
     - ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
     - apt update
     - apt upgrade -y
-    - apt install --no-install-recommends -y git nodejs npm python3-pip
+    - apt install --no-install-recommends -y git nodejs npm
 
 stages:
   - verify
@@ -15,9 +15,12 @@ stages:
 lint:
   stage: verify
   script:
+    - apt install --no-install-recommends -y ca-certificates golang python3-pip shellcheck
     - pip3 install gitlint pre-commit yamllint
     - gitlint
     - npm install -g markdownlint-cli
+    - GO111MODULE=on go get mvdan.cc/sh/v3/cmd/gosh
+    - PATH="$PATH:/root/go/bin"
     - pre-commit run --all-files
 
 release:
