@@ -78,7 +78,7 @@ Strategies and tactics to achieve objectives:
 
 ## Setup
 
-Setup releases as the group or the project variable
+Set up releases as the group or the project variable:
 
 - Settings
   - CI/CD
@@ -88,6 +88,13 @@ Setup releases as the group or the project variable
         - Value: *token*
         - Flags:
           - Protect variable: **On**
+
+Set up scheduled pipeline:
+
+- CI/CD
+  - Schedules
+    - *New schedule*
+      - *Fill* and *Save pipeline schedule*
 
 ### GitLab Releases
 
