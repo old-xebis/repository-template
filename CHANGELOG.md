@@ -1,3 +1,10 @@
+# [0.7.0](https://gitlab.com/xebis/repository-template/compare/v0.6.0...v0.7.0) (2021-04-24)
+
+
+### Features
+
+* add gitlab ci linter ([c7e8119](https://gitlab.com/xebis/repository-template/commit/c7e8119ee401ff456e334feb0bdb2b3d1ee02e16))
+
 # [0.6.0](https://gitlab.com/xebis/repository-template/compare/v0.5.0...v0.6.0) (2021-04-24)
 
 
