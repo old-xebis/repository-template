@@ -1,3 +1,15 @@
+# [0.8.0](https://gitlab.com/xebis/repository-template/compare/v0.7.0...v0.8.0) (2021-04-24)
+
+
+### Bug Fixes
+
+* ci fails on shfmt not found ([0853877](https://gitlab.com/xebis/repository-template/commit/08538771fcd45d0b421745e319f0fdc9a4b0d8d4))
+
+
+### Features
+
+* add shfmt and shellcheck ([a219ad9](https://gitlab.com/xebis/repository-template/commit/a219ad9857ca51f7fe24b4fd7a8bf4647bd68951))
+
 # [0.7.0](https://gitlab.com/xebis/repository-template/compare/v0.6.0...v0.7.0) (2021-04-24)
 
 
