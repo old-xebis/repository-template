@@ -13,7 +13,7 @@ ECHO_PRE_INST="$0 +"
 ECHO_PRE_ERR="$0 ❌"
 
 # Check sanity
-# Anti-todo check
+# Check for todos
 TODO="todo"
 
 if grep -riq "#$TODO"; then

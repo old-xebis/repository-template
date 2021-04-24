@@ -27,6 +27,8 @@ Strategies and tactics to achieve objectives:
 - Automated workflow using [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks), and [GitLab CI](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)
   - GitLab CI skips CI if commit contains `[skip ci]` in the commit message
 - Commit messages are checked using [gitlint](https://github.com/jorisroovers/gitlint) and [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- The codebase is tested
+  - Runs reduced test set before `push`
 - Git `push` is checked:
   - Lints last commit message
   - Prevents `todo` preceded with `#` at the codebase

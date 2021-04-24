@@ -5,5 +5,5 @@ set -u
 
 LANG=C
 
-# commit-msg git hook
+# Commit-msg git hook
 gitlint --staged --msg-filename "$1" run-hook
