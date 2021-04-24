@@ -49,6 +49,8 @@ Strategies and tactics to achieve objectives:
     - Except [CHANGELOG.md](CHANGELOG.md)
   - Lints YAML using [adrienverge/yamllint](https://github.com/adrienverge/yamllint)
   - Lints [`.gitlab-ci.yml`](`.gitlab-ci.yml`) file using [devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter)
+  - Lints shell scripts formatting using [mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
+  - Checks shell scripts using [koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
 - When merged to `main` branch releases using [semantic-release/semantic-release](https://github.com/semantic-release/semantic-release)
   - Determines major, minor, or patch version bump using [semantic-release/commit-analyzer](https://github.com/semantic-release/commit-analyzer)
   - Generates release notes using [semantic-release/release-notes-generator](https://github.com/semantic-release/release-notes-generator)
@@ -104,6 +106,8 @@ Set up **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/g
 - [GitHub - igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli)
 - [GitHub - adrienverge/yamllint: A linter for YAML files.](https://github.com/adrienverge/yamllint)
 - [GitLab - devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter)
+- [GitHub - mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
+- [GitHub - koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
 
 ### Recommended
 
