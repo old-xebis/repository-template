@@ -43,6 +43,9 @@ Strategies and tactics to achieve objectives:
   - Converts line endings to LF using [pre-commit/pre-commit-hooks: mixed-line-ending](https://github.com/pre-commit/pre-commit-hooks#mixed-line-ending)
   - Prevents commits to protected branches using [pre-commit/pre-commit-hooks: no-commit-to-branch](https://github.com/pre-commit/pre-commit-hooks#no-commit-to-branch)
   - Prevents trailing whitespaces using [pre-commit/pre-commit-hooks: trailing-whitespace](https://github.com/pre-commit/pre-commit-hooks#trailing-whitespace)
+  - Prevents binary files from being added by accident using [jumanjihouse/pre-commit-hooks: forbid-binary](https://github.com/jumanjihouse/pre-commit-hooks#forbid-binary)
+  - Enforces executable scripts have no extension using [jumanjihouse/pre-commit-hooks: script-must-not-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-not-have-extension)
+  - Enforces non-executable script libraries have extension using [jumanjihouse/pre-commit-hooks: script-must-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-have-extension)
 - When merged to `main` branch releases using [semantic-release/semantic-release](https://github.com/semantic-release/semantic-release)
   - Determines major, minor, or patch version bump using [semantic-release/commit-analyzer](https://github.com/semantic-release/commit-analyzer)
   - Generates release notes using [semantic-release/release-notes-generator](https://github.com/semantic-release/release-notes-generator)
@@ -56,31 +59,24 @@ Strategies and tactics to achieve objectives:
 
 ## Setup
 
-### GitLab Releases
-
-Set up [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` and `write_repository` as the group or the project variable:
+Setup releases as the group or the project variable
 
 - Settings
   - CI/CD
     - Variables, *Expand*
       - *Add Variable*:
-        - Key: **GL_TOKEN**
+        - Key: `GL_TOKEN` or `GH_TOKEN`
         - Value: *token*
         - Flags:
           - Protect variable: **On**
+
+### GitLab Releases
+
+Set up **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` and `write_repository`.
 
 ### GitHub Releases
 
-Set up [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/about-authentication-to-github#authenticating-with-the-api) with at least scopes `repo` for a private repository or `public_repo` for a public repository, as the group or the project variable:
-
-- Settings
-  - CI/CD
-    - Variables, *Expand*
-      - *Add Variable*:
-        - Key: **GH_TOKEN**
-        - Value: *token*
-        - Flags:
-          - Protect variable: **On**
+Set up **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/about-authentication-to-github#authenticating-with-the-api) with at least scopes `repo` for a private repository or `public_repo` for a public repository.
 
 ## Authors
 
@@ -100,6 +96,7 @@ Set up [GitHub Personal Access Token](https://docs.github.com/en/github/authenti
 - [pre-commit: A framework for managing and maintaining multi-language pre-commit hooks](https://pre-commit.com/)
   - [pre-commit: Supported hooks](https://pre-commit.com/hooks.html)
 - [GitHub - pre-commit/pre-commit-hooks: Some out-of-the-box hooks for pre-commit](https://github.com/pre-commit/pre-commit-hooks)
+- [GitHub - jumanjihouse/pre-commit-hooks: git pre-commit hooks that work with http://pre-commit.com/](https://github.com/jumanjihouse/pre-commit-hooks)
 - [GitHub - jorisroovers/gitlint: Linting for your git commit messages](https://github.com/jorisroovers/gitlint)
 
 ### Recommended
