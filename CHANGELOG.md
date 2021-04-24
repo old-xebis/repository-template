@@ -1,3 +1,10 @@
+## [0.11.1](https://gitlab.com/xebis/repository-template/compare/v0.11.0...v0.11.1) (2021-04-24)
+
+
+### Bug Fixes
+
+* gitlint fails on release commits from semantic-release ([01b6018](https://gitlab.com/xebis/repository-template/commit/01b6018e8f808a040d7a3f6e71b761e8e45843ba))
+
 # [0.11.0](https://gitlab.com/xebis/repository-template/compare/v0.10.0...v0.11.0) (2021-04-24)
 
 
