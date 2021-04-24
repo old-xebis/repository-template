@@ -1,3 +1,10 @@
+# [0.5.0](https://gitlab.com/xebis/repository-template/compare/v0.4.0...v0.5.0) (2021-04-24)
+
+
+### Features
+
+* add markdownlint ([0e5ed4e](https://gitlab.com/xebis/repository-template/commit/0e5ed4ee1d3daa80418226faee1e263014b8d725))
+
 # [0.4.0](https://gitlab.com/xebis/repository-template/compare/v0.3.0...v0.4.0) (2021-04-24)
 
 
