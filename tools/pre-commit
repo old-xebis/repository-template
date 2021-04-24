@@ -12,14 +12,12 @@ ECHO_PRE_INST="$0 +"
 # shellcheck disable=SC2034
 ECHO_PRE_ERR="$0 ❌"
 
-# Check sanity
-# Check for todos
-TODO="todo"
+# Pre-commit git hook
 
-if grep -riq "#$TODO"; then
-    grep -ri "#$TODO"
-    echo "$ECHO_PRE_ERR todos sanitization"
-    exit 1
-else
-    echo "$ECHO_PRE_OK todos sanitization"
-fi
+# Normalize
+
+# Check codebase changes
+pre-commit
+
+# Run quick test set
+echo "$ECHO_PRE_OK Quick test set"

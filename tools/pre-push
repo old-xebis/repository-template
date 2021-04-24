@@ -14,8 +14,8 @@ ECHO_PRE_ERR="$0 ❌"
 
 # Pre-push git hook
 
-# Local sanity check
-# Uncommited changes check
+# Check local sanity
+# Check for uncommited changes
 GIT_UNCOMMITED=$(git ls-files -dmo --exclude-standard)
 if [ -n "$GIT_UNCOMMITED" ]; then
     echo "$ECHO_PRE_ERR git unstaged changes"
@@ -23,8 +23,11 @@ if [ -n "$GIT_UNCOMMITED" ]; then
 fi
 echo "$ECHO_PRE_OK git unstaged changes"
 
-# General sanity check
+# Check general sanity
 tools/check-sanity
 
-# Lint full
+# Check full codebase
 pre-commit run --all-files
+
+# Run reduced test set
+echo "$ECHO_PRE_OK Reduced test set"
