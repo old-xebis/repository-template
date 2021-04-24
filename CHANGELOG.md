@@ -1,3 +1,11 @@
+# [0.4.0](https://gitlab.com/xebis/repository-template/compare/v0.3.0...v0.4.0) (2021-04-24)
+
+
+### Features
+
+* add jumanjihouse pre-commit hooks ([532eec1](https://gitlab.com/xebis/repository-template/commit/532eec108e89f7bc1eacca91736a549f843932b0))
+* add more pre-commit hooks ([aa2bf32](https://gitlab.com/xebis/repository-template/commit/aa2bf321ff5dc804d9f0af89ba4b65f67d44321f))
+
 # [0.3.0](https://gitlab.com/xebis/repository-template/compare/v0.2.0...v0.3.0) (2021-04-23)
 
 
