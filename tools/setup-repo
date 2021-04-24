@@ -26,6 +26,14 @@ else
         exit 1
     fi
 
+    # Check npm is installed
+    if npm -v >/dev/null; then
+        echo "$ECHO_PRE_OK npm is installed"
+    else
+        echo "$ECHO_PRE_ERR npm is NOT installed"
+        exit 1
+    fi
+
     # Install pre-commit if it's not present
     if pip3 list | grep "^pre-commit\\s.*$" >/dev/null; then
         echo "$ECHO_PRE_OK pre-commit is installed"
@@ -49,6 +57,20 @@ else
             exit 1
         fi
     fi
+
+    # Install markdownlint-cli if it's not present
+    set +o pipefail
+    if npm list -g 2>/dev/null | grep "markdownlint-cli" >/dev/null; then
+        echo "$ECHO_PRE_OK MarkdownLint CLI is installed"
+    else
+        if $SUDO npm install -g markdownlint-cli; then
+            echo "$ECHO_PRE_INST MarkdownLint CLI has been installed"
+        else
+            echo "$ECHO_PRE_ERR MarkdownLint CLI installation failed."
+            exit 1
+        fi
+    fi
+    set -o pipefail
 
     # Install pre-commit and gitlint into git hooks
     pre-commit install
