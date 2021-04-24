@@ -36,6 +36,7 @@ Strategies and tactics to achieve objectives:
   - Runs reduced test set
 - GitLab CI run is checked, and tested:
   - Lints last commit message
+    - Except `release` commits
   - Prevents `todo` preceded with `#` at the codebase
   - Runs full test set on non-scheduled pipeline runs
   - Runs nightly test set on scheduled pipeline runs
