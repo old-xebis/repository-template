@@ -15,10 +15,11 @@ ECHO_PRE_ERR="$0 ❌"
 # Check sanity
 # Check for todos
 TODO="todo"
+TODOS=$(grep -ri "#$TODO" || true)
 
-if grep -riq "#$TODO"; then
-    grep -ri "#$TODO"
-    echo "$ECHO_PRE_ERR todos sanitization"
+if [ -n "$TODOS" ]; then
+    echo "$ECHO_PRE_ERR todos sanitization failed:"
+    echo "$TODOS"
     exit 1
 else
     echo "$ECHO_PRE_OK todos sanitization"
