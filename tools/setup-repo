@@ -18,6 +18,8 @@ if [[ "$EUID" -eq "0" ]]; then
     echo >&2 echo "Superpowers might be more harmful than useful. Please run as a regular user."
     exit 1
 else
+    SUDO="sudo"
+
     # Check pip is installed
     if pip3 -V >/dev/null; then
         echo "$ECHO_PRE_OK pip is installed"
@@ -57,7 +59,7 @@ else
         if pip3 install pre-commit; then
             echo "$ECHO_PRE_INST pre-commit has been installed"
         else
-            echo "$ECHO_PRE_ERR pre-commit installation failed."
+            echo "$ECHO_PRE_ERR pre-commit installation failed"
             exit 1
         fi
     fi
@@ -69,7 +71,7 @@ else
         if pip3 install gitlint; then
             echo "$ECHO_PRE_INST gitlint has been installed"
         else
-            echo "$ECHO_PRE_ERR gitlint installation failed."
+            echo "$ECHO_PRE_ERR gitlint installation failed"
             exit 1
         fi
     fi
@@ -82,7 +84,7 @@ else
         if $SUDO npm install -g markdownlint-cli; then
             echo "$ECHO_PRE_INST markdownlint-cli has been installed"
         else
-            echo "$ECHO_PRE_ERR markdownlint-cli installation failed."
+            echo "$ECHO_PRE_ERR markdownlint-cli installation failed"
             exit 1
         fi
     fi
@@ -95,7 +97,7 @@ else
         if pip3 install yamllint; then
             echo "$ECHO_PRE_INST yamllint has been installed"
         else
-            echo "$ECHO_PRE_ERR yamllint installation failed."
+            echo "$ECHO_PRE_ERR yamllint installation failed"
             exit 1
         fi
     fi
@@ -107,7 +109,7 @@ else
         if $SUDO snap install shfmt; then
             echo "$ECHO_PRE_INST shfmt has been installed"
         else
-            echo "$ECHO_PRE_ERR shfmt installation failed."
+            echo "$ECHO_PRE_ERR shfmt installation failed"
             exit 1
         fi
     fi
@@ -119,7 +121,7 @@ else
         if $SUDO apt install -y shellcheck; then
             echo "$ECHO_PRE_INST shellcheck has been installed"
         else
-            echo "$ECHO_PRE_ERR shellcheck installation failed."
+            echo "$ECHO_PRE_ERR shellcheck installation failed"
             exit 1
         fi
     fi
