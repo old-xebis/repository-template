@@ -1,3 +1,10 @@
+## [0.11.2](https://gitlab.com/xebis/repository-template/compare/v0.11.1...v0.11.2) (2021-05-09)
+
+
+### Bug Fixes
+
+* setup-repo script misses sudo ([40e608c](https://gitlab.com/xebis/repository-template/commit/40e608c38bd69c0eb8d29f161e3535fdd07c36b6))
+
 ## [0.11.1](https://gitlab.com/xebis/repository-template/compare/v0.11.0...v0.11.1) (2021-04-24)
 
 
