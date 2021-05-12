@@ -12,6 +12,8 @@
 
 Well-manageable and well-maintainable repository template.
 
+**The project is under active development.**
+
 ## The Purpose
 
 The purpose is to have a template repository and to have it *well-manageable* and *well-maintainable* by both human beings and automation tools.
@@ -46,11 +48,11 @@ Strategies and tactics to achieve objectives:
   - Runs reduced test set
 - GitLab CI run is checked, and tested:
   - Lints last commit message
-    - Except `release` commits
+    - Except for `release` commits
   - Prevents `todo` preceded with `#` at the codebase
   - Runs full test set on non-scheduled pipeline runs
   - Runs nightly test set on scheduled pipeline runs
-- Git `commit` scans each codebase change; git `push`, and GitLab CI scans whole codebase, and following rules are applied:
+- Git `commit` scans each codebase change; git `push`, and GitLab CI scans the whole codebase, and the following rules are applied:
   - Enforces max file size to 1024 kB using [pre-commit/pre-commit-hooks: check-added-large-files](https://github.com/pre-commit/pre-commit-hooks#check-added-large-files)
   - Prevents case insensitive filename conflict using [pre-commit/pre-commit-hooks: check-case-conflict](https://github.com/pre-commit/pre-commit-hooks#check-case-conflict)
   - Enforces executables have shebangs using [pre-commit/pre-commit-hooks: check-executables-have-shebangs](https://github.com/pre-commit/pre-commit-hooks#check-executables-have-shebangs)
@@ -69,7 +71,7 @@ Strategies and tactics to achieve objectives:
   - Enforces executable scripts have no extension using [jumanjihouse/pre-commit-hooks: script-must-not-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-not-have-extension)
   - Enforces non-executable script libraries have extension using [jumanjihouse/pre-commit-hooks: script-must-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-have-extension)
   - Lints Markdown using [igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli)
-    - Except [CHANGELOG.md](CHANGELOG.md)
+    - Except for [CHANGELOG.md](CHANGELOG.md)
   - Lints YAML using [adrienverge/yamllint](https://github.com/adrienverge/yamllint)
   - Lints [`.gitlab-ci.yml`](`.gitlab-ci.yml`) file using [devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter)
   - Lints shell scripts formatting using [mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
@@ -93,9 +95,13 @@ Strategies and tactics to achieve objectives:
   - [MIT License Template](templates/MIT-LICENSE)
   - [NO License Template](templates/NO-LICENSE)
 
-## Setup
+## Usage
 
-Set up releases as the group or the project variable:
+### Installation and Configuration
+
+Clone the project, run `tools/setup-repo`, and adjust to Your needs.
+
+Set up release tokens as the group or the project variable:
 
 - Settings
   - CI/CD
@@ -106,22 +112,26 @@ Set up releases as the group or the project variable:
         - Flags:
           - Protect variable: **On**
 
-Set up scheduled pipeline:
+Set up the scheduled pipeline:
 
 - CI/CD
   - Schedules
     - *New schedule*
       - *Fill* and *Save pipeline schedule*
 
-### GitLab Releases
+#### GitLab Releases
 
 Set up **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` and `write_repository`.
 
-### GitHub Releases
+#### GitHub Releases
 
 Set up **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/about-authentication-to-github#authenticating-with-the-api) with at least scopes `repo` for a private repository or `public_repo` for a public repository.
 
-## Test GitLab CI Locally
+## Contributing
+
+### Testing
+
+#### Test GitLab CI Locally
 
 There is not a simple way how to test GitLab CI locally, you might try:
 
@@ -146,15 +156,22 @@ or
 sudo gitlab-runner exec docker job --docker-image ubuntu:latest
 ```
 
-## Authors
+## Credits and Acknowledgments
 
-[Martin Bružina](https://bruzina.cz/)
+- [Martin Bružina](https://bruzina.cz/) - Author
 
-## License
+## Copyright and Licensing
 
-[MIT License](LICENSE)
+- [MIT License](LICENSE)
+- Copyright © 2021 Martin Bružina
 
-## Dependencies
+## Changelog and News
+
+- [Changelog](CHANGELOG.md)
+
+## Notes and References
+
+### Dependencies
 
 - [git](https://git-scm.com/)
 - [GitLab: The complete DevOps platform](https://about.gitlab.com/)
@@ -172,11 +189,15 @@ sudo gitlab-runner exec docker job --docker-image ubuntu:latest
 - [GitHub - mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
 - [GitHub - koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
 
-### Recommended
+### Recommendations
+
+- [Shields.io: Quality metadata badges for open source projects](https://shields.io/)
+
+### Suggestions
 
 - [Commitizen](https://commitizen-tools.github.io/commitizen/)
 
-## See Also
+### Further Reading
 
 - [Git - Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
 - [Conventional Commits - Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/)
