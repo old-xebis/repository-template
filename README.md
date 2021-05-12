@@ -86,10 +86,12 @@ Strategies and tactics to achieve objectives:
 - Repository `tools/setup-repo` script provides environment check, setup, and hooks installation
 - Repository `tools/update-repo` script updates used dependencies
 
-## Templates
+### Templates
 
-- [MIT License template](templates/MIT-LICENSE)
-- [NO License template](templates/NO-LICENSE)
+- [Readme Template](templates/README.md)
+- Licenses
+  - [MIT License Template](templates/MIT-LICENSE)
+  - [NO License Template](templates/NO-LICENSE)
 
 ## Setup
 
