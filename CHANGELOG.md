@@ -1,3 +1,12 @@
+# [0.12.0](https://gitlab.com/xebis/repository-template/compare/v0.11.2...v0.12.0) (2021-05-12)
+
+
+### Features
+
+* add contributing and code of conduct ([778c360](https://gitlab.com/xebis/repository-template/commit/778c3608a89f38dca81f52db3388676594162235))
+* add license templates ([58d6cff](https://gitlab.com/xebis/repository-template/commit/58d6cff0f63836bfadf47a774343151dcbdcad1f))
+* add readme template ([25f1649](https://gitlab.com/xebis/repository-template/commit/25f1649747151b87fd4e76a8deff73e559f3d717))
+
 ## [0.11.2](https://gitlab.com/xebis/repository-template/compare/v0.11.1...v0.11.2) (2021-05-09)
 
 
