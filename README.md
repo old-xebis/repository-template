@@ -129,6 +129,8 @@ Set up **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/g
 
 ## Contributing
 
+Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting merge requests to us.
+
 ### Testing
 
 #### Test GitLab CI Locally
@@ -196,9 +198,17 @@ sudo gitlab-runner exec docker job --docker-image ubuntu:latest
 ### Suggestions
 
 - [Commitizen](https://commitizen-tools.github.io/commitizen/)
+- [readme.so: Easiest Way to Create A README](https://readme.so/)
+- [Grammarly](grammarly.com) or [Hemingway Editor](http://www.hemingwayapp.com/)
 
 ### Further Reading
 
 - [Git - Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
 - [Conventional Commits - Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/)
 - [Semantic Versioning - Semantic Versioning 2.0.0](https://semver.org/)
+- [Wikipedia: README](https://en.wikipedia.org/wiki/README)
+- [Wikipedia: Contributing guidelines](https://en.wikipedia.org/wiki/Contributing_guidelines)
+- [Wikipedia: Code of conduct](https://en.wikipedia.org/wiki/Code_of_conduct)
+- [Make a README: Because no one can read your mind (yet)](https://www.makeareadme.com/)
+- [Contributor Covenant: A Code of Conduct for Open Source Communities](https://www.contributor-covenant.org/)
+- [GitHub - PurpleBooth/a-good-readme-template: A template to make good README.md](https://github.com/PurpleBooth/a-good-readme-template)
