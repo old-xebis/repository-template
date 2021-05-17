@@ -10,7 +10,9 @@
 ![GitHub issues](https://img.shields.io/github/issues/xebis/repository-template)
 ![GitHub last commit](https://img.shields.io/github/last-commit/xebis/repository-template)
 
-Well-manageable and well-maintainable repository template.
+Template for highly automated, up-to-date, and well-documented repositories.
+
+Covers documentation and license templates, check numerous common problems, Markdown, YAML, Bash, and run tests - all of it before commit, push, and at CI. Releases to GitLab and GitHub using semantic versioning and generating changelog.
 
 **The project is under active development.**
 
