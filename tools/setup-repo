@@ -44,11 +44,11 @@ else
         exit 1
     fi
 
-    # Check apt is installed
-    if apt -v >/dev/null; then
-        echo "$ECHO_PRE_OK apt is installed"
+    # Check apt-get is installed
+    if apt-get -v >/dev/null; then
+        echo "$ECHO_PRE_OK apt-get is installed"
     else
-        echo "$ECHO_PRE_ERR apt is NOT installed"
+        echo "$ECHO_PRE_ERR apt-get is NOT installed"
         exit 1
     fi
 
@@ -115,10 +115,10 @@ else
     fi
 
     # Install shellcheck if it's not present
-    if apt search ^shellcheck$ 2>/dev/null | grep "shellcheck.*installed" >/dev/null; then
+    if apt-cache pkgnames shellcheck 2>/dev/null | grep "shellcheck" >/dev/null; then
         echo "$ECHO_PRE_OK shellcheck is installed"
     else
-        if $SUDO apt install -y shellcheck; then
+        if $SUDO apt-get install -y shellcheck; then
             echo "$ECHO_PRE_INST shellcheck has been installed"
         else
             echo "$ECHO_PRE_ERR shellcheck installation failed"
