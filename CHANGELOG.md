@@ -1,3 +1,15 @@
+# [0.13.0](https://gitlab.com/xebis/repository-template/compare/v0.12.0...v0.13.0) (2021-05-22)
+
+
+### Bug Fixes
+
+* setup-repo, update-repo don't work out of the repo root ([d6dda69](https://gitlab.com/xebis/repository-template/commit/d6dda69d1cb8516765c9aec62e916d356e388d89))
+
+
+### Features
+
+* update pre-commit hooks to v4.0.1 ([445b985](https://gitlab.com/xebis/repository-template/commit/445b985f1566aa066eb5046e594c089ec4b9c6aa))
+
 # [0.12.0](https://gitlab.com/xebis/repository-template/compare/v0.11.2...v0.12.0) (2021-05-12)
 
 
