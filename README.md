@@ -214,3 +214,4 @@ sudo gitlab-runner exec docker job --docker-image ubuntu:latest
 - [Make a README: Because no one can read your mind (yet)](https://www.makeareadme.com/)
 - [Contributor Covenant: A Code of Conduct for Open Source Communities](https://www.contributor-covenant.org/)
 - [GitHub - PurpleBooth/a-good-readme-template: A template to make good README.md](https://github.com/PurpleBooth/a-good-readme-template)
+- [GitHub Guides: Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
