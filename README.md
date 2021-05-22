@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # Repository Template
 
 ![GitHub top language](https://img.shields.io/github/languages/top/xebis/repository-template)
@@ -16,6 +17,7 @@ Covers documentation and license templates, check numerous common problems, Mark
 
 **The project is under active development.**
 
+<!-- omit in toc -->
 ## The Purpose
 
 The purpose is to have a template repository and to have it *well-manageable* and *well-maintainable* by both human beings and automation tools.
@@ -35,6 +37,27 @@ Strategies and tactics to achieve objectives:
 1. Automate
 2. Automate
 3. Automate
+
+<!-- omit in toc -->
+## Table of Contents
+
+- [Features](#features)
+  - [Templates](#templates)
+- [Usage](#usage)
+  - [Installation and Configuration](#installation-and-configuration)
+    - [GitLab Releases](#gitlab-releases)
+    - [GitHub Releases](#github-releases)
+- [Contributing](#contributing)
+  - [Testing](#testing)
+    - [Test GitLab CI Locally](#test-gitlab-ci-locally)
+- [Credits and Acknowledgments](#credits-and-acknowledgments)
+- [Copyright and Licensing](#copyright-and-licensing)
+- [Changelog and News](#changelog-and-news)
+- [Notes and References](#notes-and-references)
+  - [Dependencies](#dependencies)
+  - [Recommendations](#recommendations)
+  - [Suggestions](#suggestions)
+  - [Further Reading](#further-reading)
 
 ## Features
 
@@ -135,6 +158,9 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 
 ### Testing
 
+- git hooks check a lot of things for you (see [Features](#features))
+- Make sure all `tools/*` scripts work as expected
+
 #### Test GitLab CI Locally
 
 There is not a simple way how to test GitLab CI locally, you might try:
@@ -152,11 +178,7 @@ sudo -E apt-get install gitlab-runner
 
 ```bash
 gitlab-runner exec shell job
-```
-
-or
-
-```bash
+# OR
 sudo gitlab-runner exec docker job --docker-image ubuntu:latest
 ```
 
@@ -195,13 +217,13 @@ sudo gitlab-runner exec docker job --docker-image ubuntu:latest
 
 ### Recommendations
 
-- [Shields.io: Quality metadata badges for open source projects](https://shields.io/)
-
-### Suggestions
-
 - [Commitizen](https://commitizen-tools.github.io/commitizen/)
 - [readme.so: Easiest Way to Create A README](https://readme.so/)
 - [Grammarly](grammarly.com) or [Hemingway Editor](http://www.hemingwayapp.com/)
+
+### Suggestions
+
+- [Shields.io: Quality metadata badges for open source projects](https://shields.io/)
 
 ### Further Reading
 
