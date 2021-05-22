@@ -1,5 +1,7 @@
 # Contributing
 
+Please follow common sense when creating issues and [the GitHub flow](https://guides.github.com/introduction/flow/) when creating merge requests.
+
 ## Issues
 
 Issues are very valuable to this project.
