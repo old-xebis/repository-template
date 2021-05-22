@@ -144,6 +144,8 @@ Set up the scheduled pipeline:
     - *New schedule*
       - *Fill* and *Save pipeline schedule*
 
+Run `tools/update-repo` from time to time to update repository dependencies.
+
 #### GitLab Releases
 
 Set up **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` and `write_repository`.

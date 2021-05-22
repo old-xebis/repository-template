@@ -5,12 +5,16 @@ set -u
 
 LANG=C
 
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && git rev-parse --show-toplevel)"
+
 # shellcheck disable=SC2034
 ECHO_PRE_OK="$0 ✓"
 # shellcheck disable=SC2034
 ECHO_PRE_INST="$0 +"
 # shellcheck disable=SC2034
 ECHO_PRE_ERR="$0 ❌"
+
+pushd "$REPO_DIR"
 
 # Setup repository
 if [[ "$EUID" -eq "0" ]]; then
@@ -19,6 +23,14 @@ if [[ "$EUID" -eq "0" ]]; then
     exit 1
 else
     SUDO="sudo"
+
+    # Check git is installed
+    if git --version >/dev/null; then
+        echo "$ECHO_PRE_OK git is installed"
+    else
+        echo "$ECHO_PRE_ERR git is NOT installed"
+        exit 1
+    fi
 
     # Check pip is installed
     if pip3 -V >/dev/null; then
@@ -162,3 +174,5 @@ else
         echo "$ECHO_PRE_OK pre-push hook is installed."
     fi
 fi
+
+popd
