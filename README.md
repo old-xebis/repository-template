@@ -10,6 +10,7 @@
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/xebis/repository-template)
 ![GitHub issues](https://img.shields.io/github/issues/xebis/repository-template)
 ![GitHub last commit](https://img.shields.io/github/last-commit/xebis/repository-template)
+[![pipeline status](https://gitlab.com/xebis/repository-template/badges/main/pipeline.svg?ignore_skipped=true)](https://gitlab.com/xebis/repository-template/-/commits/main)
 
 Template for highly automated, up-to-date, and well-documented repositories.
 
