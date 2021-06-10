@@ -1,3 +1,16 @@
+# [0.14.0](https://gitlab.com/xebis/repository-template/compare/v0.13.0...v0.14.0) (2021-06-10)
+
+
+### Bug Fixes
+
+* add temporary skipping gitlab-ci-linter ([06a570b](https://gitlab.com/xebis/repository-template/commit/06a570b66c674cfb4c4b722fa4725fe61fd30d9c))
+* ignore todos at binary files ([700a630](https://gitlab.com/xebis/repository-template/commit/700a630b15345c2884db33bef39d5ce127080e4a))
+
+
+### Features
+
+* add tools update-repo pre-commit gc ([ac6f5cc](https://gitlab.com/xebis/repository-template/commit/ac6f5cc8838cdea75dbf4cf67ad1b6f57e8d4811))
+
 # [0.13.0](https://gitlab.com/xebis/repository-template/compare/v0.12.0...v0.13.0) (2021-05-22)
 
 
