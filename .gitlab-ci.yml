@@ -6,11 +6,11 @@ default:
     - ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 stages:
-  - verify
-  - release
+  - validate
+  - deploy
 
 lint:
-  stage: verify
+  stage: validate
   script:
     - apt-get update
     - apt-get upgrade -y
@@ -24,7 +24,7 @@ lint:
     - pre-commit run --all-files
 
 test-full:
-  stage: verify
+  stage: validate
   script:
     - echo "$0 ✓ Full test set"
   rules:
@@ -33,7 +33,7 @@ test-full:
     - when: never
 
 test-nightly:
-  stage: verify
+  stage: validate
   script:
     - echo "$0 ✓ Nightly test set"
   rules:
@@ -42,7 +42,7 @@ test-nightly:
     - when: never
 
 release:
-  stage: release
+  stage: deploy
   script:
     - apt-get update
     - apt-get upgrade -y
