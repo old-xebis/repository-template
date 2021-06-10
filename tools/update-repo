@@ -10,6 +10,7 @@ REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && git rev-parse --s
 pushd "$REPO_DIR"
 
 # Update repository dependencies
+pre-commit gc
 pre-commit autoupdate
 
 popd

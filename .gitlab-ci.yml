@@ -6,11 +6,11 @@ default:
     - ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 stages:
-  - verify
-  - release
+  - validate
+  - deploy
 
 lint:
-  stage: verify
+  stage: validate
   script:
     - apt-get update
     - apt-get upgrade -y
@@ -21,10 +21,10 @@ lint:
     - npm install -g markdownlint-cli
     - GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt
     - PATH="$PATH:/root/go/bin"
-    - pre-commit run --all-files
+    - SKIP=gitlab-ci-linter pre-commit run --all-files # Temporary workaround until https://gitlab.com/devopshq/gitlab-ci-linter/-/issues/3 is fixed
 
 test-full:
-  stage: verify
+  stage: validate
   script:
     - echo "$0 ✓ Full test set"
   rules:
@@ -33,7 +33,7 @@ test-full:
     - when: never
 
 test-nightly:
-  stage: verify
+  stage: validate
   script:
     - echo "$0 ✓ Nightly test set"
   rules:
@@ -42,7 +42,7 @@ test-nightly:
     - when: never
 
 release:
-  stage: release
+  stage: deploy
   script:
     - apt-get update
     - apt-get upgrade -y
