@@ -27,7 +27,7 @@ echo "$ECHO_PRE_OK git unstaged changes"
 tools/check-sanity
 
 # Check full codebase
-pre-commit run --all-files
+SKIP=gitlab-ci-linter pre-commit run --all-files # Temporary workaround until https://gitlab.com/devopshq/gitlab-ci-linter/-/issues/3 is fixed
 
 # Run reduced test set
 echo "$ECHO_PRE_OK Reduced test set"

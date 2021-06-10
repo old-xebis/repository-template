@@ -21,7 +21,7 @@ lint:
     - npm install -g markdownlint-cli
     - GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt
     - PATH="$PATH:/root/go/bin"
-    - pre-commit run --all-files
+    - SKIP=gitlab-ci-linter pre-commit run --all-files # Temporary workaround until https://gitlab.com/devopshq/gitlab-ci-linter/-/issues/3 is fixed
 
 test-full:
   stage: validate
