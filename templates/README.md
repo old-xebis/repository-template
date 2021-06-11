@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # *Project*
 
 - *Change all emphasized texts*
@@ -19,9 +20,41 @@
 
 **The project is under active development.**
 
+<!-- omit in toc -->
+## Table of Contents
+
+- [Features](#features)
+- [Installation and Configuration](#installation-and-configuration)
+- [Usage](#usage)
+- [Contributing](#contributing)
+  - [Development](#development)
+  - [Testing](#testing)
+  - [Operations](#operations)
+- [Contact](#contact)
+  - [Troubleshooting and Support](#troubleshooting-and-support)
+- [To Do list](#to-do-list)
+- [Roadmap](#roadmap)
+- [Known Bugs](#known-bugs)
+- [Credits and Acknowledgments](#credits-and-acknowledgments)
+- [Copyright and Licensing](#copyright-and-licensing)
+- [Changelog and News](#changelog-and-news)
+- [Notes and References](#notes-and-references)
+  - [Dependencies](#dependencies)
+  - [Recommendations](#recommendations)
+  - [Suggestions](#suggestions)
+  - [Further Reading](#further-reading)
+
 ## Features
 
 *Features. Demos and visuals - images, animations, and videos are highly encouraged.*
+
+## Installation and Configuration
+
+*Installation and configuration guidance.*
+
+```shell
+# Installation steps
+```
 
 ## Usage
 
@@ -29,14 +62,6 @@
 
 ```shell
 # ...
-```
-
-### Installation and Configuration
-
-*Installation and configuration guidance.*
-
-```shell
-# Installation steps
 ```
 
 ## Contributing
@@ -63,9 +88,9 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 
 *Troubleshooting and preferred ways of providing support.*
 
-## Todo list
+## To Do list
 
-*Todo list.*
+*TODO list.*
 
 ## Roadmap
 
