@@ -44,10 +44,10 @@ Strategies and tactics to achieve objectives:
 
 - [Features](#features)
   - [Templates](#templates)
+- [Installation and Configuration](#installation-and-configuration)
+  - [GitLab Releases](#gitlab-releases)
+  - [GitHub Releases](#github-releases)
 - [Usage](#usage)
-  - [Installation and Configuration](#installation-and-configuration)
-    - [GitLab Releases](#gitlab-releases)
-    - [GitHub Releases](#github-releases)
 - [Contributing](#contributing)
   - [Testing](#testing)
     - [Test GitLab CI Locally](#test-gitlab-ci-locally)
@@ -121,9 +121,7 @@ Strategies and tactics to achieve objectives:
   - [MIT License Template](templates/MIT-LICENSE)
   - [NO License Template](templates/NO-LICENSE)
 
-## Usage
-
-### Installation and Configuration
+## Installation and Configuration
 
 Clone the project, run `tools/setup-repo`, and adjust to Your needs.
 
@@ -147,13 +145,22 @@ Set up the scheduled pipeline:
 
 Run `tools/update-repo` from time to time to update repository dependencies.
 
-#### GitLab Releases
+### GitLab Releases
 
 Set up **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` and `write_repository`.
 
-#### GitHub Releases
+### GitHub Releases
 
 Set up **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/about-authentication-to-github#authenticating-with-the-api) with at least scopes `repo` for a private repository or `public_repo` for a public repository.
+
+## Usage
+
+- `git commit` runs checks on changed files and performs tests a quick test set
+- `git push` runs checks on all files and performs tests with a reduced test set
+- GitLab `push`, `merge request` runs checks on all files and performs tests with a full test set
+- GitLab `merge to main` runs checks on all files and performs tests with a full test set
+- GitLab `schedule` runs checks on all files, performs tests with a nightly test set, and releases a new version
+- Run `tools/update-repo` from time to time
 
 ## Contributing
 
