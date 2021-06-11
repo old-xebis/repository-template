@@ -155,7 +155,12 @@ Set up **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/g
 
 ## Usage
 
-\#TODO
+- `git commit` runs checks on changed files and performs tests a quick test set
+- `git push` runs checks on all files and performs tests with a reduced test set
+- GitLab `push`, `merge request` runs checks on all files and performs tests with a full test set
+- GitLab `merge to main` runs checks on all files and performs tests with a full test set
+- GitLab `schedule` runs checks on all files, performs tests with a nightly test set, and releases a new version
+- Run `tools/update-repo` from time to time
 
 ## Contributing
 
