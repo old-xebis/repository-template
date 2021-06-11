@@ -1,3 +1,10 @@
+## [0.14.1](https://gitlab.com/xebis/repository-template/compare/v0.14.0...v0.14.1) (2021-06-11)
+
+
+### Bug Fixes
+
+* update-repo should have pre-commit update first, gc last ([859a2e2](https://gitlab.com/xebis/repository-template/commit/859a2e2054b20af116c5c383f3031e677e1dade6))
+
 # [0.14.0](https://gitlab.com/xebis/repository-template/compare/v0.13.0...v0.14.0) (2021-06-10)
 
 
