@@ -234,6 +234,21 @@ sudo gitlab-runner exec docker job --docker-image ubuntu:latest
 ### Suggestions
 
 - [Shields.io: Quality metadata badges for open source projects](https://shields.io/)
+- For [Visual Studio Code](https://code.visualstudio.com/) and [Extensions for Visual Studio Code](https://marketplace.visualstudio.com/VSCode):
+  - English, and grammar:
+    - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+    - [Grammarly (unofficial)](https://marketplace.visualstudio.com/items?itemName=znck.grammarly)
+  - Git, and GitLab:
+    - [Git Extension Pack (GPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.gpack) - contains Git History, GitLens, Git Graph, Git File History, Conventional Commits, and Checkpoints
+    - [GitLab Workflow](https://marketplace.visualstudio.com/items?itemName=GitLab.gitlab-workflow)
+  - Markdown:
+    - [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) - contains Github Markdown Preview, Markdown Checkboxes, Markdown Emoji, Markdown PDF, and markdownlint
+    - [Markdown yaml Preamble](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-yaml-preamble)
+  - Bash or shell:
+    - [Bash IDE](https://marketplace.visualstudio.com/items?itemName=mads-hartmann.bash-ide-vscode)
+    - [Bash Beautify](https://marketplace.visualstudio.com/items?itemName=shakram02.bash-beautify)
+    - [ShellCheck](https://marketplace.visualstudio.com/items?itemName=timonwong.shellcheck)
+    - [shell-format](https://marketplace.visualstudio.com/items?itemName=foxundermoon.shell-format)
 
 ### Further Reading
 
