@@ -21,8 +21,7 @@ lint:
     - npm install -g markdownlint-cli
     - GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt
     - PATH="$PATH:/root/go/bin"
-    - export GITLAB_PRIVATE_TOKEN="$GL_TOKEN"
-    - pre-commit run --all-files
+    - GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run --all-files
 
 test-full:
   stage: validate
@@ -30,8 +29,6 @@ test-full:
     - echo "$0 ✓ Full test set"
   rules:
     - if: $CI_PIPELINE_SOURCE != "schedule"
-      when: always
-    - when: never
 
 test-nightly:
   stage: validate
@@ -39,8 +36,6 @@ test-nightly:
     - echo "$0 ✓ Nightly test set"
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: always
-    - when: never
 
 release:
   stage: deploy
@@ -52,5 +47,3 @@ release:
     - npx semantic-release
   rules:
     - if: $CI_PIPELINE_SOURCE != "schedule" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      when: always
-    - when: never
