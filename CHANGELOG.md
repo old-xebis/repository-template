@@ -1,3 +1,10 @@
+## [0.14.2](https://gitlab.com/xebis/repository-template/compare/v0.14.1...v0.14.2) (2021-07-09)
+
+
+### Bug Fixes
+
+* gitlab ci linter is not skipped when gitlab personal token is set ([c374fca](https://gitlab.com/xebis/repository-template/commit/c374fca04c12c2415f4067410738d80e9d3a12d5))
+
 ## [0.14.1](https://gitlab.com/xebis/repository-template/compare/v0.14.0...v0.14.1) (2021-06-11)
 
 
