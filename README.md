@@ -45,8 +45,8 @@ Strategies and tactics to achieve objectives:
 - [Features](#features)
   - [Templates](#templates)
 - [Installation and Configuration](#installation-and-configuration)
-  - [GitLab Releases](#gitlab-releases)
-  - [GitHub Releases](#github-releases)
+  - [Local Environment](#local-environment)
+  - [GitLab Project](#gitlab-project)
 - [Usage](#usage)
 - [Contributing](#contributing)
   - [Testing](#testing)
@@ -99,7 +99,7 @@ Strategies and tactics to achieve objectives:
   - Lints Markdown using [igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli)
     - Except for [CHANGELOG.md](CHANGELOG.md)
   - Lints YAML using [adrienverge/yamllint](https://github.com/adrienverge/yamllint)
-  - ~~Lints [`.gitlab-ci.yml`](.gitlab-ci.yml) file using [devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter)~~ Temporarily skipped until <https://gitlab.com/devopshq/gitlab-ci-linter/-/issues/3> is fixed
+  - Lints [`.gitlab-ci.yml`](.gitlab-ci.yml) file using [devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter) when `GL_TOKEN` environment variable is set to **GitLab Personal Token**
   - Lints shell scripts formatting using [mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
   - Checks shell scripts using [koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
   - For other formats and rules see [pre-commit: Supported hooks](https://pre-commit.com/hooks.html), there are many for .NET, Ansible, AWS, C, CMake, CSV, C++, Chef, Dart, Docker, Flutter, git, GitHub, GitLab, Go, HTML, INI, Java, JavaScript, Jenkins, Jinja, JSON, Kotlin, Lisp, Lua, Mac, Markdown, Node.js, Perl, PHP, Prometheus, Protobufs, Puppet, Python, R, Ruby, Rust, Shell, Swift, Terraform, TOML, Typescript, XML, YAML, ... or create new using regular expressions.
@@ -123,9 +123,16 @@ Strategies and tactics to achieve objectives:
 
 ## Installation and Configuration
 
-Clone the project, run `tools/setup-repo`, and adjust to Your needs.
+### Local Environment
 
-Set up release tokens as the group or the project variable:
+Clone the project, run `tools/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` is present, otherwise `gitlab-ci-linter` would be skipped.
+
+### GitLab Project
+
+Set up release and GitLab CI Linter tokens as the GitLab group or the GitLab project variable:
+
+- **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` and `write_repository`. Shouldn't be protected otherwise GitLab CI job `lint` fails with an error `Server said HTTP Error 401: Unauthorized: https://gitlab.com/api/v4/ci/lint`.
+- **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/about-authentication-to-github#authenticating-with-the-api) with at least scopes `repo` for a private repository or `public_repo` for a public repository. Should be protected.
 
 - Settings
   - CI/CD
@@ -136,7 +143,7 @@ Set up release tokens as the group or the project variable:
         - Flags:
           - Protect variable: **On**
 
-Set up the scheduled pipeline:
+Set up the GitLab scheduled pipeline:
 
 - CI/CD
   - Schedules
@@ -144,14 +151,6 @@ Set up the scheduled pipeline:
       - *Fill* and *Save pipeline schedule*
 
 Run `tools/update-repo` from time to time to update repository dependencies.
-
-### GitLab Releases
-
-Set up **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` and `write_repository`.
-
-### GitHub Releases
-
-Set up **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/about-authentication-to-github#authenticating-with-the-api) with at least scopes `repo` for a private repository or `public_repo` for a public repository.
 
 ## Usage
 
