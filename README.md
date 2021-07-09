@@ -47,8 +47,6 @@ Strategies and tactics to achieve objectives:
 - [Installation and Configuration](#installation-and-configuration)
   - [Local Environment](#local-environment)
   - [GitLab Project](#gitlab-project)
-  - [GitLab Releases](#gitlab-releases)
-  - [GitHub Releases](#github-releases)
 - [Usage](#usage)
 - [Contributing](#contributing)
   - [Testing](#testing)
@@ -127,11 +125,14 @@ Strategies and tactics to achieve objectives:
 
 ### Local Environment
 
-Clone the project, run `tools/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` is present.
+Clone the project, run `tools/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` is present, otherwise `gitlab-ci-linter` would be skipped.
 
 ### GitLab Project
 
-Set up release tokens as the GitLab group or the GitLab project variable:
+Set up release and GitLab CI Linter tokens as the GitLab group or the GitLab project variable:
+
+- **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` and `write_repository`. Shouldn't be protected otherwise GitLab CI job `lint` fails with an error `Server said HTTP Error 401: Unauthorized: https://gitlab.com/api/v4/ci/lint`.
+- **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/about-authentication-to-github#authenticating-with-the-api) with at least scopes `repo` for a private repository or `public_repo` for a public repository. Should be protected.
 
 - Settings
   - CI/CD
@@ -150,14 +151,6 @@ Set up the GitLab scheduled pipeline:
       - *Fill* and *Save pipeline schedule*
 
 Run `tools/update-repo` from time to time to update repository dependencies.
-
-### GitLab Releases
-
-Set up **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` and `write_repository`.
-
-### GitHub Releases
-
-Set up **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/about-authentication-to-github#authenticating-with-the-api) with at least scopes `repo` for a private repository or `public_repo` for a public repository.
 
 ## Usage
 
