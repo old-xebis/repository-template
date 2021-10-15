@@ -19,7 +19,7 @@ lint:
     - gitlint
     - tools/check-sanity
     - npm install -g markdownlint-cli
-    - GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt
+    - GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt@v3.3.1
     - PATH="$PATH:/root/go/bin"
     - GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run --all-files
 
