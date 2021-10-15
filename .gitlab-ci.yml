@@ -42,7 +42,10 @@ release:
   script:
     - apt-get update
     - apt-get upgrade -y
-    - apt-get install --no-install-recommends -y git nodejs npm
+    - apt-get install --no-install-recommends -y curl git npm
+    - curl -sL https://deb.nodesource.com/setup_14.x -o setup_14.sh
+    - bash ./setup_14.sh
+    - apt-get install --no-install-recommends -y nodejs
     - npm install -g semantic-release @semantic-release/gitlab @semantic-release/github @semantic-release/git @semantic-release/changelog
     - npx semantic-release
   rules:
