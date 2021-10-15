@@ -14,7 +14,10 @@ lint:
   script:
     - apt-get update
     - apt-get upgrade -y
-    - apt-get install --no-install-recommends -y ca-certificates git golang nodejs npm python3-pip shellcheck
+    - apt-get install --no-install-recommends -y ca-certificates curl git golang npm python3-pip shellcheck
+    - curl -sL https://deb.nodesource.com/setup_14.x -o setup_14.sh
+    - bash ./setup_14.sh
+    - apt-get install --no-install-recommends -y nodejs
     - pip3 install gitlint pre-commit yamllint
     - gitlint
     - tools/check-sanity
