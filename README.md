@@ -51,6 +51,8 @@ Strategies and tactics to achieve objectives:
 - [Contributing](#contributing)
   - [Testing](#testing)
     - [Test GitLab CI Locally](#test-gitlab-ci-locally)
+- [To-Do list](#to-do-list)
+- [Roadmap](#roadmap)
 - [Credits and Acknowledgments](#credits-and-acknowledgments)
 - [Copyright and Licensing](#copyright-and-licensing)
 - [Changelog and News](#changelog-and-news)
@@ -73,8 +75,7 @@ Strategies and tactics to achieve objectives:
   - Prevents existence of unstaged files
   - Runs reduced test set
 - GitLab CI run is checked, and tested:
-  - Lints last commit message
-    - Except for `release` commits
+  - Lints last commit message (except `release` commits)
   - Prevents `todo` preceded with `#` at the codebase
   - Runs full test set on non-scheduled pipeline runs
   - Runs nightly test set on scheduled pipeline runs
@@ -96,8 +97,7 @@ Strategies and tactics to achieve objectives:
   - Prevents binary files from being added by accident using [jumanjihouse/pre-commit-hooks: forbid-binary](https://github.com/jumanjihouse/pre-commit-hooks#forbid-binary)
   - Enforces executable scripts have no extension using [jumanjihouse/pre-commit-hooks: script-must-not-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-not-have-extension)
   - Enforces non-executable script libraries have extension using [jumanjihouse/pre-commit-hooks: script-must-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-have-extension)
-  - Lints Markdown using [igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli)
-    - Except for [CHANGELOG.md](CHANGELOG.md)
+  - Lints Markdown using [igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli) (except [CHANGELOG.md](CHANGELOG.md))
   - Lints YAML using [adrienverge/yamllint](https://github.com/adrienverge/yamllint)
   - Lints [`.gitlab-ci.yml`](.gitlab-ci.yml) file using [devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter) when `GL_TOKEN` environment variable is set to **GitLab Personal Token**
   - Lints shell scripts formatting using [mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
@@ -116,6 +116,8 @@ Strategies and tactics to achieve objectives:
 
 ### Templates
 
+Templates for your convenience.
+
 - [Readme Template](templates/README.md)
 - Licenses
   - [MIT License Template](templates/MIT-LICENSE)
@@ -125,7 +127,7 @@ Strategies and tactics to achieve objectives:
 
 ### Local Environment
 
-Clone the project, run `tools/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` is present, otherwise `gitlab-ci-linter` would be skipped.
+Clone the project, run `tools/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` is present, otherwise `gitlab-ci-linter` is skipped.
 
 ### GitLab Project
 
@@ -159,7 +161,7 @@ Run `tools/update-repo` from time to time to update repository dependencies.
 - GitLab `push`, `merge request` runs checks on all files and performs tests with a full test set
 - GitLab `merge to main` runs checks on all files and performs tests with a full test set
 - GitLab `schedule` runs checks on all files, performs tests with a nightly test set, and releases a new version
-- Run `tools/update-repo` from time to time
+- Run `tools/update-repo` manually from time to time
 
 ## Contributing
 
@@ -190,6 +192,14 @@ gitlab-runner exec shell job
 # OR
 sudo gitlab-runner exec docker job --docker-image ubuntu:latest
 ```
+
+## To-Do list
+
+- [ ] Replace `shfmt` exact version `v3.3.1` at [.gitlab-ci.yml](.gitlab-ci.yml) with `latest`
+
+## Roadmap
+
+- [ ] Speed up CI/CD with a set of Docker images with pre-installed dependencies for each CI/CD stage
 
 ## Credits and Acknowledgments
 

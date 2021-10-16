@@ -32,7 +32,7 @@
   - [Operations](#operations)
 - [Contact](#contact)
   - [Troubleshooting and Support](#troubleshooting-and-support)
-- [To Do list](#to-do-list)
+- [To-Do list](#to-do-list)
 - [Roadmap](#roadmap)
 - [Known Bugs](#known-bugs)
 - [Credits and Acknowledgments](#credits-and-acknowledgments)
@@ -88,7 +88,7 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 
 *Troubleshooting and preferred ways of providing support.*
 
-## To Do list
+## To-Do list
 
 *TODO list.*
 
