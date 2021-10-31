@@ -1,3 +1,10 @@
+## [0.14.3](https://gitlab.com/xebis/repository-template/compare/v0.14.2...v0.14.3) (2021-10-31)
+
+
+### Bug Fixes
+
+* don't miss yaml to be done tags with a leading space ([3b00e5e](https://gitlab.com/xebis/repository-template/commit/3b00e5eadb490bd3c9c9d09d9807b9db3212be8a))
+
 ## [0.14.2](https://gitlab.com/xebis/repository-template/compare/v0.14.1...v0.14.2) (2021-07-09)
 
 
