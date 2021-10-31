@@ -238,6 +238,7 @@ sudo gitlab-runner exec docker job --docker-image ubuntu:latest
 
 - [Commitizen](https://commitizen-tools.github.io/commitizen/)
 - [readme.so: Easiest Way to Create A README](https://readme.so/)
+- [GitHub - matiassingers/awesome-readme: A curated list of awesome READMEs](https://github.com/matiassingers/awesome-readme)
 - [Grammarly](https://www.grammarly.com/) or [Hemingway Editor](http://www.hemingwayapp.com/)
 
 ### Suggestions
@@ -249,10 +250,12 @@ sudo gitlab-runner exec docker job --docker-image ubuntu:latest
     - [Grammarly (unofficial)](https://marketplace.visualstudio.com/items?itemName=znck.grammarly)
   - Git, and GitLab:
     - [Git Extension Pack (GPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.gpack) - contains Git History, GitLens, Git Graph, Git File History, Conventional Commits, and Checkpoints
+    - [gitignore](https://marketplace.visualstudio.com/items?itemName=codezombiech.gitignore)
     - [GitLab Workflow](https://marketplace.visualstudio.com/items?itemName=GitLab.gitlab-workflow)
   - Markdown:
     - [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) - contains Github Markdown Preview, Markdown Checkboxes, Markdown Emoji, Markdown PDF, and markdownlint
     - [Markdown yaml Preamble](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-yaml-preamble)
+    - [HTTP/s and relative link checker](https://marketplace.visualstudio.com/items?itemName=blackmist.LinkCheckMD)
   - Bash or shell:
     - [Bash IDE](https://marketplace.visualstudio.com/items?itemName=mads-hartmann.bash-ide-vscode)
     - [Bash Beautify](https://marketplace.visualstudio.com/items?itemName=shakram02.bash-beautify)
