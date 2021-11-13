@@ -50,3 +50,4 @@ release:
     - npx semantic-release
   rules:
     - if: $CI_PIPELINE_SOURCE != "schedule" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  resource_group: release
