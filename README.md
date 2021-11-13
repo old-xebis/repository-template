@@ -31,7 +31,7 @@ Objectives:
 
 - Simple and easy environment check and setup
 - Fast and unified code change contribution
-- Automated and reliable code change propagation (build, testing, integration, publish, or deployment)
+- Automated and reliable code change propagation (build, testing, integration, publication or deployment, and release)
 
 Strategies and tactics to achieve objectives:
 
@@ -169,8 +169,25 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 
 ### Testing
 
-- git hooks check a lot of things for you (see [Features](#features))
-- Make sure all `tools/*` scripts work as expected
+- Git hooks check a lot of things for you (see [Features](#features))
+- Make sure all `tools/*` scripts, git hooks and GitLab pipelines work as expected, testing checklist:
+
+- `tools/*` scripts
+  - [ ] [`tools/check-sanity`](tools/check-sanity)
+  - [ ] [`tools/commit-msg`](tools/commit-msg)
+  - [ ] [`tools/setup-repo`](tools/setup-repo)
+  - [ ] [`tools/pre-commit`](tools/pre-commit)
+  - [ ] [`tools/pre-push`](tools/pre-push)
+  - [ ] [`tools/update-repo`](tools/update-repo)
+- Local working directory
+  - [ ] `git commit` runs [`tools/commit-msg`](tools/commit-msg) and [`tools/pre-commit`](tools/pre-commit)
+  - [ ] `git push` runs [`tools/pre-push`](tools/pre-push)
+- GitLab CI
+  - [ ] Commit in _non_-`main` branch runs `validate:lint` and `validate:test-full`
+  - [ ] Merge to `main` branch runs `validate:lint`, `validate:test-full`, and `release:release`
+    - [ ] With a new `feat` or `fix` commit releases a new version
+    - [ ] Without a new feature or fix commit does not release a new version
+  - [ ] Scheduled (nightly) pipeline runs `validate:lint` and `validate:test-nightly`
 
 #### Test GitLab CI Locally
 
@@ -244,7 +261,7 @@ sudo gitlab-runner exec docker job --docker-image ubuntu:latest
 ### Suggestions
 
 - [Shields.io: Quality metadata badges for open source projects](https://shields.io/)
-- For [Visual Studio Code](https://code.visualstudio.com/) and [Extensions for Visual Studio Code](https://marketplace.visualstudio.com/VSCode):
+- [Visual Studio Code](https://code.visualstudio.com/) with [Extensions for Visual Studio Code](https://marketplace.visualstudio.com/VSCode):
   - English, and grammar:
     - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
     - [Grammarly (unofficial)](https://marketplace.visualstudio.com/items?itemName=znck.grammarly)
