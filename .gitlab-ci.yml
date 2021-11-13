@@ -7,7 +7,7 @@ default:
 
 stages:
   - validate
-  - deploy
+  - release
 
 lint:
   stage: validate
@@ -38,7 +38,7 @@ test-nightly:
     - if: $CI_PIPELINE_SOURCE == "schedule"
 
 release:
-  stage: deploy
+  stage: release
   script:
     - apt-get update
     - apt-get upgrade -y
