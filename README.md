@@ -111,8 +111,9 @@ Strategies and tactics to achieve objectives:
   - Releases new version by tagging using [semantic-release/gitlab](https://github.com/semantic-release/gitlab)
   - Releases new version by tagging using [semantic-release/github](https://github.com/semantic-release/github)
   - Semantic-release skips release if commit contains `[skip release]` or `[release skip]` in the commit message
-- Repository `tools/setup-repo` script provides environment check, setup, and hooks installation
-- Repository `tools/update-repo` script updates used dependencies
+- `tools/setup-repo` script installs environment check, setup, and hooks
+- `tools/load-secrets` script loads secrets
+- `tools/update-repo` script updates used dependencies
 
 ### Templates
 
@@ -127,13 +128,13 @@ Templates for your convenience.
 
 ### Local Environment
 
-Clone the project, run `tools/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` is present, otherwise `gitlab-ci-linter` is skipped.
+Clone the project, run `tools/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` present, otherwise `gitlab-ci-linter` is skipped. You can edit and source `tools/load-secrets.sh` script, **please make sure you won't commit your secrets**.
 
 ### GitLab Project
 
 Set up release and GitLab CI Linter tokens as the GitLab group or the GitLab project variable:
 
-- **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` and `write_repository`. Shouldn't be protected otherwise GitLab CI job `lint` fails with an error `Server said HTTP Error 401: Unauthorized: https://gitlab.com/api/v4/ci/lint`.
+- **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scopes `api` and `write_repository`. Shouldn't be protected otherwise GitLab CI job `lint` fails with an error `Server said HTTP Error 401: Unauthorized: https://gitlab.com/api/v4/ci/lint`.
 - **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/about-authentication-to-github#authenticating-with-the-api) with at least scopes `repo` for a private repository or `public_repo` for a public repository. Should be protected.
 
 - Settings
@@ -175,9 +176,10 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 - `tools/*` scripts
   - [ ] [`tools/check-sanity`](tools/check-sanity)
   - [ ] [`tools/commit-msg`](tools/commit-msg)
-  - [ ] [`tools/setup-repo`](tools/setup-repo)
+  - [ ] [`tools/load-secrets`](tools/load-secrets)
   - [ ] [`tools/pre-commit`](tools/pre-commit)
   - [ ] [`tools/pre-push`](tools/pre-push)
+  - [ ] [`tools/setup-repo`](tools/setup-repo)
   - [ ] [`tools/update-repo`](tools/update-repo)
 - Local working directory
   - [ ] `git commit` runs [`tools/commit-msg`](tools/commit-msg) and [`tools/pre-commit`](tools/pre-commit)
