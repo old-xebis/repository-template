@@ -280,6 +280,7 @@ sudo gitlab-runner exec docker job --docker-image ubuntu:latest
     - [GitLab Workflow](https://marketplace.visualstudio.com/items?itemName=GitLab.gitlab-workflow)
   - Markdown:
     - [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) - contains Github Markdown Preview, Markdown Checkboxes, Markdown Emoji, Markdown PDF, and markdownlint
+    - [Paste Image](https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image)
     - [Markdown yaml Preamble](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-yaml-preamble)
     - [HTTP/s and relative link checker](https://marketplace.visualstudio.com/items?itemName=blackmist.LinkCheckMD)
   - Bash or shell:
