@@ -36,7 +36,7 @@ repos:
       - id: yamllint
         args: [--strict]
   - repo: https://gitlab.com/devopshq/gitlab-ci-linter
-    rev: v1.0.4
+    rev: v1.0.2
     hooks:
       - id: gitlab-ci-linter
   - repo: local
