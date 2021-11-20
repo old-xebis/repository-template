@@ -64,6 +64,10 @@ Strategies and tactics to achieve objectives:
 
 ## Features
 
+Example of a bugfix workflow:
+
+![Example of a bugfix workflow](images/workflow-fix.png)
+
 - Automated workflow using [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks), and [GitLab CI](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)
   - GitLab CI skips CI if commit contains `[skip ci]` in the commit message
 - Commit messages are checked using [gitlint](https://github.com/jorisroovers/gitlint) and [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
@@ -111,7 +115,7 @@ Strategies and tactics to achieve objectives:
   - Releases new version by tagging using [semantic-release/gitlab](https://github.com/semantic-release/gitlab)
   - Releases new version by tagging using [semantic-release/github](https://github.com/semantic-release/github)
   - Semantic-release skips release if commit contains `[skip release]` or `[release skip]` in the commit message
-- `tools/setup-repo` script installs environment check, setup, and hooks
+- `tools/setup-repo` script checks environment, installs dependencies, and setup hooks
 - `tools/load-secrets` script loads secrets
 - `tools/update-repo` script updates used dependencies
 
@@ -156,6 +160,8 @@ Set up the GitLab scheduled pipeline:
 Run `tools/update-repo` from time to time to update repository dependencies.
 
 ## Usage
+
+Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-template/-/forks/new) or [GitHub](https://github.com/xebis/repository-template/fork), **delete** all git tags, and **tag** the last commit to a desired starting version, e.g. `v0.0.0`. Clone the repository, run `tools/setup-repo`, and enjoy!
 
 - `git commit` runs checks on changed files and performs tests a quick test set
 - `git push` runs checks on all files and performs tests with a reduced test set
@@ -264,6 +270,7 @@ sudo gitlab-runner exec docker job --docker-image ubuntu:latest
 
 - [Shields.io: Quality metadata badges for open source projects](https://shields.io/)
 - [Visual Studio Code](https://code.visualstudio.com/) with [Extensions for Visual Studio Code](https://marketplace.visualstudio.com/VSCode):
+  - [Gremlins tracker for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=nhoizey.gremlins)
   - English, and grammar:
     - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
     - [Grammarly (unofficial)](https://marketplace.visualstudio.com/items?itemName=znck.grammarly)
