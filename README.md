@@ -288,6 +288,7 @@ sudo gitlab-runner exec docker job --docker-image ubuntu:latest
     - [Bash Beautify](https://marketplace.visualstudio.com/items?itemName=shakram02.bash-beautify)
     - [ShellCheck](https://marketplace.visualstudio.com/items?itemName=timonwong.shellcheck)
     - [shell-format](https://marketplace.visualstudio.com/items?itemName=foxundermoon.shell-format)
+  - [GitHub - codespell-project/codespell: check code for common misspellings](https://github.com/codespell-project/codespell)
 
 ### Further Reading
 
