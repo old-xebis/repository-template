@@ -31,7 +31,7 @@ Objectives:
 
 - Simple and easy environment check and setup
 - Fast and unified code change contribution
-- Automated and reliable code change propagation (build, testing, integration, publish, or deployment)
+- Automated and reliable code change propagation (build, testing, integration, publication or deployment, and release)
 
 Strategies and tactics to achieve objectives:
 
@@ -63,6 +63,10 @@ Strategies and tactics to achieve objectives:
   - [Further Reading](#further-reading)
 
 ## Features
+
+Example of a bugfix workflow:
+
+![Example of a bugfix workflow](images/workflow-fix.png)
 
 - Automated workflow using [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks), and [GitLab CI](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)
   - GitLab CI skips CI if commit contains `[skip ci]` in the commit message
@@ -111,8 +115,9 @@ Strategies and tactics to achieve objectives:
   - Releases new version by tagging using [semantic-release/gitlab](https://github.com/semantic-release/gitlab)
   - Releases new version by tagging using [semantic-release/github](https://github.com/semantic-release/github)
   - Semantic-release skips release if commit contains `[skip release]` or `[release skip]` in the commit message
-- Repository `tools/setup-repo` script provides environment check, setup, and hooks installation
-- Repository `tools/update-repo` script updates used dependencies
+- `tools/setup-repo` script checks environment, installs dependencies, and setup hooks
+- `tools/load-secrets` script loads secrets
+- `tools/update-repo` script updates used dependencies
 
 ### Templates
 
@@ -127,13 +132,13 @@ Templates for your convenience.
 
 ### Local Environment
 
-Clone the project, run `tools/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` is present, otherwise `gitlab-ci-linter` is skipped.
+Clone the project, run `tools/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` present, otherwise `gitlab-ci-linter` is skipped. You can edit and source `tools/load-secrets.sh` script, **please make sure you won't commit your secrets**.
 
 ### GitLab Project
 
 Set up release and GitLab CI Linter tokens as the GitLab group or the GitLab project variable:
 
-- **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with at least scopes `api` and `write_repository`. Shouldn't be protected otherwise GitLab CI job `lint` fails with an error `Server said HTTP Error 401: Unauthorized: https://gitlab.com/api/v4/ci/lint`.
+- **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scopes `api` and `write_repository`. Shouldn't be protected otherwise GitLab CI job `lint` fails with an error `Server said HTTP Error 401: Unauthorized: https://gitlab.com/api/v4/ci/lint`.
 - **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/about-authentication-to-github#authenticating-with-the-api) with at least scopes `repo` for a private repository or `public_repo` for a public repository. Should be protected.
 
 - Settings
@@ -156,6 +161,8 @@ Run `tools/update-repo` from time to time to update repository dependencies.
 
 ## Usage
 
+Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-template/-/forks/new) or [GitHub](https://github.com/xebis/repository-template/fork), **delete** all git tags, and **tag** the last commit to a desired starting version, e.g. `v0.0.0`. Clone the repository, run `tools/setup-repo`, and enjoy!
+
 - `git commit` runs checks on changed files and performs tests a quick test set
 - `git push` runs checks on all files and performs tests with a reduced test set
 - GitLab `push`, `merge request` runs checks on all files and performs tests with a full test set
@@ -169,8 +176,26 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 
 ### Testing
 
-- git hooks check a lot of things for you (see [Features](#features))
-- Make sure all `tools/*` scripts work as expected
+- Git hooks check a lot of things for you (see [Features](#features))
+- Make sure all `tools/*` scripts, git hooks and GitLab pipelines work as expected, testing checklist:
+
+- `tools/*` scripts
+  - [ ] [`tools/check-sanity`](tools/check-sanity)
+  - [ ] [`tools/commit-msg`](tools/commit-msg)
+  - [ ] [`tools/load-secrets`](tools/load-secrets)
+  - [ ] [`tools/pre-commit`](tools/pre-commit)
+  - [ ] [`tools/pre-push`](tools/pre-push)
+  - [ ] [`tools/setup-repo`](tools/setup-repo)
+  - [ ] [`tools/update-repo`](tools/update-repo)
+- Local working directory
+  - [ ] `git commit` runs [`tools/commit-msg`](tools/commit-msg) and [`tools/pre-commit`](tools/pre-commit)
+  - [ ] `git push` runs [`tools/pre-push`](tools/pre-push)
+- GitLab CI
+  - [ ] Commit in _non_-`main` branch runs `validate:lint` and `validate:test-full`
+  - [ ] Merge to `main` branch runs `validate:lint`, `validate:test-full`, and `release:release`
+    - [ ] With a new `feat` or `fix` commit releases a new version
+    - [ ] Without a new feature or fix commit does not release a new version
+  - [ ] Scheduled (nightly) pipeline runs `validate:lint` and `validate:test-nightly`
 
 #### Test GitLab CI Locally
 
@@ -244,7 +269,8 @@ sudo gitlab-runner exec docker job --docker-image ubuntu:latest
 ### Suggestions
 
 - [Shields.io: Quality metadata badges for open source projects](https://shields.io/)
-- For [Visual Studio Code](https://code.visualstudio.com/) and [Extensions for Visual Studio Code](https://marketplace.visualstudio.com/VSCode):
+- [Visual Studio Code](https://code.visualstudio.com/) with [Extensions for Visual Studio Code](https://marketplace.visualstudio.com/VSCode):
+  - [Gremlins tracker for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=nhoizey.gremlins)
   - English, and grammar:
     - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
     - [Grammarly (unofficial)](https://marketplace.visualstudio.com/items?itemName=znck.grammarly)
@@ -254,6 +280,7 @@ sudo gitlab-runner exec docker job --docker-image ubuntu:latest
     - [GitLab Workflow](https://marketplace.visualstudio.com/items?itemName=GitLab.gitlab-workflow)
   - Markdown:
     - [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) - contains Github Markdown Preview, Markdown Checkboxes, Markdown Emoji, Markdown PDF, and markdownlint
+    - [Paste Image](https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image)
     - [Markdown yaml Preamble](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-yaml-preamble)
     - [HTTP/s and relative link checker](https://marketplace.visualstudio.com/items?itemName=blackmist.LinkCheckMD)
   - Bash or shell:
