@@ -1,3 +1,10 @@
+# [0.15.0](https://gitlab.com/xebis/repository-template/compare/v0.14.3...v0.15.0) (2021-11-21)
+
+
+### Features
+
+* add tools/load-secrets script ([871059d](https://gitlab.com/xebis/repository-template/commit/871059d6ae3f44b468335bd4f6607fb1da05ec4a))
+
 ## [0.14.3](https://gitlab.com/xebis/repository-template/compare/v0.14.2...v0.14.3) (2021-10-31)
 
 
