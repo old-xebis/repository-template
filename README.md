@@ -65,13 +65,9 @@ Strategies and tactics to achieve objectives:
 
 ## Features
 
-Feature workflow:
+Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easily adjustable to [GitLab Flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html) or any other workflow.
 
-![Example of a feature workflow](images/workflow-feature.png)
-
-Bugfix workflow:
-
-![Example of a bugfix workflow](images/workflow-fix.png)
+![Example of the full workflow](images/workflow-full.png)
 
 - Automated workflow using [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks), and [GitLab CI](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)
   - GitLab CI skips CI if commit contains `[skip ci]` in the commit message
@@ -135,9 +131,10 @@ Templates for your convenience.
 
 ### Images
 
-- [Git Workflow Examples & Template](images/workflow.drawio)
-- [Example of a Feature Workflow](images/workflow-feature.png)
-- [Example of a Bugfix Workflow](images/workflow-fix.png)
+- [Git workflow examples & template](images/workflow.drawio)
+- [Example of the full workflow](images/workflow-full.png)
+- [Example of a feature workflow](images/workflow-feature.png)
+- [Example of a bugfix workflow](images/workflow-fix.png)
 
 ## Installation and Configuration
 
@@ -312,4 +309,6 @@ sudo gitlab-runner exec docker job --docker-image ubuntu:latest
 - [Make a README: Because no one can read your mind (yet)](https://www.makeareadme.com/)
 - [Contributor Covenant: A Code of Conduct for Open Source Communities](https://www.contributor-covenant.org/)
 - [GitHub - PurpleBooth/a-good-readme-template: A template to make good README.md](https://github.com/PurpleBooth/a-good-readme-template)
-- [GitHub Guides: Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
+- [Programster's Blog: Git Workflows](https://blog.programster.org/git-workflows)
+  - [GitHub Guides: Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
+  - [GitLab Docs: Introduction to GitLab Flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html)
