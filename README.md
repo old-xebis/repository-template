@@ -65,6 +65,8 @@ Strategies and tactics to achieve objectives:
 
 ## Features
 
+Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easily adjustable to [GitLab Flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html) or any other workflow.
+
 ![Example of the full workflow](images/workflow-full.png)
 
 - Automated workflow using [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks), and [GitLab CI](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)
@@ -307,4 +309,6 @@ sudo gitlab-runner exec docker job --docker-image ubuntu:latest
 - [Make a README: Because no one can read your mind (yet)](https://www.makeareadme.com/)
 - [Contributor Covenant: A Code of Conduct for Open Source Communities](https://www.contributor-covenant.org/)
 - [GitHub - PurpleBooth/a-good-readme-template: A template to make good README.md](https://github.com/PurpleBooth/a-good-readme-template)
-- [GitHub Guides: Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
+- [Programster's Blog: Git Workflows](https://blog.programster.org/git-workflows)
+  - [GitHub Guides: Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
+  - [GitLab Docs: Introduction to GitLab Flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html)
