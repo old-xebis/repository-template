@@ -65,13 +65,7 @@ Strategies and tactics to achieve objectives:
 
 ## Features
 
-Feature workflow:
-
-![Example of a feature workflow](images/workflow-feature.png)
-
-Bugfix workflow:
-
-![Example of a bugfix workflow](images/workflow-fix.png)
+![Example of the full workflow](images/workflow-full.png)
 
 - Automated workflow using [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks), and [GitLab CI](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)
   - GitLab CI skips CI if commit contains `[skip ci]` in the commit message
@@ -135,9 +129,10 @@ Templates for your convenience.
 
 ### Images
 
-- [Git Workflow Examples & Template](images/workflow.drawio)
-- [Example of a Feature Workflow](images/workflow-feature.png)
-- [Example of a Bugfix Workflow](images/workflow-fix.png)
+- [Git workflow examples & template](images/workflow.drawio)
+- [Example of the full workflow](images/workflow-full.png)
+- [Example of a feature workflow](images/workflow-feature.png)
+- [Example of a bugfix workflow](images/workflow-fix.png)
 
 ## Installation and Configuration
 
