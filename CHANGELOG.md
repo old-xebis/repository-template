@@ -1,3 +1,16 @@
+# [0.16.0](https://gitlab.com/xebis/repository-template/compare/v0.15.0...v0.16.0) (2021-11-29)
+
+
+### Bug Fixes
+
+* sourcing tools/secrets.sh lead to unexpected shell exits ([e550540](https://gitlab.com/xebis/repository-template/commit/e550540c350efda767e3c208578c128680a34702))
+
+
+### Features
+
+* add check-mailmap pre-commit hook ([f6ed3fe](https://gitlab.com/xebis/repository-template/commit/f6ed3fe430acb41e50d7526b4ebaf74fdc2a1294))
+* rename tools script load-secrets.sh to secrets.sh ([1fc4cd5](https://gitlab.com/xebis/repository-template/commit/1fc4cd5d5929742562a0df7c2247f851afd8a6c6))
+
 # [0.15.0](https://gitlab.com/xebis/repository-template/compare/v0.14.3...v0.15.0) (2021-11-21)
 
 
