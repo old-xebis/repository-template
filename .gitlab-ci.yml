@@ -12,8 +12,7 @@ stages:
 lint:
   stage: validate
   script:
-    - apt-get update
-    - apt-get upgrade -y
+    - apt-get update && apt-get upgrade -y
     - apt-get install --no-install-recommends -y ca-certificates git golang nodejs npm python3-pip shellcheck
     - pip3 install gitlint pre-commit yamllint
     - gitlint
@@ -22,6 +21,7 @@ lint:
     - GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt@v3.3.1
     - PATH="$PATH:/root/go/bin"
     - GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run --all-files
+  interruptible: true
   rules:
     - when: always
 
@@ -29,6 +29,7 @@ test-full:
   stage: validate
   script:
     - echo "$0 ✓ Full test set"
+  interruptible: true
   rules:
     - if: $CI_PIPELINE_SOURCE != "schedule"
 
@@ -42,8 +43,7 @@ test-nightly:
 release:
   stage: release
   script:
-    - apt-get update
-    - apt-get upgrade -y
+    - apt-get update && apt-get upgrade -y
     - apt-get install --no-install-recommends -y curl git npm
     - curl -sL https://deb.nodesource.com/setup_14.x -o setup_14.sh
     - bash ./setup_14.sh
