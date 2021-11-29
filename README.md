@@ -49,6 +49,7 @@ Strategies and tactics to achieve objectives:
   - [Local Environment](#local-environment)
   - [GitLab Project](#gitlab-project)
 - [Usage](#usage)
+  - [Usage Examples](#usage-examples)
 - [Contributing](#contributing)
   - [Testing](#testing)
     - [Test GitLab CI Locally](#test-gitlab-ci-locally)
@@ -65,12 +66,12 @@ Strategies and tactics to achieve objectives:
 
 ## Features
 
-Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easily adjustable to [GitLab Flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html) or any other workflow.
+Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easily adjustable to [GitLab flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html) or any other workflow.
 
 ![Example of the full workflow](images/workflow-full.png)
 
 - Automated workflow using [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks), and [GitLab CI](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)
-  - GitLab CI skips CI if commit contains `[skip ci]` in the commit message
+  - GitLab CI skips CI if commit message contains `[ci skip]` or `[skip ci]`, using any capitalization, or pass **git push option** `ci.skip` (`git push -o ci.skip` git >= 2.17, `git push --push-option=ci.skip` git >= 2.10)
 - Commit messages are checked using [gitlint](https://github.com/jorisroovers/gitlint) and [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 - Git `commit` is normalized, checked, and tested:
   - Runs quick test set
@@ -79,6 +80,7 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Prevents `todo` preceded with `#` at the codebase
   - Prevents existence of unstaged files
   - Runs reduced test set
+  - Merge request could by created with **git push options**, see <https://docs.gitlab.com/ee/user/project/push_options.html#push-options-for-merge-requests>
 - GitLab CI run is checked, and tested:
   - Lints last commit message (except `release` commits)
   - Prevents `todo` preceded with `#` at the codebase
@@ -99,6 +101,7 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Converts line endings to LF using [pre-commit/pre-commit-hooks: mixed-line-ending](https://github.com/pre-commit/pre-commit-hooks#mixed-line-ending)
   - Prevents commits to protected branches using [pre-commit/pre-commit-hooks: no-commit-to-branch](https://github.com/pre-commit/pre-commit-hooks#no-commit-to-branch)
   - Prevents trailing whitespaces using [pre-commit/pre-commit-hooks: trailing-whitespace](https://github.com/pre-commit/pre-commit-hooks#trailing-whitespace)
+  - Prevents botched name/email translations in git history using [jumanjihouse/pre-commit-hooks: check-mailmap](https://github.com/jumanjihouse/pre-commit-hooks#check-mailmap)
   - Prevents binary files from being added by accident using [jumanjihouse/pre-commit-hooks: forbid-binary](https://github.com/jumanjihouse/pre-commit-hooks#forbid-binary)
   - Enforces executable scripts have no extension using [jumanjihouse/pre-commit-hooks: script-must-not-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-not-have-extension)
   - Enforces non-executable script libraries have extension using [jumanjihouse/pre-commit-hooks: script-must-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-have-extension)
@@ -117,7 +120,7 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Releases new version by tagging using [semantic-release/github](https://github.com/semantic-release/github)
   - Semantic-release skips release if commit contains `[skip release]` or `[release skip]` in the commit message
 - `tools/setup-repo` script checks environment, installs dependencies, and setup hooks
-- `tools/load-secrets` script loads secrets
+- `tools/secrets` script to source secrets
 - `tools/update-repo` script updates used dependencies
 
 ### Templates
@@ -140,7 +143,17 @@ Templates for your convenience.
 
 ### Local Environment
 
-Clone the project, run `tools/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` present, otherwise `gitlab-ci-linter` is skipped. You can edit and source `tools/load-secrets.sh` script, **please make sure you won't commit your secrets**.
+Clone the project, run `tools/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` present, otherwise `gitlab-ci-linter` is skipped. You can edit and source `tools/secrets.sh` script, **please make sure you won't commit your secrets** perhaps by running `git update-index --skip-worktree tools/secrets.sh`.
+
+Example:
+
+```shell
+git clone git@gitlab.com:xebis/repository-template.git
+cd repository-template
+tools/setup-repo
+# Add your secrets to tools/secrets.sh
+. tools/secrets.sh
+```
 
 ### GitLab Project
 
@@ -178,6 +191,13 @@ Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-templ
 - GitLab `schedule` runs checks on all files, performs tests with a nightly test set, and releases a new version
 - Run `tools/update-repo` manually from time to time
 
+### Usage Examples
+
+For usage examples you might take a look at:
+
+- [GitHub - xebis/infrastructure-template: Template for automated GitOps and IaC in a cloud. GitLab CI handles static and dynamic environments. Environments are created, updated, and destroyed by Terraform, then configured by cloud-init and Ansible.](https://github.com/xebis/infrastructure-template) - example of GitOps (IaC + MRs + CI/CD) and multiple environments orchestration
+- [GitHub - xebis/shellib: Simple Bash scripting library.](https://github.com/xebis/shellib) - example of version bumping and packaging
+
 ## Contributing
 
 Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting merge requests to us.
@@ -190,7 +210,7 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 - `tools/*` scripts
   - [ ] [`tools/check-sanity`](tools/check-sanity)
   - [ ] [`tools/commit-msg`](tools/commit-msg)
-  - [ ] [`tools/load-secrets`](tools/load-secrets)
+  - [ ] [`tools/secrets.sh`](tools/secrets.sh)
   - [ ] [`tools/pre-commit`](tools/pre-commit)
   - [ ] [`tools/pre-push`](tools/pre-push)
   - [ ] [`tools/setup-repo`](tools/setup-repo)

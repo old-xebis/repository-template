@@ -23,12 +23,13 @@ repos:
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
     rev: 2.1.5
     hooks:
+      - id: check-mailmap
       - id: forbid-binary
         exclude: .*\.png$
       - id: script-must-have-extension
       - id: script-must-not-have-extension
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.29.0
+    rev: v0.30.0
     hooks:
       - id: markdownlint
   - repo: https://github.com/adrienverge/yamllint.git
