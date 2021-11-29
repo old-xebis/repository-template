@@ -119,7 +119,7 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Releases new version by tagging using [semantic-release/github](https://github.com/semantic-release/github)
   - Semantic-release skips release if commit contains `[skip release]` or `[release skip]` in the commit message
 - `tools/setup-repo` script checks environment, installs dependencies, and setup hooks
-- `tools/load-secrets` script loads secrets
+- `tools/secrets` script to source secrets
 - `tools/update-repo` script updates used dependencies
 
 ### Templates
@@ -142,7 +142,17 @@ Templates for your convenience.
 
 ### Local Environment
 
-Clone the project, run `tools/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` present, otherwise `gitlab-ci-linter` is skipped. You can edit and source `tools/load-secrets.sh` script, **please make sure you won't commit your secrets**.
+Clone the project, run `tools/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` present, otherwise `gitlab-ci-linter` is skipped. You can edit and source `tools/secrets.sh` script, **please make sure you won't commit your secrets** perhaps by running `git update-index --skip-worktree tools/secrets.sh`.
+
+Example:
+
+```shell
+git clone git@gitlab.com:xebis/repository-template.git
+cd repository-template
+tools/setup-repo
+# Add your secrets to tools/secrets.sh
+. tools/secrets.sh
+```
 
 ### GitLab Project
 
@@ -199,7 +209,7 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 - `tools/*` scripts
   - [ ] [`tools/check-sanity`](tools/check-sanity)
   - [ ] [`tools/commit-msg`](tools/commit-msg)
-  - [ ] [`tools/load-secrets`](tools/load-secrets)
+  - [ ] [`tools/secrets.sh`](tools/secrets.sh)
   - [ ] [`tools/pre-commit`](tools/pre-commit)
   - [ ] [`tools/pre-push`](tools/pre-push)
   - [ ] [`tools/setup-repo`](tools/setup-repo)
