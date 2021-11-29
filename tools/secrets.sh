@@ -1,9 +1,4 @@
-#!/usr/bin/env bash
-set -e
-set -o pipefail
-set -u
-
-LANG=C
+# shellcheck shell=bash
 
 # GitLab Personal Access Token <https://gitlab.com/-/profile/personal_access_tokens> with scope `api`
 export GL_TOKEN=""
