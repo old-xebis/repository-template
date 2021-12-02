@@ -49,6 +49,7 @@ repos:
         entry: shfmt -i 4
         language: system
         types: [shell]
+        exclude: .*\.bats$
       - id: shellcheck
         name: shellcheck
         entry: shellcheck
