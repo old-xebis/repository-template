@@ -18,7 +18,7 @@ lint:
   script:
     - gitlint
     - tools/check-sanity
-    - GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run --all-files
+    - GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run -a
   interruptible: true
   rules:
     - when: always
