@@ -12,7 +12,7 @@ lint:
   stage: validate
   before_script:
     - *default_before_script
-    - apk add git go npm py-pip shellcheck
+    - apk add bash git go npm py-pip shellcheck
     - pip install gitlint pre-commit yamllint
     - npm install -g markdownlint-cli
     - go install mvdan.cc/sh/v3/cmd/shfmt@latest
