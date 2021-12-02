@@ -243,12 +243,12 @@ sudo -E apt-get install gitlab-runner
 ```bash
 gitlab-runner exec shell job
 # OR
-sudo gitlab-runner exec docker job --docker-image ubuntu:latest
+sudo gitlab-runner exec docker job --docker-image alpine:latest
 ```
 
 ## To-Do list
 
-- [ ] Replace `shfmt` exact version `v3.3.1` at [.gitlab-ci.yml](.gitlab-ci.yml) with `latest`
+_Empty._
 
 ## Roadmap
 
@@ -275,6 +275,8 @@ sudo gitlab-runner exec docker job --docker-image ubuntu:latest
 - [GitLab: The complete DevOps platform](https://about.gitlab.com/)
   - [GitLab: Continuous Integration (CI) with GitLab](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)
   - [GitLab: GitLab Runner](https://docs.gitlab.com/runner/)
+- [Docker Hub - Alpine](https://hub.docker.com/_/alpine)
+- [Docker Hub - Node](https://hub.docker.com/_/node)
 - [GitHub - semantic-release/semantic-release: Fully automated version management and package publishing](https://github.com/semantic-release/semantic-release)
 - [pre-commit: A framework for managing and maintaining multi-language pre-commit hooks](https://pre-commit.com/)
   - [pre-commit: Supported hooks](https://pre-commit.com/hooks.html)
