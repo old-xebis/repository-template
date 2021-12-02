@@ -1,9 +1,8 @@
 ---
 default:
-  image: ubuntu:latest
-  before_script:
-    - TZ="Europe/Prague"
-    - ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+  image: alpine:latest
+  before_script: &default_before_script
+    - apk -U upgrade
 
 stages:
   - validate
@@ -11,15 +10,16 @@ stages:
 
 lint:
   stage: validate
+  before_script:
+    - *default_before_script
+    - apk add bash git go npm py-pip python3-dev shellcheck
+    - pip install gitlint pre-commit yamllint
+    - npm install -g markdownlint-cli
+    - go install mvdan.cc/sh/v3/cmd/shfmt@latest
+    - PATH="$PATH:/root/go/bin"
   script:
-    - apt-get update && apt-get upgrade -y
-    - apt-get install --no-install-recommends -y ca-certificates git golang nodejs npm python3-pip shellcheck
-    - pip3 install gitlint pre-commit yamllint
     - gitlint
     - tools/check-sanity
-    - npm install -g markdownlint-cli
-    - GO111MODULE=on go get mvdan.cc/sh/v3/cmd/shfmt@v3.3.1
-    - PATH="$PATH:/root/go/bin"
     - GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run --all-files
   interruptible: true
   rules:
@@ -27,6 +27,7 @@ lint:
 
 test-full:
   stage: validate
+  before_script: []
   script:
     - echo "$0 ✓ Full test set"
   interruptible: true
@@ -35,6 +36,7 @@ test-full:
 
 test-nightly:
   stage: validate
+  before_script: []
   script:
     - echo "$0 ✓ Nightly test set"
   rules:
@@ -42,12 +44,12 @@ test-nightly:
 
 release:
   stage: release
+  image:
+    name: node:alpine
+    entrypoint: [/bin/sh]
+  before_script:
+    - *default_before_script
   script:
-    - apt-get update && apt-get upgrade -y
-    - apt-get install --no-install-recommends -y curl git npm
-    - curl -sL https://deb.nodesource.com/setup_14.x -o setup_14.sh
-    - bash ./setup_14.sh
-    - apt-get install --no-install-recommends -y nodejs
     - npm install -g semantic-release @semantic-release/gitlab @semantic-release/github @semantic-release/git @semantic-release/changelog
     - npx semantic-release
   rules:
