@@ -49,6 +49,7 @@ release:
     entrypoint: [""]
   before_script:
     - *default_before_script
+    - apk add git
   script:
     - npm install -g semantic-release @semantic-release/gitlab @semantic-release/github @semantic-release/git @semantic-release/changelog
     - npx semantic-release
