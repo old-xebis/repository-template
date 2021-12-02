@@ -26,4 +26,5 @@ else
 fi
 
 # Run quick test set
+bats tests
 echo "$ECHO_PRE_OK Quick test set"

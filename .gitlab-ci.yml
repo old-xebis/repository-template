@@ -27,8 +27,11 @@ lint:
 
 test-full:
   stage: validate
-  before_script: []
+  before_script:
+    - *default_before_script
+    - apk add bats
   script:
+    - bats tests
     - echo "$0 ✓ Full test set"
   interruptible: true
   rules:
@@ -36,8 +39,11 @@ test-full:
 
 test-nightly:
   stage: validate
-  before_script: []
+  before_script:
+    - *default_before_script
+    - apk add bats
   script:
+    - bats tests
     - echo "$0 ✓ Nightly test set"
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"

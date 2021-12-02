@@ -36,4 +36,5 @@ else
 fi
 
 # Run reduced test set
+bats tests
 echo "$ECHO_PRE_OK Reduced test set"

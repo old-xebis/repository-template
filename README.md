@@ -205,6 +205,7 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 ### Testing
 
 - Git hooks check a lot of things for you (see [Features](#features))
+- Run automated tests `bats tests`
 - Make sure all `tools/*` scripts, git hooks and GitLab pipelines work as expected, testing checklist:
 
 - `tools/*` scripts
@@ -288,6 +289,7 @@ _Empty._
 - [GitLab - devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter)
 - [GitHub - mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
 - [GitHub - koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
+- [GitHub - bats-core/bats-core: Bash Automated Testing System](https://github.com/bats-core/bats-core)
 
 ### Recommendations
 
@@ -318,6 +320,7 @@ _Empty._
     - [Bash Beautify](https://marketplace.visualstudio.com/items?itemName=shakram02.bash-beautify)
     - [ShellCheck](https://marketplace.visualstudio.com/items?itemName=timonwong.shellcheck)
     - [shell-format](https://marketplace.visualstudio.com/items?itemName=foxundermoon.shell-format)
+    - [Bats (Bash Automated Testing System)](https://marketplace.visualstudio.com/items?itemName=jetmartin.bats)
   - [GitHub - codespell-project/codespell: check code for common misspellings](https://github.com/codespell-project/codespell)
 
 ### Further Reading
