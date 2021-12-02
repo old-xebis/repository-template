@@ -46,7 +46,7 @@ release:
   stage: release
   image:
     name: node:alpine
-    entrypoint: [/bin/sh]
+    entrypoint: [""]
   before_script:
     - *default_before_script
   script:
