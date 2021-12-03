@@ -52,7 +52,7 @@ Strategies and tactics to achieve objectives:
   - [Usage Examples](#usage-examples)
 - [Contributing](#contributing)
   - [Testing](#testing)
-    - [Test at Docker Alpine Container Locally](#test-at-docker-alpine-container-locally)
+    - [Test at Docker Alpine Container](#test-at-docker-alpine-container)
     - [Test GitLab CI Locally](#test-gitlab-ci-locally)
 - [To-Do list](#to-do-list)
 - [Roadmap](#roadmap)
@@ -144,12 +144,12 @@ Templates for your convenience.
 
 ### Local Environment
 
-Clone the project, run `tools/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` present, otherwise `gitlab-ci-linter` is skipped. You can edit and source `tools/secrets.sh` script, **please make sure you won't commit your secrets** perhaps by running `git update-index --skip-worktree tools/secrets.sh`.
+Clone the project with `--recursive` option, run `tools/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` present, otherwise `gitlab-ci-linter` is skipped. You can edit and source `tools/secrets.sh` script, **please make sure you won't commit your secrets** perhaps by running `git update-index --skip-worktree tools/secrets.sh`.
 
 Example:
 
 ```shell
-git clone git@gitlab.com:xebis/repository-template.git
+git clone --recursive git@gitlab.com:xebis/repository-template.git
 cd repository-template
 tools/setup-repo
 # Add your secrets to tools/secrets.sh
@@ -183,7 +183,7 @@ Run `tools/update-repo` from time to time to update repository dependencies.
 
 ## Usage
 
-Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-template/-/forks/new) or [GitHub](https://github.com/xebis/repository-template/fork), **delete** all git tags, and **tag** the last commit to a desired starting version, e.g. `v0.0.0`. Clone the repository, run `tools/setup-repo`, and enjoy!
+Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-template/-/forks/new) or [GitHub](https://github.com/xebis/repository-template/fork), **delete** all git tags, and **tag** the last commit to a desired starting version, e.g. `v0.0.0`. Clone the repository with `--recursive` option, run `tools/setup-repo`, and enjoy!
 
 - `git commit` runs checks on changed files and performs tests a quick test set
 - `git push` runs checks on all files and performs tests with a reduced test set
@@ -227,7 +227,7 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
     - [ ] Without a new feature or fix commit does not release a new version
   - [ ] Scheduled (nightly) pipeline runs `validate:lint` and `validate:test-nightly`
 
-#### Test at Docker Alpine Container Locally
+#### Test at Docker Alpine Container
 
 - Run docker container:
 
@@ -314,6 +314,9 @@ sudo gitlab-runner exec docker job --docker-image alpine:latest
 - [GitHub - mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
 - [GitHub - koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
 - [GitHub - bats-core/bats-core: Bash Automated Testing System](https://github.com/bats-core/bats-core)
+  - [GitHub - bats-core/bats-support: Supporting library for Bats test helpers](https://github.com/bats-core/bats-support)
+  - [GitHub - bats-core/bats-assert: Common assertions for Bats](https://github.com/bats-core/bats-assert)
+  - [GitHub - bats-core/bats-file: Common filesystem assertions for Bats](https://github.com/bats-core/bats-file)
 
 ### Recommendations
 

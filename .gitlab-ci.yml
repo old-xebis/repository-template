@@ -8,6 +8,9 @@ stages:
   - validate
   - release
 
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
 lint:
   stage: validate
   before_script:
