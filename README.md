@@ -52,6 +52,7 @@ Strategies and tactics to achieve objectives:
   - [Usage Examples](#usage-examples)
 - [Contributing](#contributing)
   - [Testing](#testing)
+    - [Test at Docker Alpine Container Locally](#test-at-docker-alpine-container-locally)
     - [Test GitLab CI Locally](#test-gitlab-ci-locally)
 - [To-Do list](#to-do-list)
 - [Roadmap](#roadmap)
@@ -225,6 +226,29 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
     - [ ] With a new `feat` or `fix` commit releases a new version
     - [ ] Without a new feature or fix commit does not release a new version
   - [ ] Scheduled (nightly) pipeline runs `validate:lint` and `validate:test-nightly`
+
+#### Test at Docker Alpine Container Locally
+
+- Run docker container:
+
+```bash
+sudo docker run -it --rm -v "$(pwd)":/repository-template alpine:latest # Create disposal docker container
+```
+
+- In the container:
+
+```bash
+cd repository-template
+# Set variables GL_TOKEN and GH_TOKEN when needed
+# Put here commands from .gitlab-ci.yml job:before_script and job:script
+# For example job test-full:
+apk -U upgrade
+apk add bats
+bats tests
+# Result is similar to:
+# 1..1
+# ok 1 dummy test
+```
 
 #### Test GitLab CI Locally
 
