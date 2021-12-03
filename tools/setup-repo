@@ -140,6 +140,18 @@ else
         fi
     fi
 
+    # Install bats if it's not present
+    if apt-cache pkgnames bats 2>/dev/null | grep "bats" >/dev/null; then
+        echo "$ECHO_PRE_OK bats is installed"
+    else
+        if $SUDO apt-get install -y bats; then
+            echo "$ECHO_PRE_INST bats has been installed"
+        else
+            echo "$ECHO_PRE_ERR bats installation failed"
+            exit 1
+        fi
+    fi
+
     # Install pre-commit hook if it's not present or doesn't point to the right location
     if [[ ! -L ".git/hooks/pre-commit" ]] || [ "$(readlink .git/hooks/pre-commit)" != "../../tools/pre-commit" ]; then
         if ln -s ../../tools/pre-commit .git/hooks/pre-commit; then
