@@ -1,3 +1,18 @@
+# [0.17.0](https://gitlab.com/xebis/repository-template/compare/v0.16.0...v0.17.0) (2021-12-03)
+
+
+### Bug Fixes
+
+* bats files are formatted as well ([e3a4567](https://gitlab.com/xebis/repository-template/commit/e3a4567d1a87ce25c2df198a799ad28b9363523f))
+* lint fails on script-must-have-extension pre-commit hook ([9cc2ce0](https://gitlab.com/xebis/repository-template/commit/9cc2ce09ab0d585672e240b37d9eb1902eaebbb0))
+* lint fails on shfmt pre-commit hook ([ca1f033](https://gitlab.com/xebis/repository-template/commit/ca1f033755dd8e1b9452a433c5863a55f5b62fa9))
+
+
+### Features
+
+* add bats ([c5083b3](https://gitlab.com/xebis/repository-template/commit/c5083b38f5e1a74f6ac13951d02b0feed4162d33))
+* add bats-support, bats-assert, and bats-file test helpers ([27f546c](https://gitlab.com/xebis/repository-template/commit/27f546cab564f1dd869ac74271e6df7aa1875f16))
+
 # [0.16.0](https://gitlab.com/xebis/repository-template/compare/v0.15.0...v0.16.0) (2021-11-29)
 
 
