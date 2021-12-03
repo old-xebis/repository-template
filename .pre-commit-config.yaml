@@ -50,6 +50,11 @@ repos:
         language: system
         types: [shell]
         exclude: .*\.bats$
+      - id: shfmt-bats
+        name: shfmt-bats
+        entry: shfmt -ln bats -i 4
+        language: system
+        files: .*\.bats$
       - id: shellcheck
         name: shellcheck
         entry: shellcheck

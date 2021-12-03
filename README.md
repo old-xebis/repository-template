@@ -273,7 +273,7 @@ sudo gitlab-runner exec docker job --docker-image alpine:latest
 
 ## To-Do list
 
-- [ ] Fix workarounded pre-commit `jumanjihouse/pre-commit-hooks` hook `script-must-have-extension` - `*.bats` shouldn't be excluded
+- [ ] Fix workaround for pre-commit `jumanjihouse/pre-commit-hooks` hook `script-must-have-extension` - `*.bats` shouldn't be excluded
 
 ## Roadmap
 
