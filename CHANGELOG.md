@@ -1,3 +1,10 @@
+## [0.17.2](https://gitlab.com/xebis/repository-template/compare/v0.17.1...v0.17.2) (2021-12-04)
+
+
+### Bug Fixes
+
+* tools/check-sanity shouldn't traverse through hidden directories ([70105c4](https://gitlab.com/xebis/repository-template/commit/70105c4fa54e2208036cddf63f85ed465795cce7))
+
 ## [0.17.1](https://gitlab.com/xebis/repository-template/compare/v0.17.0...v0.17.1) (2021-12-04)
 
 
