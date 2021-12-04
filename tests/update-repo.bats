@@ -12,7 +12,11 @@ setup() {
 
 @test "tools/update-repo basic test" {
     function git() {
-        echo '.'
+        if [ "$1" = 'rev-parse' ]; then
+            echo '.'
+        else
+            echo -n
+        fi
     }
     export -f git
 
