@@ -1,3 +1,10 @@
+## [0.17.1](https://gitlab.com/xebis/repository-template/compare/v0.17.0...v0.17.1) (2021-12-04)
+
+
+### Bug Fixes
+
+* add misssing git submodules update ([5b186d2](https://gitlab.com/xebis/repository-template/commit/5b186d25c0315bf973daf5660bf883d3824ceaaf))
+
 # [0.17.0](https://gitlab.com/xebis/repository-template/compare/v0.16.0...v0.17.0) (2021-12-03)
 
 
