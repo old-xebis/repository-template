@@ -48,6 +48,9 @@ Strategies and tactics to achieve objectives:
 - [Installation and Configuration](#installation-and-configuration)
   - [Local Environment](#local-environment)
   - [GitLab Project](#gitlab-project)
+    - [GitLab - GitHub Synchronization](#gitlab---github-synchronization)
+    - [GitLab CI Settings](#gitlab-ci-settings)
+    - [GitLab CI Nightly Pipeline](#gitlab-ci-nightly-pipeline)
 - [Usage](#usage)
   - [Usage Examples](#usage-examples)
 - [Contributing](#contributing)
@@ -117,6 +120,7 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Lints shell scripts formatting using [mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
   - Checks shell scripts using [koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
   - For other formats and rules see [pre-commit: Supported hooks](https://pre-commit.com/hooks.html), there are many for .NET, Ansible, AWS, C, CMake, CSV, C++, Chef, Dart, Docker, Flutter, git, GitHub, GitLab, Go, HTML, INI, Java, JavaScript, Jenkins, Jinja, JSON, Kotlin, Lisp, Lua, Mac, Markdown, Node.js, Perl, PHP, Prometheus, Protobufs, Puppet, Python, R, Ruby, Rust, Shell, Swift, Terraform, TOML, Typescript, XML, YAML, ... or create new using regular expressions.
+- When merged to maintenance release branch (`N.N.x` or `N.x.x` or `N.x` with `N` being a number), `next`, `next-major`, `beta`, or `alpha` releases maintenance or pre-release (branches must match regex `^(((0|[1-9]\d*)\.)(((0|[1-9]\d*|x)\.)?x)|main|next(-major)?|beta|alpha)$`, see <https://regex101.com/r/gH9dCG/2/>)
 - When merged to `main` branch releases using [semantic-release/semantic-release](https://github.com/semantic-release/semantic-release)
   - Determines major, minor, or patch version bump using [semantic-release/commit-analyzer](https://github.com/semantic-release/commit-analyzer)
   - Generates release notes using [semantic-release/release-notes-generator](https://github.com/semantic-release/release-notes-generator)
@@ -161,7 +165,31 @@ tools/setup-repo
 . tools/secrets.sh
 ```
 
+Run `tools/update-repo` from time to time to update repository dependencies.
+
 ### GitLab Project
+
+#### GitLab - GitHub Synchronization
+
+To create working GitLab to GitHub repository synchronization:
+
+- Prepare GitHub token, let's call it `GitLab GitHub Sync`, with scopes:
+  - `repo` (and `repo:status`, `repo_deployment`, `public_repo`, `repo:invite`, `security_events`)
+  - `workflow`
+  - `write:packages` (and `read:packages`)
+  - `delete:packages`
+- Have or create GitHub repository
+- Set up GitLab GitHub synchronization: Settings
+  - Repository
+    - Mirroring repositories, *Expand*
+      - *Add new mirror*:
+        - Git repository URL: **<https://user@github.com/org/repo.git>**, please replace _user_, _org_, and _repo_
+        - Mirror direction: **Push**
+        - Password: **`GitLab GitHub Sync` token**
+        - Keep divergent refs: **On** or **Off**
+        - Mirror only protected branches: **On** (all release and pre-release branches should be set as protected, otherwise GitHub release would fail on non-existent branch) or **Off**
+
+#### GitLab CI Settings
 
 Set up release and GitLab CI Linter tokens as the GitLab group or the GitLab project variable:
 
@@ -175,7 +203,9 @@ Set up release and GitLab CI Linter tokens as the GitLab group or the GitLab pro
         - Key: `GL_TOKEN` or `GH_TOKEN`
         - Value: *token*
         - Flags:
-          - Protect variable: **On**
+          - Protect variable: **On** (GitLab & GitHub Releases and GitLab CI Linter will work only on protected branches) or **Off** (insecure - accessible to anybody, who can create a commit in GitLab)
+
+#### GitLab CI Nightly Pipeline
 
 Set up the GitLab scheduled pipeline:
 
@@ -183,8 +213,6 @@ Set up the GitLab scheduled pipeline:
   - Schedules
     - *New schedule*
       - *Fill* and *Save pipeline schedule*
-
-Run `tools/update-repo` from time to time to update repository dependencies.
 
 ## Usage
 

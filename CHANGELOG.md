@@ -1,3 +1,10 @@
+# [0.18.0-beta.1](https://gitlab.com/xebis/repository-template/compare/v0.17.2...v0.18.0-beta.1) (2021-12-04)
+
+
+### Features
+
+* pre-releases and maintenance releases ([c96f563](https://gitlab.com/xebis/repository-template/commit/c96f5638ce52c18f14cacfc62ff0f9f92c366ad0))
+
 ## [0.17.2](https://gitlab.com/xebis/repository-template/compare/v0.17.1...v0.17.2) (2021-12-04)
 
 
