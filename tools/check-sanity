@@ -15,7 +15,7 @@ ECHO_PRE_ERR="$0 ❌"
 # Check sanity
 # Check for todos
 TODO="todo"
-TODOS=$(grep -riI --exclude-dir='bats-*' "#\\s*$TODO" || true)
+TODOS=$(grep -riI --exclude-dir={'.*','bats-*'} "#\\s*$TODO" || true)
 
 if [ -n "$TODOS" ]; then
     echo "$ECHO_PRE_ERR todos sanitization failed:"
