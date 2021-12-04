@@ -117,6 +117,7 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Lints shell scripts formatting using [mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
   - Checks shell scripts using [koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
   - For other formats and rules see [pre-commit: Supported hooks](https://pre-commit.com/hooks.html), there are many for .NET, Ansible, AWS, C, CMake, CSV, C++, Chef, Dart, Docker, Flutter, git, GitHub, GitLab, Go, HTML, INI, Java, JavaScript, Jenkins, Jinja, JSON, Kotlin, Lisp, Lua, Mac, Markdown, Node.js, Perl, PHP, Prometheus, Protobufs, Puppet, Python, R, Ruby, Rust, Shell, Swift, Terraform, TOML, Typescript, XML, YAML, ... or create new using regular expressions.
+- When merged to maintenance release branch (`N.N.x` or `N.x.x` or `N.x` with `N` being a number), `next`, `next-major`, `beta`, or `alpha` releases maintenance or pre-release (branches must match regex `^(((0|[1-9]\d*)\.)(((0|[1-9]\d*|x)\.)?x)|main|next(-major)?|beta|alpha)$`, see <https://regex101.com/r/gH9dCG/2/>)
 - When merged to `main` branch releases using [semantic-release/semantic-release](https://github.com/semantic-release/semantic-release)
   - Determines major, minor, or patch version bump using [semantic-release/commit-analyzer](https://github.com/semantic-release/commit-analyzer)
   - Generates release notes using [semantic-release/release-notes-generator](https://github.com/semantic-release/release-notes-generator)
@@ -175,7 +176,7 @@ Set up release and GitLab CI Linter tokens as the GitLab group or the GitLab pro
         - Key: `GL_TOKEN` or `GH_TOKEN`
         - Value: *token*
         - Flags:
-          - Protect variable: **On**
+          - Protect variable: **On** (GitLab & GitHub Releases and GitLab CI Linter will work only on protected branches) or **Off** (insecure - accessible to anybody, who can create a commit in GitLab)
 
 Set up the GitLab scheduled pipeline:
 
