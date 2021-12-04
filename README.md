@@ -80,7 +80,6 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Lints the commit message
 - Git `push` is checked, and tested:
   - Prevents existence of unstaged files
-  - Lints the latest commit message
   - Prevents `todo` preceded with `#` at the codebase
   - Runs rules check
   - Runs reduced test set
