@@ -13,6 +13,8 @@ variables:
 
 lint:
   stage: validate
+  variables:
+    PRE_COMMIT_HOME: $CI_PROJECT_DIR/.cache/pre-commit
   before_script:
     - *default_before_script
     - apk add bash git grep npm py-pip python3-dev shellcheck shfmt
@@ -22,6 +24,10 @@ lint:
     - gitlint
     - tools/check-sanity
     - GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run -a
+  cache:
+    paths:
+      - $PRE_COMMIT_HOME
+    when: always
   interruptible: true
   rules:
     - when: always
