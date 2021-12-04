@@ -72,21 +72,26 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
 ![Example of the full workflow](images/workflow-full.png)
 
 - Automated workflow using [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks), and [GitLab CI](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)
-  - GitLab CI skips CI if commit message contains `[ci skip]` or `[skip ci]`, using any capitalization, or pass **git push option** `ci.skip` (`git push -o ci.skip` git >= 2.17, `git push --push-option=ci.skip` git >= 2.10)
-- Commit messages are checked using [gitlint](https://github.com/jorisroovers/gitlint) and [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- Commit messages are checked using [gitlint](https://github.com/jorisroovers/gitlint)
+  - Commit message should follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 - Git `commit` is normalized, checked, and tested:
+  - Runs rules check
   - Runs quick test set
+  - Lints the commit message
 - Git `push` is checked, and tested:
-  - Lints last commit message
-  - Prevents `todo` preceded with `#` at the codebase
   - Prevents existence of unstaged files
+  - Lints the latest commit message
+  - Prevents `todo` preceded with `#` at the codebase
+  - Runs rules check
   - Runs reduced test set
   - Merge request could by created with **git push options**, see <https://docs.gitlab.com/ee/user/project/push_options.html#push-options-for-merge-requests>
 - GitLab CI run is checked, and tested:
-  - Lints last commit message (except `release` commits)
+  - Lints the latest commit message (except `release` commits)
   - Prevents `todo` preceded with `#` at the codebase
+  - Runs rules check
   - Runs full test set on non-scheduled pipeline runs
   - Runs nightly test set on scheduled pipeline runs
+  - GitLab CI skips CI run if commit message contains `[ci skip]` or `[skip ci]`, using any capitalization, or pass **git push option** `ci.skip` (`git push -o ci.skip` git >= 2.17, `git push --push-option=ci.skip` git >= 2.10)
 - Rules could be skipped by setting `SKIP` variable to comma separated list of skipped rules, for example `SKIP=forbid-new-submodules,gitlab-ci-linter git commit`
 - Git `commit` scans each codebase change; git `push`, and GitLab CI scans the whole codebase, and the following rules are applied:
   - Enforces max file size to 1024 kB using [pre-commit/pre-commit-hooks: check-added-large-files](https://github.com/pre-commit/pre-commit-hooks#check-added-large-files)
@@ -122,7 +127,7 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Releases new version by tagging using [semantic-release/github](https://github.com/semantic-release/github)
   - Semantic-release skips release if commit contains `[skip release]` or `[release skip]` in the commit message
 - `tools/setup-repo` script checks environment, installs dependencies, and setup hooks
-- `tools/secrets` script to source secrets
+- `tools/secrets.sh` script to source secrets
 - `tools/update-repo` script updates used dependencies
 
 ### Templates
