@@ -48,6 +48,9 @@ Strategies and tactics to achieve objectives:
 - [Installation and Configuration](#installation-and-configuration)
   - [Local Environment](#local-environment)
   - [GitLab Project](#gitlab-project)
+    - [GitLab - GitHub Synchronization](#gitlab---github-synchronization)
+    - [GitLab CI Settings](#gitlab-ci-settings)
+    - [GitLab CI Nightly Pipeline](#gitlab-ci-nightly-pipeline)
 - [Usage](#usage)
   - [Usage Examples](#usage-examples)
 - [Contributing](#contributing)
@@ -162,7 +165,31 @@ tools/setup-repo
 . tools/secrets.sh
 ```
 
+Run `tools/update-repo` from time to time to update repository dependencies.
+
 ### GitLab Project
+
+#### GitLab - GitHub Synchronization
+
+To create working GitLab to GitHub repository synchronization:
+
+- Prepare GitHub token, let's call it `GitLab GitHub Sync`, with scopes:
+  - `repo` (and `repo:status`, `repo_deployment`, `public_repo`, `repo:invite`, `security_events`)
+  - `workflow`
+  - `write:packages` (and `read:packages`)
+  - `delete:packages`
+- Have or create GitHub repository
+- Set up GitLab GitHub synchronization: Settings
+  - Repository
+    - Mirroring repositories, *Expand*
+      - *Add new mirror*:
+        - Git repository URL: **<https://user@github.com/org/repo.git>**, please replace _user_, _org_, and _repo_
+        - Mirror direction: **Push**
+        - Password: **`GitLab GitHub Sync` token**
+        - Keep divergent refs: **On** or **Off**
+        - Mirror only protected branches: **On** (all release and pre-release branches should be set as protected, otherwise GitHub release would fail on non-existent branch) or **Off**
+
+#### GitLab CI Settings
 
 Set up release and GitLab CI Linter tokens as the GitLab group or the GitLab project variable:
 
@@ -178,14 +205,14 @@ Set up release and GitLab CI Linter tokens as the GitLab group or the GitLab pro
         - Flags:
           - Protect variable: **On** (GitLab & GitHub Releases and GitLab CI Linter will work only on protected branches) or **Off** (insecure - accessible to anybody, who can create a commit in GitLab)
 
+#### GitLab CI Nightly Pipeline
+
 Set up the GitLab scheduled pipeline:
 
 - CI/CD
   - Schedules
     - *New schedule*
       - *Fill* and *Save pipeline schedule*
-
-Run `tools/update-repo` from time to time to update repository dependencies.
 
 ## Usage
 
