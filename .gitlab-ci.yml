@@ -22,7 +22,7 @@ lint:
     - npm install -g markdownlint-cli
   script:
     - gitlint
-    - tools/check-sanity
+    - scripts/check-sanity
     - GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run -a
   cache:
     paths:

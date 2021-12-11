@@ -10,19 +10,19 @@ setup() {
     load 'helpers/bats-assert/load'
 }
 
-@test "tools/commit-msg basic test success" {
+@test "scripts/commit-msg basic test success" {
     function gitlint() {
         echo -n
     }
     export -f gitlint
 
-    run tools/commit-msg commit-msg-file
+    run scripts/commit-msg commit-msg-file
 
     assert_success
     refute_output
 }
 
-@test "tools/commit-msg basic test error" {
+@test "scripts/commit-msg basic test error" {
     function gitlint() {
         echo "1: CT1 Title does not start with one of build, chore, ci, docs, feat, fix, perf, refactor, style, test: \"initial commit\"
 1: CT1 Title does not follow ConventionalCommits.org format 'type(optional-scope): description': \"initial commit\""
@@ -30,7 +30,7 @@ setup() {
     }
     export -f gitlint
 
-    run tools/commit-msg commit-msg-file
+    run scripts/commit-msg commit-msg-file
 
     assert_failure
     assert_line -n 0 -e 'CT1 Title does not start with one of build, chore, ci, docs, feat, fix, perf, refactor, style, test'

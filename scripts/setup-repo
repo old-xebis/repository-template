@@ -153,8 +153,8 @@ else
     fi
 
     # Install pre-commit hook if it's not present or doesn't point to the right location
-    if [[ ! -L ".git/hooks/pre-commit" ]] || [ "$(readlink .git/hooks/pre-commit)" != "../../tools/pre-commit" ]; then
-        if ln -s ../../tools/pre-commit .git/hooks/pre-commit; then
+    if [[ ! -L ".git/hooks/pre-commit" ]] || [ "$(readlink .git/hooks/pre-commit)" != "../../scripts/pre-commit" ]; then
+        if ln -s ../../scripts/pre-commit .git/hooks/pre-commit; then
             echo "$ECHO_PRE_INST pre-commit hook has been installed."
         else
             echo "$ECHO_PRE_ERR pre-commit hook installation failed, cannot create symbolic link."
@@ -165,8 +165,8 @@ else
     fi
 
     # Install commit-msg hook if it's not present or doesn't point to the right location
-    if [[ ! -L ".git/hooks/commit-msg" ]] || [ "$(readlink .git/hooks/commit-msg)" != "../../tools/commit-msg" ]; then
-        if ln -s ../../tools/commit-msg .git/hooks/commit-msg; then
+    if [[ ! -L ".git/hooks/commit-msg" ]] || [ "$(readlink .git/hooks/commit-msg)" != "../../scripts/commit-msg" ]; then
+        if ln -s ../../scripts/commit-msg .git/hooks/commit-msg; then
             echo "$ECHO_PRE_INST commit-msg hook has been installed."
         else
             echo "$ECHO_PRE_ERR commit-msg hook installation failed, cannot create symbolic link."
@@ -177,8 +177,8 @@ else
     fi
 
     # Install pre-push hook if it's not present or doesn't point to the right location
-    if [[ ! -L ".git/hooks/pre-push" ]] || [ "$(readlink .git/hooks/pre-push)" != "../../tools/pre-push" ]; then
-        if ln -s ../../tools/pre-push .git/hooks/pre-push; then
+    if [[ ! -L ".git/hooks/pre-push" ]] || [ "$(readlink .git/hooks/pre-push)" != "../../scripts/pre-push" ]; then
+        if ln -s ../../scripts/pre-push .git/hooks/pre-push; then
             echo "$ECHO_PRE_INST pre-push hook has been installed."
         else
             echo "$ECHO_PRE_ERR pre-push hook installation failed, cannot create symbolic link."

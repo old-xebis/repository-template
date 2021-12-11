@@ -10,7 +10,7 @@ setup() {
     load 'helpers/bats-assert/load'
 }
 
-@test "tools/update-repo basic test" {
+@test "scripts/update-repo basic test" {
     function git() {
         if [ "$1" = 'rev-parse' ]; then
             echo '.'
@@ -25,10 +25,10 @@ setup() {
     }
     export -f pre-commit
 
-    run tools/update-repo
+    run scripts/update-repo
 
     output=$(
-        . tools/secrets.sh
+        . scripts/secrets.sh
         echo "GitLab Token = ${GL_TOKEN:-}"
     )
 

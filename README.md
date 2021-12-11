@@ -129,9 +129,9 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Releases new version by tagging using [semantic-release/gitlab](https://github.com/semantic-release/gitlab)
   - Releases new version by tagging using [semantic-release/github](https://github.com/semantic-release/github)
   - Semantic-release skips release if commit contains `[skip release]` or `[release skip]` in the commit message
-- `tools/setup-repo` script checks environment, installs dependencies, and setup hooks
-- `tools/secrets.sh` script to source secrets
-- `tools/update-repo` script updates used dependencies
+- `scripts/setup-repo` checks environment, installs dependencies, and setup hooks
+- Source `scripts/secrets.sh` to load secrets
+- `scripts/update-repo` updates used dependencies
 
 ### Templates
 
@@ -153,19 +153,19 @@ Templates for your convenience.
 
 ### Local Environment
 
-Clone the project with `--recursive` option, run `tools/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` present, otherwise `gitlab-ci-linter` is skipped. You can edit and source `tools/secrets.sh` script, **please make sure you won't commit your secrets** perhaps by running `git update-index --skip-worktree tools/secrets.sh`.
+Clone the project with `--recursive` option, run `scripts/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` present, otherwise `gitlab-ci-linter` is skipped. You can edit and source `scripts/secrets.sh`, **please make sure you won't commit your secrets**. Sourcing the script should do the magic for you, if it fails, try `git update-index --skip-worktree scripts/secrets.sh`.
 
 Example:
 
-```shell
+```bash
 git clone --recursive git@gitlab.com:xebis/repository-template.git
 cd repository-template
-tools/setup-repo
-# Add your secrets to tools/secrets.sh
-. tools/secrets.sh
+scripts/setup-repo
+# Add your secrets to scripts/secrets.sh
+. scripts/secrets.sh
 ```
 
-Run `tools/update-repo` from time to time to update repository dependencies.
+Run `scripts/update-repo` from time to time to update repository dependencies.
 
 ### GitLab Project
 
@@ -216,14 +216,14 @@ Set up the GitLab scheduled pipeline:
 
 ## Usage
 
-Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-template/-/forks/new) or [GitHub](https://github.com/xebis/repository-template/fork), **delete** all git tags, and **tag** the last commit to a desired starting version, e.g. `v0.0.0`. Clone the repository with `--recursive` option, run `tools/setup-repo`, and enjoy!
+Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-template/-/forks/new) or [GitHub](https://github.com/xebis/repository-template/fork), **delete** all git tags, and **tag** the last commit to a desired starting version, e.g. `v0.0.0`. Clone the repository with `--recursive` option, run `scripts/setup-repo`, and enjoy!
 
 - `git commit` runs checks on changed files and performs tests a quick test set
 - `git push` runs checks on all files and performs tests with a reduced test set
 - GitLab `push`, `merge request` runs checks on all files and performs tests with a full test set
 - GitLab `merge to main` runs checks on all files and performs tests with a full test set
 - GitLab `schedule` runs checks on all files, performs tests with a nightly test set, and releases a new version
-- Run `tools/update-repo` manually from time to time
+- Run `scripts/update-repo` manually from time to time
 
 ### Usage Examples
 
@@ -240,19 +240,19 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 
 - Git hooks check a lot of things for you (see [Features](#features))
 - Run automated tests `bats tests`
-- Make sure all `tools/*` scripts, git hooks and GitLab pipelines work as expected, testing checklist:
+- Make sure all `scripts/*`, git hooks and GitLab pipelines work as expected, testing checklist:
 
-- `tools/*` scripts
-  - [ ] [`tools/check-sanity`](tools/check-sanity)
-  - [ ] [`tools/commit-msg`](tools/commit-msg)
-  - [ ] [`tools/secrets.sh`](tools/secrets.sh)
-  - [ ] [`tools/pre-commit`](tools/pre-commit)
-  - [ ] [`tools/pre-push`](tools/pre-push)
-  - [ ] [`tools/setup-repo`](tools/setup-repo)
-  - [ ] [`tools/update-repo`](tools/update-repo)
+- `scripts/*` scripts
+  - [ ] [`scripts/check-sanity`](scripts/check-sanity)
+  - [ ] [`scripts/commit-msg`](scripts/commit-msg)
+  - [ ] [`scripts/secrets.sh`](scripts/secrets.sh)
+  - [ ] [`scripts/pre-commit`](scripts/pre-commit)
+  - [ ] [`scripts/pre-push`](scripts/pre-push)
+  - [ ] [`scripts/setup-repo`](scripts/setup-repo)
+  - [ ] [`scripts/update-repo`](scripts/update-repo)
 - Local working directory
-  - [ ] `git commit` runs [`tools/commit-msg`](tools/commit-msg) and [`tools/pre-commit`](tools/pre-commit)
-  - [ ] `git push` runs [`tools/pre-push`](tools/pre-push)
+  - [ ] `git commit` runs [`scripts/commit-msg`](scripts/commit-msg) and [`scripts/pre-commit`](scripts/pre-commit)
+  - [ ] `git push` runs [`scripts/pre-push`](scripts/pre-push)
 - GitLab CI
   - [ ] Commit in _non_-`main` branch runs `validate:lint` and `validate:test-full`
   - [ ] Merge to `main` branch runs `validate:lint`, `validate:test-full`, and `release:release`
@@ -397,3 +397,4 @@ sudo gitlab-runner exec docker job --docker-image alpine:latest
 - [Programster's Blog: Git Workflows](https://blog.programster.org/git-workflows)
   - [GitHub Guides: Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
   - [GitLab Docs: Introduction to GitLab Flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html)
+- [The GitHub Blog: Scripts to Rule Them All](https://github.blog/2015-06-30-scripts-to-rule-them-all/)

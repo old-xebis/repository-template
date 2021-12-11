@@ -10,19 +10,19 @@ setup() {
     load 'helpers/bats-assert/load'
 }
 
-@test "tools/secrets.sh basic test success" {
+@test "scripts/secrets.sh basic test success" {
     function git() {
         echo -n
     }
     export -f git
 
     output=$(
-        . tools/secrets.sh
+        . scripts/secrets.sh
         echo "GitLab Token = ${GL_TOKEN:-}"
     )
 
-    refute_output 'tools/secrets.sh ✓ Secrets loaded: GL_TOKEN
+    refute_output 'scripts/secrets.sh ✓ Secrets loaded: GL_TOKEN
 
-tools/secrets.sh ✓ skip-worktree bit set
+scripts/secrets.sh ✓ skip-worktree bit set
 GitLab Token = '
 }

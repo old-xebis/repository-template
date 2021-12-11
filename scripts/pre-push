@@ -24,7 +24,7 @@ fi
 echo "$ECHO_PRE_OK git unstaged changes"
 
 # Check general sanity
-tools/check-sanity
+scripts/check-sanity
 
 # Check full codebase
 # Workaround for https://gitlab.com/devopshq/gitlab-ci-linter/-/issues/3
