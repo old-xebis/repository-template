@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+LANG=C
+
+# shellcheck source=./lib.sh
+. "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/lib.sh"
+
+# Update repository pre-commit
+function update_pre_commit {
+    pre-commit autoupdate
+    pre-commit gc
+}
+
+function update_git_submodules() {
+    git submodule update --remote --merge
+}
+
+# Skip functions execution under test
+if [ -z "$TEST" ]; then
+    update_pre_commit
+    update_git_submodules
+fi

@@ -131,7 +131,7 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Semantic-release skips release if commit contains `[skip release]` or `[release skip]` in the commit message
 - `scripts/setup-repo` checks environment, installs dependencies, and setup hooks
 - Source `scripts/secrets.sh` to load secrets
-- `scripts/update-repo` updates used dependencies
+- `scripts/update` updates used dependencies
 
 ### Templates
 
@@ -165,7 +165,7 @@ scripts/setup-repo
 . scripts/secrets.sh
 ```
 
-Run `scripts/update-repo` from time to time to update repository dependencies.
+Run `scripts/update` from time to time to update repository dependencies.
 
 ### GitLab Project
 
@@ -223,7 +223,7 @@ Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-templ
 - GitLab `push`, `merge request` runs checks on all files and performs tests with a full test set
 - GitLab `merge to main` runs checks on all files and performs tests with a full test set
 - GitLab `schedule` runs checks on all files, performs tests with a nightly test set, and releases a new version
-- Run `scripts/update-repo` manually from time to time
+- Run `scripts/update` manually from time to time
 
 ### Usage Examples
 
@@ -249,7 +249,7 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
   - [ ] [`scripts/pre-commit`](scripts/pre-commit)
   - [ ] [`scripts/pre-push`](scripts/pre-push)
   - [ ] [`scripts/setup-repo`](scripts/setup-repo)
-  - [ ] [`scripts/update-repo`](scripts/update-repo)
+  - [ ] [`scripts/update`](scripts/update)
 - Local working directory
   - [ ] `git commit` runs [`scripts/commit-msg`](scripts/commit-msg) and [`scripts/pre-commit`](scripts/pre-commit)
   - [ ] `git push` runs [`scripts/pre-push`](scripts/pre-push)
