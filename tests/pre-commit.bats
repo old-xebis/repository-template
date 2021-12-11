@@ -20,27 +20,28 @@ setup() {
     }
     export -f pre-commit
 
-    export GITLAB_PRIVATE_TOKEN=secret
+    export GITLAB_PRIVATE_TOKEN='secret'
     run run_pre-commit
 
     assert_success
     assert_output 'OK'
 }
 
-@test "scripts/pre-commit run_pre-commit with gitlab-ci-linter skipped test" {
+@test "scripts/pre-commit run_pre-commit with skip hook test" {
     function pre-commit() {
-        echo 'OK'
-        if [ "$SKIP" = "gitlab-ci-linter" ]; then
-            echo "Skipping gitlab-ci-linter"
+        if [ "${SKIP_HOOK:-}" == 'skipped-hook' ]; then
+            echo 'Skipping skipped-hook'
         fi
+        echo 'OK'
     }
     export -f pre-commit
 
+    export SKIP_HOOK='skipped-hook'
     run run_pre-commit
 
     assert_success
-    assert_line -n 0 'OK'
-    assert_line -n 1 'Skipping gitlab-ci-linter'
+    assert_line -n 0 'Skipping skipped-hook'
+    assert_line -n 1 'OK'
 }
 
 @test "scripts/pre-commit run_tests success test" {
