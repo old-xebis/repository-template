@@ -8,6 +8,8 @@ setup() {
     load 'helpers/bats-assert/load'
 
     export TEST=1
+    export TEST_MOCK_ARGV=('scripts/pre-commit')
+
     . scripts/pre-commit
 }
 
@@ -45,8 +47,6 @@ setup() {
 }
 
 @test "scripts/pre-commit run_tests success test" {
-    export TEST_MOCK_ARGV=('scripts/pre-commit')
-
     function bats() {
         echo 'OK'
     }
@@ -60,8 +60,6 @@ setup() {
 }
 
 @test "scripts/pre-commit run_tests fail test" {
-    export TEST_MOCK_ARGV=('scripts/pre-commit')
-
     function bats() {
         echo 'Error!'
         return 1
