@@ -29,7 +29,7 @@ setup() {
 
     output=$(
         . tools/secrets.sh
-        echo "GitLab Token = $GL_TOKEN"
+        echo "GitLab Token = ${GL_TOKEN:-}"
     )
 
     assert_success

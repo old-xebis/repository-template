@@ -18,7 +18,7 @@ setup() {
 
     output=$(
         . tools/secrets.sh
-        echo "GitLab Token = $GL_TOKEN"
+        echo "GitLab Token = ${GL_TOKEN:-}"
     )
 
     refute_output 'tools/secrets.sh ✓ Secrets loaded: GL_TOKEN
