@@ -15,6 +15,12 @@ setup() {
     assert_output "$0 ✓ OK"
 }
 
+@test "scripts/lib.sh out with one parameter and mocked zero argument test" {
+    export TEST_MOCK_ARGV=('test/script')
+    run out "OK"
+    assert_output "test/script ✓ OK"
+}
+
 @test "scripts/lib.sh out with two parameters test" {
     run out "Error" "$symbol_err"
     assert_output "$0 ✗ Error"

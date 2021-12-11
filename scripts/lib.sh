@@ -21,7 +21,7 @@
 #   [$3] ... script, default $0
 # Stdout: "script symbol message"
 function out() {
-    echo "${3:-$0} ${2:-$symbol_ok} $1"
+    echo "${3:-${TEST_MOCK_ARGV:-$0}} ${2:-$symbol_ok} $1"
 }
 
 # Output "script symbol message" to stderr
@@ -30,5 +30,5 @@ function out() {
 #   [$3] ... script, default $0
 # Stderr: "script symbol message"
 function err() {
-    echo "${3:-$0} ${2:-$symbol_err} $1"
+    echo "${3:-${TEST_MOCK_ARGV:-$0}} ${2:-$symbol_err} $1"
 }

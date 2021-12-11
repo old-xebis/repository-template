@@ -1,26 +1,27 @@
 #!/usr/bin/env bash
-set -e
-set -o pipefail
-set -u
-
+set -euo pipefail
+IFS=$'\n\t'
 LANG=C
 
-# shellcheck disable=SC2034
-ECHO_PRE_OK="$0 ✓"
-# shellcheck disable=SC2034
-ECHO_PRE_INST="$0 +"
-# shellcheck disable=SC2034
-ECHO_PRE_ERR="$0 ❌"
+# shellcheck source=./lib.sh
+. "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/lib.sh"
 
-# Check sanity
-# Check for todos
-TODO="todo"
-TODOS=$(grep -riI --exclude-dir={'.*','bats-*'} "#\\s*$TODO" || true)
+# Check there are not todos present
+check_todos() {
+    local todo='todo'
+    local todos
+    todos=$(grep -riI --exclude-dir={'.*','bats-*'} "#\\s*$todo" || true)
 
-if [ -n "$TODOS" ]; then
-    echo "$ECHO_PRE_ERR todos sanitization failed:"
-    echo "$TODOS"
-    exit 1
-else
-    echo "$ECHO_PRE_OK todos sanitization"
+    if [ -z "$todos" ]; then
+        out "No todos detected"
+    else
+        err "Anti-todo sanitization failed, todos:"
+        echo "$todos" 1>&2
+        return "$status_err"
+    fi
+}
+
+# Skip functions execution if under test
+if [ -z "$TEST" ]; then
+    check_todos
 fi

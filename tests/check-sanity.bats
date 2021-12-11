@@ -1,36 +1,40 @@
-#!/usr/bin/env bats
-set -e
-set -o pipefail
-set -u
-
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
 LANG=C
 
 setup() {
     load 'helpers/bats-support/load'
     load 'helpers/bats-assert/load'
+
+    export TEST=1
+    export TEST_MOCK_ARGV=('scripts/check-sanity')
+
+    . scripts/check-sanity
 }
 
-@test "scripts/check-sanity basic test success" {
+@test "scripts/check-sanity check_todos success test" {
     function grep() {
         echo -n
     }
     export -f grep
 
-    run scripts/check-sanity
+    run check_todos
 
     assert_success
-    assert_line -n 0 'scripts/check-sanity ✓ todos sanitization'
+    assert_output 'scripts/check-sanity ✓ No todos detected'
 }
 
-@test "scripts/check-sanity basic test error" {
+@test "scripts/check-sanity check_todos failure test" {
     function grep() {
-        echo 'unfinished/file:    hash-to-do-mark line'
+        echo -n 'scripts/unfinished:#TO-DO'
+        return 1
     }
     export -f grep
 
-    run scripts/check-sanity
+    run check_todos
 
     assert_failure
-    assert_line -n 0 'scripts/check-sanity ❌ todos sanitization failed:'
-    assert_line -n 1 'unfinished/file:    hash-to-do-mark line'
+    assert_line -n 0 'scripts/check-sanity ✗ Anti-todo sanitization failed, todos:'
+    assert_line -n 1 'scripts/unfinished:#TO-DO'
 }
