@@ -28,7 +28,7 @@ setup() {
     run scripts/update-repo
 
     output=$(
-        . scripts/secrets.sh
+        . scripts/update-repo
         echo "GitLab Token = ${GL_TOKEN:-}"
     )
 
