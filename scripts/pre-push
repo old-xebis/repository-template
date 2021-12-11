@@ -1,40 +1,48 @@
 #!/usr/bin/env bash
-set -e
-set -o pipefail
-set -u
-
+set -euo pipefail
+IFS=$'\n\t'
 LANG=C
 
-# shellcheck disable=SC2034
-ECHO_PRE_OK="$0 ✓"
-# shellcheck disable=SC2034
-ECHO_PRE_INST="$0 +"
-# shellcheck disable=SC2034
-ECHO_PRE_ERR="$0 ❌"
+# shellcheck source=./lib.sh
+. "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/lib.sh"
 
-# Pre-push git hook
+# Check for unstaged changes
+function check_unstaged() {
+    local git_unstaged
+    git_unstaged=$(git ls-files -dmo --exclude-standard)
 
-# Check local sanity
-# Check for uncommitted changes
-GIT_UNCOMMITED=$(git ls-files -dmo --exclude-standard)
-if [ -n "$GIT_UNCOMMITED" ]; then
-    echo "$ECHO_PRE_ERR git unstaged changes"
-    exit 1
-fi
-echo "$ECHO_PRE_OK git unstaged changes"
-
-# Check general sanity
-scripts/check-sanity
+    if [ -n "$git_unstaged" ]; then
+        err "git unstaged changes detected"
+        return "$status_err"
+    fi
+    out "git unstaged changes"
+}
 
 # Check full codebase
-# Workaround for https://gitlab.com/devopshq/gitlab-ci-linter/-/issues/3
-if [ -z "${GL_TOKEN:-}" ]; then
-    SKIP=gitlab-ci-linter pre-commit run -a
-else
-    export GITLAB_PRIVATE_TOKEN="$GL_TOKEN"
-    pre-commit run -a
-fi
+function run_pre-commit() {
+    # Skip GitLab CI Linter if GitLab Personal Access Token is not set
+    if [ -z "${GL_TOKEN:-}" ]; then
+        SKIP=gitlab-ci-linter pre-commit run -a
+    else
+        export GITLAB_PRIVATE_TOKEN="$GL_TOKEN"
+        pre-commit run -a
+    fi
+}
 
 # Run reduced test set
-bats tests
-echo "$ECHO_PRE_OK Reduced test set"
+function run_tests() {
+    if bats tests; then
+        out "Reduced test set"
+    else
+        err "Reduced test set failed"
+        return "$status_err"
+    fi
+}
+
+# Skip functions execution if under test
+if [ -z "${TEST+x}" ]; then
+    check_unstaged
+    run_pre-commit
+    scripts/check-sanity
+    run_tests
+fi
