@@ -21,7 +21,7 @@ check_todos() {
     fi
 }
 
-# Skip functions execution if under test
+# Skip functions execution under test
 if [ -z "${TEST+x}" ]; then
     check_todos
 fi

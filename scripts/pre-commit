@@ -1,30 +1,34 @@
 #!/usr/bin/env bash
-set -e
-set -o pipefail
-set -u
-
+set -euo pipefail
+IFS=$'\n\t'
 LANG=C
 
-# shellcheck disable=SC2034
-ECHO_PRE_OK="$0 ✓"
-# shellcheck disable=SC2034
-ECHO_PRE_INST="$0 +"
-# shellcheck disable=SC2034
-ECHO_PRE_ERR="$0 ❌"
-
-# Pre-commit git hook
-
-# Normalize
+# shellcheck source=./lib.sh
+. "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/lib.sh"
 
 # Check codebase changes
-# Workaround for https://gitlab.com/devopshq/gitlab-ci-linter/-/issues/3
-if [ -z "${GL_TOKEN:-}" ]; then
-    SKIP=gitlab-ci-linter pre-commit
-else
-    export GITLAB_PRIVATE_TOKEN="$GL_TOKEN"
-    pre-commit
-fi
+function run_pre-commit() {
+    # Skip GitLab CI Linter if GitLab Personal Access Token is not set
+    if [ -z "${GL_TOKEN:-}" ]; then
+        SKIP=gitlab-ci-linter pre-commit
+    else
+        export GITLAB_PRIVATE_TOKEN="$GL_TOKEN"
+        pre-commit
+    fi
+}
 
 # Run quick test set
-bats tests
-echo "$ECHO_PRE_OK Quick test set"
+function run_tests() {
+    if bats tests; then
+        out "Quick test set"
+    else
+        err "Quick test set failed"
+        return "$status_err"
+    fi
+}
+
+# Skip functions execution under test
+if [ -z "${TEST+x}" ]; then
+    run_pre-commit
+    run_tests
+fi
