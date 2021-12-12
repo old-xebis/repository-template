@@ -1,0 +1,151 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+LANG=C
+
+# shellcheck source=./lib.sh
+. "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/lib.sh"
+
+function install_dependencies() {
+    SUDO="sudo"
+
+    # Check git is installed
+    if git --version >/dev/null; then
+        out "git is installed"
+    else
+        err "git is NOT installed"
+        exit 1
+    fi
+
+    # Check pip is installed
+    if pip3 -V >/dev/null; then
+        out "pip is installed"
+    else
+        err "pip is NOT installed"
+        exit 1
+    fi
+
+    # Check npm is installed
+    if npm -v >/dev/null; then
+        out "npm is installed"
+    else
+        err "npm is NOT installed"
+        exit 1
+    fi
+
+    # Check snap is installed
+    if snap --version >/dev/null; then
+        out "snap is installed"
+    else
+        err "snap is NOT installed"
+        exit 1
+    fi
+
+    # Check apt-get is installed
+    if apt-get -v >/dev/null; then
+        out "apt-get is installed"
+    else
+        err "apt-get is NOT installed"
+        exit 1
+    fi
+
+    # Install pre-commit if it's not present
+    if pip3 list | grep "^pre-commit\\s.*$" >/dev/null; then
+        out "pre-commit is installed"
+    else
+        if pip3 install pre-commit; then
+            out "pre-commit has been installed" "$symbol_inst"
+        else
+            err "pre-commit installation failed"
+            exit 1
+        fi
+    fi
+
+    # Install gitlint if it's not present
+    if pip3 list | grep "^gitlint\\s.*$" >/dev/null; then
+        out "gitlint is installed"
+    else
+        if pip3 install gitlint; then
+            out "gitlint has been installed" "$symbol_inst"
+        else
+            err "gitlint installation failed"
+            exit 1
+        fi
+    fi
+
+    # Install markdownlint-cli if it's not present
+    set +o pipefail
+    if npm list -g 2>/dev/null | grep "markdownlint-cli" >/dev/null; then
+        out "markdownlint-cli is installed"
+    else
+        if $SUDO npm install -g markdownlint-cli; then
+            out "markdownlint-cli has been installed" "$symbol_inst"
+        else
+            err "markdownlint-cli installation failed"
+            exit 1
+        fi
+    fi
+    set -o pipefail
+
+    # Install yamllint if it's not present
+    if pip3 list | grep "^yamllint\\s.*$" >/dev/null; then
+        out "yamllint is installed"
+    else
+        if pip3 install yamllint; then
+            out "yamllint has been installed" "$symbol_inst"
+        else
+            err "yamllint installation failed"
+            exit 1
+        fi
+    fi
+
+    # Install shfmt if it's not present
+    if snap list 2>/dev/null | grep "shfmt" >/dev/null; then
+        out "shfmt is installed"
+    else
+        if $SUDO snap install shfmt; then
+            out "shfmt has been installed" "$symbol_inst"
+        else
+            err "shfmt installation failed"
+            exit 1
+        fi
+    fi
+
+    # Install shellcheck if it's not present
+    if apt-cache pkgnames shellcheck 2>/dev/null | grep "shellcheck" >/dev/null; then
+        out "shellcheck is installed"
+    else
+        if $SUDO apt-get install -y shellcheck; then
+            out "shellcheck has been installed" "$symbol_inst"
+        else
+            err "shellcheck installation failed"
+            exit 1
+        fi
+    fi
+
+    # Install bats if it's not present
+    if apt-cache pkgnames bats 2>/dev/null | grep "bats" >/dev/null; then
+        out "bats is installed"
+    else
+        if $SUDO apt-get install -y bats; then
+            out "bats has been installed" "$symbol_inst"
+        else
+            err "bats installation failed"
+            exit 1
+        fi
+    fi
+}
+
+# Main
+function main() {
+    if [[ "$EUID" -eq "0" ]]; then
+        err "Superpowers might be more harmful than useful. Please run as a regular user."
+        return "$status_err"
+    fi
+    install_dependencies
+}
+
+# Skip functions execution under test
+if [ -z "${TEST+x}" ]; then
+    main
+fi

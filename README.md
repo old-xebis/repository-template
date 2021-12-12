@@ -129,7 +129,8 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Releases new version by tagging using [semantic-release/gitlab](https://github.com/semantic-release/gitlab)
   - Releases new version by tagging using [semantic-release/github](https://github.com/semantic-release/github)
   - Semantic-release skips release if commit contains `[skip release]` or `[release skip]` in the commit message
-- `scripts/setup-repo` checks environment, installs dependencies, and setup hooks
+- `scripts/setup` checks environment, installs dependencies, and setup hooks
+- `scripts/bootstrap` installs dependencies
 - Source `scripts/secrets.sh` to load secrets
 - `scripts/update` updates used dependencies
 
@@ -153,14 +154,14 @@ Templates for your convenience.
 
 ### Local Environment
 
-Clone the project with `--recursive` option, run `scripts/setup-repo`, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` present, otherwise `gitlab-ci-linter` is skipped. You can edit and source `scripts/secrets.sh`, **please make sure you won't commit your secrets**. Sourcing the script should do the magic for you, if it fails, try `git update-index --skip-worktree scripts/secrets.sh`.
+Clone the project with `--recursive` option, run `scripts/setup` for complete setup, or `scripts/bootstrap` to just install dependencies, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` present, otherwise `gitlab-ci-linter` is skipped. You can edit and source `scripts/secrets.sh`, **please make sure you won't commit your secrets**. Sourcing the script should do the magic for you, if it fails, try `git update-index --skip-worktree scripts/secrets.sh`.
 
 Example:
 
 ```bash
 git clone --recursive git@gitlab.com:xebis/repository-template.git
 cd repository-template
-scripts/setup-repo
+scripts/setup
 # Add your secrets to scripts/secrets.sh
 . scripts/secrets.sh
 ```
@@ -216,7 +217,7 @@ Set up the GitLab scheduled pipeline:
 
 ## Usage
 
-Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-template/-/forks/new) or [GitHub](https://github.com/xebis/repository-template/fork), **delete** all git tags, and **tag** the last commit to a desired starting version, e.g. `v0.0.0`. Clone the repository with `--recursive` option, run `scripts/setup-repo`, and enjoy!
+Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-template/-/forks/new) or [GitHub](https://github.com/xebis/repository-template/fork), **delete** all git tags, and **tag** the last commit to a desired starting version, e.g. `v0.0.0`. Clone the repository with `--recursive` option, run `scripts/setup`, and enjoy!
 
 - `git commit` runs checks on changed files and performs tests a quick test set
 - `git push` runs checks on all files and performs tests with a reduced test set
@@ -243,13 +244,14 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 - Make sure all `scripts/*`, git hooks and GitLab pipelines work as expected, testing checklist:
 
 - `scripts/*` scripts
-  - [ ] [`scripts/check-sanity`](scripts/check-sanity)
+  - [ ] [`scripts/bootstrap`](scripts/bootstrap)
+  - [ ] [`scripts/check-sanity`](scripts/check-sanity) - covered with unit tests
   - [ ] [`scripts/commit-msg`](scripts/commit-msg)
-  - [ ] [`scripts/secrets.sh`](scripts/secrets.sh)
-  - [ ] [`scripts/pre-commit`](scripts/pre-commit)
-  - [ ] [`scripts/pre-push`](scripts/pre-push)
-  - [ ] [`scripts/setup-repo`](scripts/setup-repo)
-  - [ ] [`scripts/update`](scripts/update)
+  - [ ] [`scripts/secrets.sh`](scripts/secrets.sh) - covered with unit tests
+  - [ ] [`scripts/pre-commit`](scripts/pre-commit) - covered with unit tests
+  - [ ] [`scripts/pre-push`](scripts/pre-push) - covered with unit tests
+  - [ ] [`scripts/setup`](scripts/setup)
+  - [ ] [`scripts/update`](scripts/update) - covered with unit tests
 - Local working directory
   - [ ] `git commit` runs [`scripts/commit-msg`](scripts/commit-msg) and [`scripts/pre-commit`](scripts/pre-commit)
   - [ ] `git push` runs [`scripts/pre-push`](scripts/pre-push)

@@ -8,6 +8,8 @@
 
     # Symbols
     readonly symbol_ok="✓"
+    readonly symbol_inst="🗹"
+    readonly symbol_tip="💡"
     readonly symbol_notice="🛈"
     readonly symbol_warn="⚠"
     readonly symbol_sec="☠"
