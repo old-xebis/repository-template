@@ -1,5 +1,5 @@
 ---
-default_stages: [commit, manual, merge-commit, post-checkout, post-commit, prepare-commit-msg, push]
+default_stages: [commit, manual, merge-commit, push]
 repos:
   - repo: https://github.com/jorisroovers/gitlint
     rev: v0.17.0
