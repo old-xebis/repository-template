@@ -17,7 +17,7 @@ lint:
     PRE_COMMIT_HOME: $CI_PROJECT_DIR/.cache/pre-commit
   before_script:
     - *default_before_script
-    - apk add bash git grep npm py-pip python3-dev shellcheck shfmt
+    - apk add bash git go grep npm py-pip python3-dev shellcheck shfmt
     - pip install gitlint pre-commit yamllint
     - npm install -g markdownlint-cli
   script:
