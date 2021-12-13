@@ -6,6 +6,7 @@ LANG=C
 # shellcheck source=./lib.sh
 . "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/lib.sh"
 
+# Install dependencies
 function install_dependencies() {
     SUDO="sudo"
 
@@ -146,6 +147,6 @@ function main() {
 }
 
 # Skip functions execution under test
-if [ -z "${TEST+x}" ]; then
+if [ -z "${UNDER_TEST+x}" ]; then
     main
 fi

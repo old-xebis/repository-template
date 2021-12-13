@@ -40,7 +40,7 @@ function run_tests() {
 }
 
 # Skip functions execution if under test
-if [ -z "${TEST+x}" ]; then
+if [ -z "${UNDER_TEST+x}" ]; then
     check_unstaged
     run_pre-commit
     scripts/check-sanity
