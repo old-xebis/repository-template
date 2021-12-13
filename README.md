@@ -248,9 +248,10 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 - `scripts/*` scripts
   - [ ] [`scripts/bootstrap`](scripts/bootstrap)
   - [ ] [`scripts/check-sanity`](scripts/check-sanity) - covered with unit tests
-  - [ ] [`scripts/secrets.sh`](scripts/secrets.sh) - covered with unit tests
+  - [ ] [`scripts/lib.sh`](scripts/lib.sh) - covered by unit tests
   - [ ] [`scripts/pre-commit`](scripts/pre-commit) - covered with unit tests
   - [ ] [`scripts/pre-push`](scripts/pre-push) - covered with unit tests
+  - [ ] [`scripts/secrets.sh`](scripts/secrets.sh) - covered with unit tests
   - [ ] [`scripts/setup`](scripts/setup)
   - [ ] [`scripts/update`](scripts/update) - covered with unit tests
 - Local working directory
