@@ -95,7 +95,7 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Runs nightly test set on scheduled pipeline runs
   - GitLab CI skips CI run if commit message contains `[ci skip]` or `[skip ci]`, using any capitalization, or pass **git push option** `ci.skip` (`git push -o ci.skip` git >= 2.17, `git push --push-option=ci.skip` git >= 2.10)
 - Rules could be skipped by setting `SKIP` variable to comma separated list of skipped rules, for example `SKIP=forbid-new-submodules,gitlab-ci-linter git commit`
-- Git `commit` scans each codebase change; git `push`, and GitLab CI scans the whole codebase, and the following rules are applied:
+- Git `commit` scans committed codebase change, git `push` scans pushed codebase change, and GitLab CI scans the whole codebase, and the following rules are applied:
   - Enforces max file size to 1024 kB using [pre-commit/pre-commit-hooks: check-added-large-files](https://github.com/pre-commit/pre-commit-hooks#check-added-large-files)
   - Prevents case insensitive filename conflict using [pre-commit/pre-commit-hooks: check-case-conflict](https://github.com/pre-commit/pre-commit-hooks#check-case-conflict)
   - Enforces executables have shebangs using [pre-commit/pre-commit-hooks: check-executables-have-shebangs](https://github.com/pre-commit/pre-commit-hooks#check-executables-have-shebangs)

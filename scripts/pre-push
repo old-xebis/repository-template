@@ -22,10 +22,10 @@ function check_unstaged() {
 function run_pre-commit() {
     # Skip GitLab CI Linter if GitLab Personal Access Token is not set
     if [ -z "${GL_TOKEN:-}" ]; then
-        SKIP=gitlab-ci-linter pre-commit run -a
+        SKIP=gitlab-ci-linter pre-commit run --hook-stage push
     else
         export GITLAB_PRIVATE_TOKEN="$GL_TOKEN"
-        pre-commit run -a
+        pre-commit run --hook-stage push
     fi
 }
 
