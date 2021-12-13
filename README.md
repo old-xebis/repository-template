@@ -119,6 +119,7 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Lints [`.gitlab-ci.yml`](.gitlab-ci.yml) file using [devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter) when `GL_TOKEN` environment variable is set to **GitLab Personal Token**
   - Lints shell scripts formatting using [mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
   - Checks shell scripts using [koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
+  - Runs BATS tests using - [GitHub - bats-core/bats-core: Bash Automated Testing System](https://github.com/bats-core/bats-core), [GitHub - bats-core/bats-support: Supporting library for Bats test helpers](https://github.com/bats-core/bats-support), [GitHub - bats-core/bats-assert: Common assertions for Bats](https://github.com/bats-core/bats-assert), and [GitHub - bats-core/bats-file: Common filesystem assertions for Bats](https://github.com/bats-core/bats-file)
   - Detects hardcoded secrets like passwords, api keys, and tokens in git repos using [GitHub - zricethezav/gitleaks: Scan git repos (or files) for secrets using regex and entropy key](https://github.com/zricethezav/gitleaks)
   - For other formats and rules see [pre-commit: Supported hooks](https://pre-commit.com/hooks.html), there are many for .NET, Ansible, AWS, C, CMake, CSV, C++, Chef, Dart, Docker, Flutter, git, GitHub, GitLab, Go, HTML, INI, Java, JavaScript, Jenkins, Jinja, JSON, Kotlin, Lisp, Lua, Mac, Markdown, Node.js, Perl, PHP, Prometheus, Protobufs, Puppet, Python, R, Ruby, Rust, Shell, Swift, Terraform, TOML, Typescript, XML, YAML, ... or create new using regular expressions.
 - When merged to maintenance release branch (`N.N.x` or `N.x.x` or `N.x` with `N` being a number), `next`, `next-major`, `beta`, or `alpha` releases maintenance or pre-release (branches must match regex `^(((0|[1-9]\d*)\.)(((0|[1-9]\d*|x)\.)?x)|main|next(-major)?|beta|alpha)$`, see <https://regex101.com/r/gH9dCG/2/>)
@@ -223,8 +224,8 @@ Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-templ
 - `git commit` runs checks on changed files and performs tests a quick test set
 - `git push` runs checks on all files and performs tests with a reduced test set
 - GitLab `push`, `merge request` runs checks on all files and performs tests with a full test set
-- GitLab `merge to main` runs checks on all files and performs tests with a full test set
-- GitLab `schedule` runs checks on all files, performs tests with a nightly test set, and releases a new version
+- GitLab `merge to main` runs checks on all files, performs tests with a full test set, and releases a new version
+- GitLab `schedule` runs checks on all files, performs tests with a nightly test set
 - Run `scripts/update` manually from time to time
 
 ### Usage Examples
@@ -247,14 +248,13 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 - `scripts/*` scripts
   - [ ] [`scripts/bootstrap`](scripts/bootstrap)
   - [ ] [`scripts/check-sanity`](scripts/check-sanity) - covered with unit tests
-  - [ ] [`scripts/commit-msg`](scripts/commit-msg)
   - [ ] [`scripts/secrets.sh`](scripts/secrets.sh) - covered with unit tests
   - [ ] [`scripts/pre-commit`](scripts/pre-commit) - covered with unit tests
   - [ ] [`scripts/pre-push`](scripts/pre-push) - covered with unit tests
   - [ ] [`scripts/setup`](scripts/setup)
   - [ ] [`scripts/update`](scripts/update) - covered with unit tests
 - Local working directory
-  - [ ] `git commit` runs [`scripts/commit-msg`](scripts/commit-msg) and [`scripts/pre-commit`](scripts/pre-commit)
+  - [ ] `git commit` runs `pre-commit` hook-type `commit-msg` and [`scripts/pre-commit`](scripts/pre-commit)
   - [ ] `git push` runs [`scripts/pre-push`](scripts/pre-push)
 - GitLab CI
   - [ ] Commit in _non_-`main` branch runs `validate:lint` and `validate:test-full`
@@ -313,6 +313,7 @@ sudo gitlab-runner exec docker job --docker-image alpine:latest
 
 ## Roadmap
 
+- [ ] Add [pre-commit meta hooks](https://pre-commit.com/#meta-hooks)
 - [ ] Speed up CI/CD with a set of Docker images with pre-installed dependencies for each CI/CD stage
 
 ## Credits and Acknowledgments
