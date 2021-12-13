@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-set -e
-set -o pipefail
-set -u
-
-LANG=C
-
-# Commit-msg git hook
-gitlint --staged --msg-filename "$1" run-hook

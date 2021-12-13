@@ -1,5 +1,10 @@
 ---
+default_stages: [commit, manual, merge-commit, post-checkout, post-commit, prepare-commit-msg, push]
 repos:
+  - repo: https://github.com/jorisroovers/gitlint
+    rev: v0.17.0
+    hooks:
+      - id: gitlint
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.0.1
     hooks:
