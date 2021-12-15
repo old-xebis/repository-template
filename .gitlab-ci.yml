@@ -23,7 +23,12 @@ lint:
   script:
     - gitlint
     - scripts/check-sanity
-    - GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run -a
+    - |
+      if [ -z "${GL_TOKEN:-}" ]; then
+          SKIP=gitlab-ci-linter pre-commit run -a
+      else
+          GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run -a
+      fi
   cache:
     paths:
       - $PRE_COMMIT_HOME

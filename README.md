@@ -196,7 +196,8 @@ To create working GitLab to GitHub repository synchronization:
 
 Set up release and GitLab CI Linter tokens as the GitLab group or the GitLab project variable:
 
-- **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scopes `api` and `write_repository`. Shouldn't be protected otherwise GitLab CI job `lint` fails with an error `Server said HTTP Error 401: Unauthorized: https://gitlab.com/api/v4/ci/lint`.
+- **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scopes `api` and `write_repository`.
+  - If the variable is protected, GitLab CI job `lint` is skipped on non-protected branches.
 - **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/about-authentication-to-github#authenticating-with-the-api) with at least scopes `repo` for a private repository or `public_repo` for a public repository. Should be protected.
 
 - Settings
