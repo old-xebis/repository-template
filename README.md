@@ -321,7 +321,7 @@ bats tests
 
 - [ ] Find a satisfactory way how to manage (list, install, update) dependencies across various distributions and package managers
 - [ ] Add [pre-commit meta hooks](https://pre-commit.com/#meta-hooks)
-- [ ] Speed up CI/CD with a set of Docker images with pre-installed dependencies for each CI/CD stage
+- [ ] Speed up CI/CD by preparing a set of Docker images with pre-installed dependencies for each CI/CD stage, or by cache for `apk`, `pip`, and `npm`
 
 ## Credits and Acknowledgments
 
