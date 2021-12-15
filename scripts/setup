@@ -22,7 +22,7 @@ function setup() {
     # Install pre-commit hook if it's not present or doesn't point to the right location
     if [[ ! -L ".git/hooks/pre-commit" ]] || [ "$(readlink .git/hooks/pre-commit)" != "../../scripts/pre-commit" ]; then
         if ln -s ../../scripts/pre-commit .git/hooks/pre-commit; then
-            out "pre-commit hook has been installed." "$symbol_inst"
+            out "pre-commit hook has been installed." "$symbol_done"
         else
             err "pre-commit hook installation failed, cannot create symbolic link."
             exit "$status_err"
@@ -34,7 +34,7 @@ function setup() {
     # Install pre-merge-commit hook if it's not present or doesn't point to the right location
     if [[ ! -L ".git/hooks/pre-merge-commit" ]] || [ "$(readlink .git/hooks/pre-merge-commit)" != "../../scripts/pre-commit" ]; then
         if ln -s ../../scripts/pre-commit .git/hooks/pre-merge-commit; then
-            out "pre-merge-commit hook has been installed." "$symbol_inst"
+            out "pre-merge-commit hook has been installed." "$symbol_done"
         else
             err "pre-merge-commit hook installation failed, cannot create symbolic link."
             exit "$status_err"
@@ -46,7 +46,7 @@ function setup() {
     # Install pre-push hook if it's not present or doesn't point to the right location
     if [[ ! -L ".git/hooks/pre-push" ]] || [ "$(readlink .git/hooks/pre-push)" != "../../scripts/pre-push" ]; then
         if ln -s ../../scripts/pre-push .git/hooks/pre-push; then
-            out "pre-push hook has been installed." "$symbol_inst"
+            out "pre-push hook has been installed." "$symbol_done"
         else
             err "pre-push hook installation failed, cannot create symbolic link."
             exit "$status_err"

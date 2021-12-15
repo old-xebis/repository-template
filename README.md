@@ -103,6 +103,7 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - `scripts/setup` checks environment, installs dependencies, and setups `commit-msg`, `pre-commit`, `pre-merge-commit`, and `pre-push` hooks
   - `scripts/bootstrap` installs dependencies
   - Source `scripts/secrets.sh` to load secrets (GitLab Personal Access Token)
+  - `scripts/test` runs tests, as arguments accepts test files or test sets (`quick`, `reduced`, `full`, or `nightly`)
   - `scripts/update` updates used dependencies
 
 ### Releases
@@ -261,7 +262,7 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 
 ### Testing
 
-- Git hooks check a lot of things for you, including running automated tests `bats tests`
+- Git hooks check a lot of things for you, including running automated tests `scripts/test full`
 - Make sure all `scripts/*`, git hooks, and GitLab pipelines work as expected, testing checklist:
 
 - `scripts/*` scripts
@@ -271,6 +272,7 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
   - [ ] [`scripts/pre-push`](scripts/pre-push) - covered by unit tests
   - [ ] [`scripts/secrets.sh`](scripts/secrets.sh) - covered by unit tests
   - [ ] [`scripts/setup`](scripts/setup)
+  - [ ] [`scripts/test`](scripts/test) - covered by unit tests
   - [ ] [`scripts/update`](scripts/update) - covered by unit tests
 - Local working directory
   - [ ] `git commit` runs `pre-commit` hook-type `commit-msg` and [`scripts/pre-commit`](scripts/pre-commit)

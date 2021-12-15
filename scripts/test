@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+LANG=C
+
+# shellcheck source=./lib.sh
+. "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/lib.sh"
+
+# Run test file $1
+function run_test_file() {
+    if [ -f "$1" ] && [ -r "$1" ]; then
+        out "running $1:" "$symbol_doing"
+        if bats "$1"; then
+            out "$1 done" "$symbol_done"
+        else
+            err "$1 failed" "$symbol_failed"
+            return "$status_err"
+        fi
+    else
+        err "Could not run test file $1"
+        return "$status_err"
+    fi
+}
+
+# Run named test set $1
+function run_test_set() {
+    case "$1" in
+    quick | reduced | full | nightly)
+        # We run all tests in all cases, but on a larger project, these should be separate.
+        #
+        # For example, number and type of tests in test sets could be:
+        #     quick (selected unit tests) < reduced (all unit tests) < full (all unit and integration tests) < nightly
+        #         (all unit, integration, and E2E tests)
+        out "running ${1^} test set:" "$symbol_doing"
+        if bats tests/*.bats; then
+            out "${1^} test set done" "$symbol_done"
+        else
+            err "${1^} test set failed" "$symbol_failed"
+            return "$status_err"
+        fi
+        ;;
+    *)
+        err "Unknown test set ${1^}"
+        return "$status_err"
+        ;;
+    esac
+}
+
+# Print usage
+function usage() {
+    echo "Usage: ${TEST_MOCK_ARGV:-$0} [test-set | path [test-set | path [...]]]"
+    echo
+    echo '    test-set    Test set name: quick, reduced, full, or nightly'
+    echo '    path        Path to the test file'
+}
+
+# Main
+# For zero arguments: prints usage
+# One or more arguments: runs test set OR runs test file
+function main() {
+    if [ -z "${1+x}" ]; then
+        usage
+        return
+    fi
+
+    for arg in "$@"; do
+        case "$arg" in
+        quick | reduced | full | nightly)
+            run_test_set "$arg"
+            ;;
+        *)
+            run_test_file "$arg"
+            ;;
+        esac
+    done
+}
+
+# Skip script execution under test
+if [ -z "${UNDER_TEST+x}" ]; then
+    main "$@"
+fi

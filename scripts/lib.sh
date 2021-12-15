@@ -8,7 +8,10 @@
 
     # Symbols
     readonly symbol_ok="✓"
-    readonly symbol_inst="🗹"
+    readonly symbol_todo="☐"
+    readonly symbol_doing="…"
+    readonly symbol_done="🗹"
+    readonly symbol_failed="☒"
     readonly symbol_tip="💡"
     readonly symbol_notice="🛈"
     readonly symbol_warn="⚠"

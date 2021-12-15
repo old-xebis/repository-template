@@ -55,7 +55,7 @@ function install_dependencies() {
         out "pre-commit is installed"
     else
         if pip3 install pre-commit; then
-            out "pre-commit has been installed" "$symbol_inst"
+            out "pre-commit has been installed" "$symbol_done"
         else
             err "pre-commit installation failed"
             exit 1
@@ -67,7 +67,7 @@ function install_dependencies() {
         out "gitlint is installed"
     else
         if pip3 install gitlint; then
-            out "gitlint has been installed" "$symbol_inst"
+            out "gitlint has been installed" "$symbol_done"
         else
             err "gitlint installation failed"
             exit 1
@@ -80,7 +80,7 @@ function install_dependencies() {
         out "markdownlint-cli is installed"
     else
         if $SUDO npm install -g markdownlint-cli; then
-            out "markdownlint-cli has been installed" "$symbol_inst"
+            out "markdownlint-cli has been installed" "$symbol_done"
         else
             err "markdownlint-cli installation failed"
             exit 1
@@ -93,7 +93,7 @@ function install_dependencies() {
         out "yamllint is installed"
     else
         if pip3 install yamllint; then
-            out "yamllint has been installed" "$symbol_inst"
+            out "yamllint has been installed" "$symbol_done"
         else
             err "yamllint installation failed"
             exit 1
@@ -105,7 +105,7 @@ function install_dependencies() {
         out "shfmt is installed"
     else
         if $SUDO snap install shfmt; then
-            out "shfmt has been installed" "$symbol_inst"
+            out "shfmt has been installed" "$symbol_done"
         else
             err "shfmt installation failed"
             exit 1
@@ -117,7 +117,7 @@ function install_dependencies() {
         out "shellcheck is installed"
     else
         if $SUDO apt-get install -y shellcheck; then
-            out "shellcheck has been installed" "$symbol_inst"
+            out "shellcheck has been installed" "$symbol_done"
         else
             err "shellcheck installation failed"
             exit 1
@@ -129,7 +129,7 @@ function install_dependencies() {
         out "bats is installed"
     else
         if $SUDO apt-get install -y bats; then
-            out "bats has been installed" "$symbol_inst"
+            out "bats has been installed" "$symbol_done"
         else
             err "bats installation failed"
             exit 1
