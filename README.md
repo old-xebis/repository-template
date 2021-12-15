@@ -43,6 +43,9 @@ Strategies and tactics to achieve objectives:
 ## Table of Contents
 
 - [Features](#features)
+  - [Releases](#releases)
+  - [Hooks](#hooks)
+  - [Tests](#tests)
   - [Templates](#templates)
   - [Images](#images)
 - [Installation and Configuration](#installation-and-configuration)
@@ -55,8 +58,7 @@ Strategies and tactics to achieve objectives:
   - [Usage Examples](#usage-examples)
 - [Contributing](#contributing)
   - [Testing](#testing)
-    - [Test at Docker Alpine Container](#test-at-docker-alpine-container)
-    - [Test GitLab CI Locally](#test-gitlab-ci-locally)
+    - [Test at Docker Container](#test-at-docker-container)
 - [To-Do list](#to-do-list)
 - [Roadmap](#roadmap)
 - [Credits and Acknowledgments](#credits-and-acknowledgments)
@@ -75,70 +77,86 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
 ![Example of the full workflow](images/workflow-full.png)
 
 - Automated workflow using [git hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks), and [GitLab CI](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)
-- Commit messages are checked using [gitlint](https://github.com/jorisroovers/gitlint)
-  - Commit message should follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
-- Git `commit` is normalized, checked, and tested:
-  - Runs rules check
+- Git `commit` scans committed codebase change, git `push` scans pushed codebase change, and GitLab CI scans the whole codebase, and the [hooks](#hooks) are applied
+  - Commit messages are checked using [gitlint](https://github.com/jorisroovers/gitlint), commit message should follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+- Git `commit` (both regular and merge) is normalized, checked, and tested:
+  - Runs [hooks](#hooks)
   - Runs quick test set
   - Lints the commit message
 - Git `push` is checked, and tested:
   - Prevents existence of unstaged files
   - Prevents `todo` preceded with `#` at the codebase
-  - Runs rules check
+  - Runs [hooks](#hooks)
   - Runs reduced test set
-  - Merge request could by created with **git push options**, see <https://docs.gitlab.com/ee/user/project/push_options.html#push-options-for-merge-requests>
+  - Create merge request directly by **git push options**, see <https://docs.gitlab.com/ee/user/project/push_options.html#push-options-for-merge-requests>
 - GitLab CI run is checked, and tested:
   - Lints the latest commit message (except `release` commits)
   - Prevents `todo` preceded with `#` at the codebase
-  - Runs rules check
+  - Runs [hooks](#hooks)
   - Runs full test set on non-scheduled pipeline runs
   - Runs nightly test set on scheduled pipeline runs
-  - GitLab CI skips CI run if commit message contains `[ci skip]` or `[skip ci]`, using any capitalization, or pass **git push option** `ci.skip` (`git push -o ci.skip` git >= 2.17, `git push --push-option=ci.skip` git >= 2.10)
-- Rules could be skipped by setting `SKIP` variable to comma separated list of skipped rules, for example `SKIP=forbid-new-submodules,gitlab-ci-linter git commit`
-- Git `commit` scans committed codebase change, git `push` scans pushed codebase change, and GitLab CI scans the whole codebase, and the following rules are applied:
-  - Enforces max file size to 1024 kB using [pre-commit/pre-commit-hooks: check-added-large-files](https://github.com/pre-commit/pre-commit-hooks#check-added-large-files)
-  - Prevents case insensitive filename conflict using [pre-commit/pre-commit-hooks: check-case-conflict](https://github.com/pre-commit/pre-commit-hooks#check-case-conflict)
-  - Enforces executables have shebangs using [pre-commit/pre-commit-hooks: check-executables-have-shebangs](https://github.com/pre-commit/pre-commit-hooks#check-executables-have-shebangs)
-  - Prevents merge conflict strings using [pre-commit/pre-commit-hooks: check-merge-conflict](https://github.com/pre-commit/pre-commit-hooks#check-merge-conflict)
-  - Prevents stale symlinks using [pre-commit/pre-commit-hooks: check-symlinks](https://github.com/pre-commit/pre-commit-hooks#check-symlinks)
-  - Prevents non-permanent GitHub links using [pre-commit/pre-commit-hooks: check-vcs-permalinks](https://github.com/pre-commit/pre-commit-hooks#check-vcs-permalinks)
-  - Prevents destroyed symlinks using [pre-commit/pre-commit-hooks: destroyed-symlinks](https://github.com/pre-commit/pre-commit-hooks#destroyed-symlinks)
-  - Prevents the existence of private keys using [pre-commit/pre-commit-hooks: detect-private-key](https://github.com/pre-commit/pre-commit-hooks#detect-private-key)
-  - Enforces files end with empty newline using [pre-commit/pre-commit-hooks: end-of-file-fixer](https://github.com/pre-commit/pre-commit-hooks#end-of-file-fixer)
-  - Prevents UTF8 byte order marker using [pre-commit/pre-commit-hooks: fix-byte-order-marker](https://github.com/pre-commit/pre-commit-hooks#fix-byte-order-marker)
-  - Prevents new git submodules [pre-commit/pre-commit-hooks: forbid-new-submodules](https://github.com/pre-commit/pre-commit-hooks#forbid-new-submodules)
-  - Converts line endings to LF using [pre-commit/pre-commit-hooks: mixed-line-ending](https://github.com/pre-commit/pre-commit-hooks#mixed-line-ending)
-  - Prevents commits to protected branches using [pre-commit/pre-commit-hooks: no-commit-to-branch](https://github.com/pre-commit/pre-commit-hooks#no-commit-to-branch)
-  - Prevents trailing whitespaces using [pre-commit/pre-commit-hooks: trailing-whitespace](https://github.com/pre-commit/pre-commit-hooks#trailing-whitespace)
-  - Prevents botched name/email translations in git history using [jumanjihouse/pre-commit-hooks: check-mailmap](https://github.com/jumanjihouse/pre-commit-hooks#check-mailmap)
-  - Prevents binary files from being added by accident using [jumanjihouse/pre-commit-hooks: forbid-binary](https://github.com/jumanjihouse/pre-commit-hooks#forbid-binary)
-  - Enforces executable scripts have no extension using [jumanjihouse/pre-commit-hooks: script-must-not-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-not-have-extension)
-  - Enforces non-executable script libraries have extension using [jumanjihouse/pre-commit-hooks: script-must-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-have-extension)
-  - Lints Markdown using [igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli) (except [CHANGELOG.md](CHANGELOG.md))
-  - Lints YAML using [adrienverge/yamllint](https://github.com/adrienverge/yamllint)
-  - Lints [`.gitlab-ci.yml`](.gitlab-ci.yml) file using [devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter) when `GL_TOKEN` environment variable is set to **GitLab Personal Token**
-  - Lints shell scripts formatting using [mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
-  - Checks shell scripts using [koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
-  - Runs BATS tests using - [GitHub - bats-core/bats-core: Bash Automated Testing System](https://github.com/bats-core/bats-core), [GitHub - bats-core/bats-support: Supporting library for Bats test helpers](https://github.com/bats-core/bats-support), [GitHub - bats-core/bats-assert: Common assertions for Bats](https://github.com/bats-core/bats-assert), and [GitHub - bats-core/bats-file: Common filesystem assertions for Bats](https://github.com/bats-core/bats-file)
-  - Detects hardcoded secrets like passwords, api keys, and tokens in git repos using [GitHub - zricethezav/gitleaks: Scan git repos (or files) for secrets using regex and entropy key](https://github.com/zricethezav/gitleaks)
-  - For other formats and rules see [pre-commit: Supported hooks](https://pre-commit.com/hooks.html), there are many for .NET, Ansible, AWS, C, CMake, CSV, C++, Chef, Dart, Docker, Flutter, git, GitHub, GitLab, Go, HTML, INI, Java, JavaScript, Jenkins, Jinja, JSON, Kotlin, Lisp, Lua, Mac, Markdown, Node.js, Perl, PHP, Prometheus, Protobufs, Puppet, Python, R, Ruby, Rust, Shell, Swift, Terraform, TOML, Typescript, XML, YAML, ... or create new using regular expressions.
-- When merged to maintenance release branch (`N.N.x` or `N.x.x` or `N.x` with `N` being a number), `next`, `next-major`, `beta`, or `alpha` releases maintenance or pre-release (branches must match regex `^(((0|[1-9]\d*)\.)(((0|[1-9]\d*|x)\.)?x)|main|next(-major)?|beta|alpha)$`, see <https://regex101.com/r/gH9dCG/2/>)
-- When merged to `main` branch releases using [semantic-release/semantic-release](https://github.com/semantic-release/semantic-release)
-  - Determines major, minor, or patch version bump using [semantic-release/commit-analyzer](https://github.com/semantic-release/commit-analyzer)
-  - Generates release notes using [semantic-release/release-notes-generator](https://github.com/semantic-release/release-notes-generator)
-  - Generates changelog using [semantic-release/changelog](https://github.com/semantic-release/changelog)
-  - Commits changelog and new version using [semantic-release/git](https://github.com/semantic-release/git)
-  - Releases new version by tagging using [semantic-release/gitlab](https://github.com/semantic-release/gitlab)
-  - Releases new version by tagging using [semantic-release/github](https://github.com/semantic-release/github)
-  - Semantic-release skips release if commit contains `[skip release]` or `[release skip]` in the commit message
-- `scripts/setup` checks environment, installs dependencies, and setup hooks
-- `scripts/bootstrap` installs dependencies
-- Source `scripts/secrets.sh` to load secrets
-- `scripts/update` updates used dependencies
+  - Skip GitLab CI run if commit message contains `[ci skip]` or `[skip ci]`, using any capitalization, or pass **git push option** `ci.skip` (`git push -o ci.skip` git >= 2.17, `git push --push-option=ci.skip` git >= 2.10)
+- Hooks could be skipped by setting `SKIP` variable to a comma-separated list of skipped hooks, for example, `SKIP=forbid-new-submodules,gitlab-ci-linter git commit`
+- When `feat` or `fix` commit is present, GitLab CI job `release` publishes release using [semantic-release/semantic-release](https://github.com/semantic-release/semantic-release)
+  - When merged to the maintenance release branch (`N.N.x` or `N.x.x` or `N.x` with `N` being a number), publish maintenance [release](#releases)
+  - When merged to `next`, `next-major`, `beta`, or `alpha` branch, publish pre-release [release](#releases)
+  - When merged to the `main` branch publish [release](#releases)
+- Included scripts for your convenience in a fashion of [The GitHub Blog: Scripts to Rule Them All](https://github.blog/2015-06-30-scripts-to-rule-them-all/)
+  - `scripts/setup` checks environment, installs dependencies, and setups `commit-msg`, `pre-commit`, `pre-merge-commit`, and `pre-push` hooks
+  - `scripts/bootstrap` installs dependencies
+  - Source `scripts/secrets.sh` to load secrets (GitLab Personal Access Token)
+  - `scripts/update` updates used dependencies
+
+### Releases
+
+Release branches must match regex `^(((0|[1-9]\d*)\.)(((0|[1-9]\d*|x)\.)?x)|main|next(-major)?|beta|alpha)$`, see <https://regex101.com/r/gH9dCG/2/>.
+
+When `feat` or `fix` commit is present, the publish release:
+
+- Determines major, minor, or patch version bump using [semantic-release/commit-analyzer](https://github.com/semantic-release/commit-analyzer)
+- Generates release notes using [semantic-release/release-notes-generator](https://github.com/semantic-release/release-notes-generator)
+- Generates changelog using [semantic-release/changelog](https://github.com/semantic-release/changelog)
+- Commits changelog and new version using [semantic-release/git](https://github.com/semantic-release/git)
+- Publishes new version by creating a tag using [semantic-release/gitlab](https://github.com/semantic-release/gitlab)
+- Publishes new version by creating a tag using [semantic-release/github](https://github.com/semantic-release/github)
+- Semantic-release skips release if commit contains `[skip release]` or `[release skip]` in the commit message
+
+### Hooks
+
+[Pre-commit](https://github.com/pre-commit/pre-commit-hooks) is by default configured to run these hooks:
+
+- Lints git commit message using [gitlint](https://github.com/jorisroovers/gitlint)
+- Enforces max file size to 1024 kB using [pre-commit/pre-commit-hooks: check-added-large-files](https://github.com/pre-commit/pre-commit-hooks#check-added-large-files)
+- Prevents case insensitive filename conflict using [pre-commit/pre-commit-hooks: check-case-conflict](https://github.com/pre-commit/pre-commit-hooks#check-case-conflict)
+- Enforces executables have shebangs using [pre-commit/pre-commit-hooks: check-executables-have-shebangs](https://github.com/pre-commit/pre-commit-hooks#check-executables-have-shebangs)
+- Prevents merge conflict strings using [pre-commit/pre-commit-hooks: check-merge-conflict](https://github.com/pre-commit/pre-commit-hooks#check-merge-conflict)
+- Prevents stale symlinks using [pre-commit/pre-commit-hooks: check-symlinks](https://github.com/pre-commit/pre-commit-hooks#check-symlinks)
+- Prevents non-permanent GitHub links using [pre-commit/pre-commit-hooks: check-vcs-permalinks](https://github.com/pre-commit/pre-commit-hooks#check-vcs-permalinks)
+- Prevents destroyed symlinks using [pre-commit/pre-commit-hooks: destroyed-symlinks](https://github.com/pre-commit/pre-commit-hooks#destroyed-symlinks)
+- Prevents the existence of private keys using [pre-commit/pre-commit-hooks: detect-private-key](https://github.com/pre-commit/pre-commit-hooks#detect-private-key)
+- Enforces files end with empty newline using [pre-commit/pre-commit-hooks: end-of-file-fixer](https://github.com/pre-commit/pre-commit-hooks#end-of-file-fixer)
+- Prevents UTF8 byte order marker using [pre-commit/pre-commit-hooks: fix-byte-order-marker](https://github.com/pre-commit/pre-commit-hooks#fix-byte-order-marker)
+- Prevents new git submodules [pre-commit/pre-commit-hooks: forbid-new-submodules](https://github.com/pre-commit/pre-commit-hooks#forbid-new-submodules)
+- Converts line endings to LF using [pre-commit/pre-commit-hooks: mixed-line-ending](https://github.com/pre-commit/pre-commit-hooks#mixed-line-ending)
+- Prevents commits to protected branches using [pre-commit/pre-commit-hooks: no-commit-to-branch](https://github.com/pre-commit/pre-commit-hooks#no-commit-to-branch)
+- Prevents trailing whitespaces using [pre-commit/pre-commit-hooks: trailing-whitespace](https://github.com/pre-commit/pre-commit-hooks#trailing-whitespace)
+- Prevents botched name/email translations in git history using [jumanjihouse/pre-commit-hooks: check-mailmap](https://github.com/jumanjihouse/pre-commit-hooks#check-mailmap)
+- Prevents binary files from being added by accident using [jumanjihouse/pre-commit-hooks: forbid-binary](https://github.com/jumanjihouse/pre-commit-hooks#forbid-binary)
+- Enforces executable scripts have no extension using [jumanjihouse/pre-commit-hooks: script-must-not-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-not-have-extension)
+- Enforces non-executable script libraries have extension using [jumanjihouse/pre-commit-hooks: script-must-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-have-extension)
+- Lints Markdown using [igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli) (except [CHANGELOG.md](CHANGELOG.md))
+- Lints YAML using [adrienverge/yamllint](https://github.com/adrienverge/yamllint)
+- Lints [`.gitlab-ci.yml`](.gitlab-ci.yml) file using [devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter) when `GL_TOKEN` environment variable is set to **GitLab Personal Token**
+- Lints shell scripts formatting using [mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
+- Checks shell scripts using [koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
+- Detects hardcoded secrets like passwords, api keys, and tokens in git repos using [GitHub - zricethezav/gitleaks: Scan git repos (or files) for secrets using regex and entropy key](https://github.com/zricethezav/gitleaks)
+- For other formats and rules see [pre-commit: Supported hooks](https://pre-commit.com/hooks.html), there are many for .NET, Ansible, AWS, C, CMake, CSV, C++, Chef, Dart, Docker, Flutter, git, GitHub, GitLab, Go, HTML, INI, Java, JavaScript, Jenkins, Jinja, JSON, Kotlin, Lisp, Lua, Mac, Markdown, Node.js, Perl, PHP, Prometheus, Protobufs, Puppet, Python, R, Ruby, Rust, Shell, Swift, Terraform, TOML, Typescript, XML, YAML, ... or create new using regular expressions.
+
+### Tests
+
+Tests are written using BATS - [GitHub - bats-core/bats-core: Bash Automated Testing System](https://github.com/bats-core/bats-core), [GitHub - bats-core/bats-support: Supporting library for Bats test helpers](https://github.com/bats-core/bats-support), [GitHub - bats-core/bats-assert: Common assertions for Bats](https://github.com/bats-core/bats-assert), and [GitHub - bats-core/bats-file: Common filesystem assertions for Bats](https://github.com/bats-core/bats-file)
 
 ### Templates
-
-Templates for your convenience.
 
 - [Readme Template](templates/README.md)
 - Licenses
@@ -156,7 +174,7 @@ Templates for your convenience.
 
 ### Local Environment
 
-Clone the project with `--recursive` option, run `scripts/setup` for complete setup, or `scripts/bootstrap` to just install dependencies, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` present, otherwise `gitlab-ci-linter` is skipped. You can edit and source `scripts/secrets.sh`, **please make sure you won't commit your secrets**. Sourcing the script should do the magic for you, if it fails, try `git update-index --skip-worktree scripts/secrets.sh`.
+Clone the project with `--recursive` option, run `scripts/setup` for a complete setup, or `scripts/bootstrap` to just install dependencies, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` is present, otherwise `gitlab-ci-linter` is skipped. You can edit and source `scripts/secrets.sh`, **please make sure you won't commit your secrets**. Sourcing the script should do the magic for you, if it fails, try `git update-index --skip-worktree scripts/secrets.sh`.
 
 Example:
 
@@ -181,7 +199,7 @@ To create working GitLab to GitHub repository synchronization:
   - `workflow`
   - `write:packages` (and `read:packages`)
   - `delete:packages`
-- Have or create GitHub repository
+- Have or create a GitHub repository
 - Set up GitLab GitHub synchronization: Settings
   - Repository
     - Mirroring repositories, *Expand*
@@ -190,7 +208,7 @@ To create working GitLab to GitHub repository synchronization:
         - Mirror direction: **Push**
         - Password: **`GitLab GitHub Sync` token**
         - Keep divergent refs: **On** or **Off**
-        - Mirror only protected branches: **On** (all release and pre-release branches should be set as protected, otherwise GitHub release would fail on non-existent branch) or **Off**
+        - Mirror only protected branches: **On** (in that case all release, maintenance, and pre-release branches should be set as protected, otherwise GitHub release would fail on non-existent branch) or **Off**
 
 #### GitLab CI Settings
 
@@ -198,7 +216,8 @@ Set up release and GitLab CI Linter tokens as the GitLab group or the GitLab pro
 
 - **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scopes `api` and `write_repository`.
   - If the variable is protected, GitLab CI job `lint` is skipped on non-protected branches.
-- **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/about-authentication-to-github#authenticating-with-the-api) with at least scopes `repo` for a private repository or `public_repo` for a public repository. Should be protected.
+- **GH_TOKEN**: [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/about-authentication-to-github#authenticating-with-the-api) with at least scopes `repo` for a private repository or `public_repo` for a public repository.
+  - If the variable is protected, then releasing to GitHub works only from protected branches.
 
 - Settings
   - CI/CD
@@ -220,21 +239,21 @@ Set up the GitLab scheduled pipeline:
 
 ## Usage
 
-Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-template/-/forks/new) or [GitHub](https://github.com/xebis/repository-template/fork), **delete** all git tags, and **tag** the last commit to a desired starting version, e.g. `v0.0.0`. Clone the repository with `--recursive` option, run `scripts/setup`, and enjoy!
+Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-template/-/forks/new) or [GitHub](https://github.com/xebis/repository-template/fork), **delete** all git tags, and **tag** the last commit to the desired starting version, e.g. `v0.0.0`. Clone the repository with `--recursive` option, run `scripts/setup`, and enjoy!
 
-- `git commit` runs checks on changed files and performs tests a quick test set
-- `git push` runs checks on all files and performs tests with a reduced test set
-- GitLab `push`, `merge request` runs checks on all files and performs tests with a full test set
-- GitLab `merge to main` runs checks on all files, performs tests with a full test set, and releases a new version
-- GitLab `schedule` runs checks on all files, performs tests with a nightly test set
-- Run `scripts/update` manually from time to time
+- `git commit`, or `git merge` runs checks on changed files and runs quick test set
+- `git push` runs checks on all files and runs reduced test set
+- GitLab `push`, `merge request` runs checks on all files and runs full test set
+- GitLab `merge to main` runs checks on all files, runs full test set, and publishes a new version release
+- GitLab `schedule` runs checks on all files, runs nightly test set
+- Run `scripts/update` manually from time to time to update repository dependencies
 
 ### Usage Examples
 
-For usage examples you might take a look at:
+For usage examples, you might take a look at:
 
-- [GitHub - xebis/infrastructure-template: Template for automated GitOps and IaC in a cloud. GitLab CI handles static and dynamic environments. Environments are created, updated, and destroyed by Terraform, then configured by cloud-init and Ansible.](https://github.com/xebis/infrastructure-template) - example of GitOps (IaC + MRs + CI/CD) and multiple environments orchestration
 - [GitHub - xebis/shellib: Simple Bash scripting library.](https://github.com/xebis/shellib) - example of version bumping and packaging
+- [GitHub - xebis/infrastructure-template: Template for automated GitOps and IaC in a cloud. GitLab CI handles static and dynamic environments. Environments are created, updated, and destroyed by Terraform, then configured by cloud-init and Ansible.](https://github.com/xebis/infrastructure-template) - example of GitOps (IaC + MRs + CI/CD) and multiple environments orchestration
 
 ## Contributing
 
@@ -242,19 +261,18 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 
 ### Testing
 
-- Git hooks check a lot of things for you (see [Features](#features))
-- Run automated tests `bats tests`
-- Make sure all `scripts/*`, git hooks and GitLab pipelines work as expected, testing checklist:
+- Git hooks check a lot of things for you, including running automated tests `bats tests`
+- Make sure all `scripts/*`, git hooks, and GitLab pipelines work as expected, testing checklist:
 
 - `scripts/*` scripts
   - [ ] [`scripts/bootstrap`](scripts/bootstrap)
-  - [ ] [`scripts/check-sanity`](scripts/check-sanity) - covered with unit tests
+  - [ ] [`scripts/check-sanity`](scripts/check-sanity) - covered by unit tests
   - [ ] [`scripts/lib.sh`](scripts/lib.sh) - covered by unit tests
-  - [ ] [`scripts/pre-commit`](scripts/pre-commit) - covered with unit tests
-  - [ ] [`scripts/pre-push`](scripts/pre-push) - covered with unit tests
-  - [ ] [`scripts/secrets.sh`](scripts/secrets.sh) - covered with unit tests
+  - [ ] [`scripts/pre-commit`](scripts/pre-commit) - covered by unit tests
+  - [ ] [`scripts/pre-push`](scripts/pre-push) - covered by unit tests
+  - [ ] [`scripts/secrets.sh`](scripts/secrets.sh) - covered by unit tests
   - [ ] [`scripts/setup`](scripts/setup)
-  - [ ] [`scripts/update`](scripts/update) - covered with unit tests
+  - [ ] [`scripts/update`](scripts/update) - covered by unit tests
 - Local working directory
   - [ ] `git commit` runs `pre-commit` hook-type `commit-msg` and [`scripts/pre-commit`](scripts/pre-commit)
   - [ ] `git merge`
@@ -269,15 +287,17 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
     - [ ] Without a new feature or fix commit does not release a new version
   - [ ] Scheduled (nightly) pipeline runs `validate:lint` and `validate:test-nightly`
 
-#### Test at Docker Alpine Container
+#### Test at Docker Container
 
-- Run docker container:
+To test your changes in a different environment, you might try to run a Docker container and test it from there.
+
+Run the container:
 
 ```bash
 sudo docker run -it --rm -v "$(pwd)":/repository-template alpine:latest # Create disposal docker container
 ```
 
-- In the container:
+In the container:
 
 ```bash
 cd repository-template
@@ -290,27 +310,6 @@ bats tests
 # Result is similar to:
 # 1..1
 # ok 1 dummy test
-```
-
-#### Test GitLab CI Locally
-
-There is not a simple way how to test GitLab CI locally, you might try:
-
-- Install GitLab Runner
-
-```bash
-curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | sudo bash
-export GITLAB_RUNNER_DISABLE_SKEL=true
-sudo -E apt-get install gitlab-runner
-```
-
-- Hack `.gitlab-ci.yml` for *local run*: Copy [`.gitlab-ci.yml`](.gitlab-ci.yml) section `default.before_script` contents as first lines of `job.script` section
-- Run GitLab Runner Locally
-
-```bash
-gitlab-runner exec shell job
-# OR
-sudo gitlab-runner exec docker job --docker-image alpine:latest
 ```
 
 ## To-Do list
@@ -399,13 +398,13 @@ sudo gitlab-runner exec docker job --docker-image alpine:latest
 
 - [Git - Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks)
 - [Conventional Commits - Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/)
-- [Semantic Versioning - Semantic Versioning 2.0.0](https://semver.org/)
+- [Semantic Versioning - Semantic Versioning 2.0.0](https://semver.org/), [GitHub - romversioning/romver: Romantic Versioning Specification](https://github.com/romversioning/romver), or [Sentimental Versioning](http://sentimentalversioning.org/)
 - [Wikipedia: README](https://en.wikipedia.org/wiki/README)
+- [Make a README: Because no one can read your mind (yet)](https://www.makeareadme.com/)
+- [GitHub - PurpleBooth/a-good-readme-template: A template to make good README.md](https://github.com/PurpleBooth/a-good-readme-template)
 - [Wikipedia: Contributing guidelines](https://en.wikipedia.org/wiki/Contributing_guidelines)
 - [Wikipedia: Code of conduct](https://en.wikipedia.org/wiki/Code_of_conduct)
-- [Make a README: Because no one can read your mind (yet)](https://www.makeareadme.com/)
 - [Contributor Covenant: A Code of Conduct for Open Source Communities](https://www.contributor-covenant.org/)
-- [GitHub - PurpleBooth/a-good-readme-template: A template to make good README.md](https://github.com/PurpleBooth/a-good-readme-template)
 - [Programster's Blog: Git Workflows](https://blog.programster.org/git-workflows)
   - [GitHub Guides: Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
   - [GitLab Docs: Introduction to GitLab Flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html)
