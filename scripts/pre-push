@@ -43,6 +43,5 @@ function run_tests() {
 if [ -z "${UNDER_TEST+x}" ]; then
     check_unstaged
     run_pre-commit
-    scripts/check-sanity
     run_tests
 fi

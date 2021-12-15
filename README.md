@@ -85,13 +85,11 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Lints the commit message
 - Git `push` is checked, and tested:
   - Prevents existence of unstaged files
-  - Prevents `todo` preceded with `#` at the codebase
   - Runs [hooks](#hooks)
   - Runs reduced test set
   - Create merge request directly by **git push options**, see <https://docs.gitlab.com/ee/user/project/push_options.html#push-options-for-merge-requests>
 - GitLab CI run is checked, and tested:
   - Lints the latest commit message (except `release` commits)
-  - Prevents `todo` preceded with `#` at the codebase
   - Runs [hooks](#hooks)
   - Runs full test set on non-scheduled pipeline runs
   - Runs nightly test set on scheduled pipeline runs
@@ -125,7 +123,8 @@ When `feat` or `fix` commit is present, the publish release:
 
 [Pre-commit](https://github.com/pre-commit/pre-commit-hooks) is by default configured to run these hooks:
 
-- Lints git commit message using [gitlint](https://github.com/jorisroovers/gitlint)
+- Lints git commit message using [gitlint](https://github.com/jorisroovers/gitlint) #TODO: CC
+  - Prevents words `wip`, `todo`, or `tbd` at the commit message title
 - Enforces max file size to 1024 kB using [pre-commit/pre-commit-hooks: check-added-large-files](https://github.com/pre-commit/pre-commit-hooks#check-added-large-files)
 - Prevents case insensitive filename conflict using [pre-commit/pre-commit-hooks: check-case-conflict](https://github.com/pre-commit/pre-commit-hooks#check-case-conflict)
 - Enforces executables have shebangs using [pre-commit/pre-commit-hooks: check-executables-have-shebangs](https://github.com/pre-commit/pre-commit-hooks#check-executables-have-shebangs)
@@ -147,6 +146,7 @@ When `feat` or `fix` commit is present, the publish release:
 - Lints Markdown using [igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli) (except [CHANGELOG.md](CHANGELOG.md))
 - Lints YAML using [adrienverge/yamllint](https://github.com/adrienverge/yamllint)
 - Lints [`.gitlab-ci.yml`](.gitlab-ci.yml) file using [devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter) when `GL_TOKEN` environment variable is set to **GitLab Personal Token**
+- Prevents pushing words `wip`, `todo`, or `tbd` preceded with `#` at the codebase #TODO: regex
 - Lints shell scripts formatting using [mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
 - Checks shell scripts using [koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
 - Detects hardcoded secrets like passwords, api keys, and tokens in git repos using [GitHub - zricethezav/gitleaks: Scan git repos (or files) for secrets using regex and entropy key](https://github.com/zricethezav/gitleaks)
@@ -266,7 +266,6 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 
 - `scripts/*` scripts
   - [ ] [`scripts/bootstrap`](scripts/bootstrap)
-  - [ ] [`scripts/check-sanity`](scripts/check-sanity) - covered by unit tests
   - [ ] [`scripts/lib.sh`](scripts/lib.sh) - covered by unit tests
   - [ ] [`scripts/pre-commit`](scripts/pre-commit) - covered by unit tests
   - [ ] [`scripts/pre-push`](scripts/pre-push) - covered by unit tests

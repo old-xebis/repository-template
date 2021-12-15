@@ -49,6 +49,12 @@ repos:
       - id: gitlab-ci-linter
   - repo: local
     hooks:
+      - id: anti-todo
+        name: anti-todo
+        entry: (?i)#\s*\b(wip|todo|tbd)\b
+        language: pygrep
+        types: [text]
+        stages: [push]
       - id: shfmt
         name: shfmt
         entry: shfmt -i 4

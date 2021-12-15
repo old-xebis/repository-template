@@ -22,7 +22,6 @@ lint:
     - npm install -g markdownlint-cli
   script:
     - gitlint
-    - scripts/check-sanity
     - |
       if [ -z "${GL_TOKEN:-}" ]; then
           SKIP=gitlab-ci-linter pre-commit run -a
