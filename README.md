@@ -257,6 +257,10 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
   - [ ] [`scripts/update`](scripts/update) - covered with unit tests
 - Local working directory
   - [ ] `git commit` runs `pre-commit` hook-type `commit-msg` and [`scripts/pre-commit`](scripts/pre-commit)
+  - [ ] `git merge`
+    - [ ] Fast-forward shouldn't run any hooks or scripts
+    - [ ] Automatically resolved `merge commit` runs `pre-commit` hook-type `commit-msg` and [`scripts/pre-commit`](scripts/pre-commit)
+    - [ ] Manually resolved `merge commit` runs `pre-commit` hook-type `commit-msg` and [`scripts/pre-commit`](scripts/pre-commit)
   - [ ] `git push` runs [`scripts/pre-push`](scripts/pre-push)
 - GitLab CI
   - [ ] Commit in _non_-`main` branch runs `validate:lint` and `validate:test-full`
