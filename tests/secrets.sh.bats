@@ -11,14 +11,14 @@ setup() {
     . scripts/secrets.sh
 }
 
-@test "scripts/secrets.sh load_secrets test" {
+@test 'scripts/secrets.sh load_secrets test' {
     run load_secrets
 
     assert_success
     assert_output 'scripts/secrets.sh ✓ Exported secrets: GL_TOKEN'
 }
 
-@test "scripts/secrets.sh protect_secrets success test" {
+@test 'scripts/secrets.sh protect_secrets success test' {
     function git() {
         echo -n
     }
@@ -30,7 +30,7 @@ setup() {
     assert_output 'scripts/secrets.sh ✓ git skip-worktree bit set'
 }
 
-@test "scripts/secrets.sh protect_secrets fail test" {
+@test 'scripts/secrets.sh protect_secrets fail test' {
     function git() {
         echo -n
         return 2

@@ -13,10 +13,10 @@ setup() {
     . scripts/pre-commit
 }
 
-@test "scripts/pre-commit run_pre-commit test" {
+@test 'scripts/pre-commit run_pre-commit test' {
     function pre-commit() {
         if [ -z "${GITLAB_PRIVATE_TOKEN:-}" ]; then
-            echo "Error"
+            echo 'Error'
         fi
         echo 'OK'
     }
@@ -29,7 +29,7 @@ setup() {
     assert_output 'OK'
 }
 
-@test "scripts/pre-commit run_pre-commit with skip hook test" {
+@test 'scripts/pre-commit run_pre-commit with skip hook test' {
     function pre-commit() {
         if [ "${SKIP_HOOK:-}" == 'skipped-hook' ]; then
             echo 'Skipping skipped-hook'

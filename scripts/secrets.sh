@@ -7,9 +7,9 @@ script_dir=$(dirname "$(readlink -f "$script_path")")
 # Load secrets
 function load_secrets() {
     # GitLab Personal Access Token <https://gitlab.com/-/profile/personal_access_tokens> with scope `api`
-    export GL_TOKEN=""
+    export GL_TOKEN=''
 
-    out "Exported secrets: GL_TOKEN" "" "$script_path"
+    out 'Exported secrets: GL_TOKEN' '' "$script_path"
 }
 
 # Try to protect secrets from accidental commit by telling git to not track this file
@@ -17,10 +17,10 @@ function protect_secrets() {
     # Set skip-worktree bit on this file to make sure the file wouldn't be commited or pushed, for more information see
     # <https://git-scm.com/docs/git-update-index#_skip_worktree_bit>
     if git update-index --skip-worktree "$script_path"; then
-        out "git skip-worktree bit set" "" "$script_path"
+        out 'git skip-worktree bit set' '' "$script_path"
     else
-        err "git skip-worktree bit NOT set" "" "$script_path"
-        err "Your secrets could be compromised, please make sure they are not commited or pushed!" "$symbol_sec" "$script_path"
+        err 'git skip-worktree bit NOT set' '' "$script_path"
+        err 'Your secrets could be compromised, please make sure they are not commited or pushed!' "$symbol_sec" "$script_path"
         return $status_err
     fi
 }

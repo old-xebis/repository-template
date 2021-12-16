@@ -13,7 +13,7 @@ setup() {
     . scripts/pre-push
 }
 
-@test "scripts/pre-push check_unstaged success test" {
+@test 'scripts/pre-push check_unstaged success test' {
     function git() {
         echo -n
     }
@@ -25,7 +25,7 @@ setup() {
     assert_output 'scripts/pre-push ✓ git unstaged changes'
 }
 
-@test "scripts/pre-push check_unstaged fail test" {
+@test 'scripts/pre-push check_unstaged fail test' {
     function git() {
         echo 'changed/file'
     }
@@ -37,11 +37,11 @@ setup() {
     assert_output 'scripts/pre-push ✗ git unstaged changes detected'
 }
 
-@test "scripts/pre-push run_pre-commit success test" {
+@test 'scripts/pre-push run_pre-commit success test' {
     function pre-commit() {
         # shellcheck disable=SC2030,SC2031
         if [ -z "${GITLAB_PRIVATE_TOKEN-}" ]; then
-            echo "Error"
+            echo 'Error'
         fi
         echo 'OK'
     }
@@ -54,7 +54,7 @@ setup() {
     assert_output 'OK'
 }
 
-@test "scripts/pre-push run_pre-commit with skip hook test" {
+@test 'scripts/pre-push run_pre-commit with skip hook test' {
     function pre-commit() {
         # shellcheck disable=SC2030,SC2031
         if [ -z "${GITLAB_PRIVATE_TOKEN-}" ]; then
@@ -72,7 +72,7 @@ setup() {
     assert_line -n 1 'OK'
 }
 
-@test "scripts/pre-push run_pre-commit with arguments and stdin test" {
+@test 'scripts/pre-push run_pre-commit with arguments and stdin test' {
     function pre-commit() {
         cat <&0
     }

@@ -12,10 +12,10 @@ function check_unstaged() {
     git_unstaged=$(git ls-files -dmo --exclude-standard)
 
     if [ -n "$git_unstaged" ]; then
-        err "git unstaged changes detected"
+        err 'git unstaged changes detected'
         return "$status_err"
     fi
-    out "git unstaged changes"
+    out 'git unstaged changes'
 }
 
 # Check pushed codebase changes or without arguments the whole codebase

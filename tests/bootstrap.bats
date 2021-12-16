@@ -11,6 +11,6 @@ setup() {
     . scripts/bootstrap
 }
 
-@test "scripts/bootstrap install_dependencies test" {
+@test 'scripts/bootstrap install_dependencies test' {
     skip
 }

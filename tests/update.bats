@@ -11,7 +11,7 @@ setup() {
     . scripts/update
 }
 
-@test "scripts/update update_pre_commit test" {
+@test 'scripts/update update_pre_commit test' {
     function pre-commit() {
         echo 'OK'
     }
@@ -24,7 +24,7 @@ setup() {
     assert_line -n 1 'OK'
 }
 
-@test "scripts/update update_git_submodules test" {
+@test 'scripts/update update_git_submodules test' {
     function git() {
         echo 'OK'
     }

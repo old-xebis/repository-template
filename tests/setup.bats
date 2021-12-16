@@ -11,6 +11,6 @@ setup() {
     . scripts/setup
 }
 
-@test "scripts/setup setup test" {
+@test 'scripts/setup setup test' {
     skip
 }

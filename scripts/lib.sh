@@ -7,16 +7,16 @@
     readonly status_err=1
 
     # Symbols
-    readonly symbol_ok="✓"
-    readonly symbol_todo="☐"
-    readonly symbol_doing="…"
-    readonly symbol_done="🗹"
-    readonly symbol_failed="☒"
-    readonly symbol_tip="💡"
-    readonly symbol_notice="🛈"
-    readonly symbol_warn="⚠"
-    readonly symbol_sec="☠"
-    readonly symbol_err="✗"
+    readonly symbol_ok='✓'
+    readonly symbol_todo='☐'
+    readonly symbol_doing='…'
+    readonly symbol_done='🗹'
+    readonly symbol_failed='☒'
+    readonly symbol_tip='💡'
+    readonly symbol_notice='🛈'
+    readonly symbol_warn='⚠'
+    readonly symbol_sec='☠'
+    readonly symbol_err='✗'
 } 2>/dev/null
 
 # Functions
