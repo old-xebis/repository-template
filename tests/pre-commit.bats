@@ -45,30 +45,3 @@ setup() {
     assert_line -n 0 'Skipping skipped-hook'
     assert_line -n 1 'OK'
 }
-
-@test "scripts/pre-commit run_tests success test" {
-    function bats() {
-        echo 'OK'
-    }
-    export -f bats
-
-    run run_tests
-
-    assert_success
-    assert_line -n 0 'OK'
-    assert_line -n 1 'scripts/pre-commit ✓ Quick test set'
-}
-
-@test "scripts/pre-commit run_tests fail test" {
-    function bats() {
-        echo 'Error!'
-        return 1
-    }
-    export -f bats
-
-    run run_tests
-
-    assert_failure
-    assert_line -n 0 'Error!'
-    assert_line -n 1 'scripts/pre-commit ✗ Quick test set failed'
-}

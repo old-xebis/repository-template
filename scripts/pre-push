@@ -35,19 +35,9 @@ function run_pre-commit() {
     fi
 }
 
-# Run reduced test set
-function run_tests() {
-    if bats tests; then
-        out "Reduced test set"
-    else
-        err "Reduced test set failed"
-        return "$status_err"
-    fi
-}
-
 # Skip functions execution if under test
 if [ -z "${UNDER_TEST+x}" ]; then
     check_unstaged
     run_pre-commit "$@"
-    run_tests
+    scripts/test reduced
 fi

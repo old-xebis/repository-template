@@ -42,8 +42,7 @@ test-full:
     - *default_before_script
     - apk add bats
   script:
-    - bats tests
-    - echo "$0 ✓ Full test set"
+    - scripts/test full
   interruptible: true
   rules:
     - if: $CI_PIPELINE_SOURCE != "schedule"
@@ -54,8 +53,7 @@ test-nightly:
     - *default_before_script
     - apk add bats
   script:
-    - bats tests
-    - echo "$0 ✓ Nightly test set"
+    - scripts/test nightly
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
 

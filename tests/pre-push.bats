@@ -83,30 +83,3 @@ setup() {
     assert_success
     assert_output 'Test'
 }
-
-@test "scripts/pre-push run_tests success test" {
-    function bats() {
-        echo 'OK'
-    }
-    export -f bats
-
-    run run_tests
-
-    assert_success
-    assert_line -n 0 'OK'
-    assert_line -n 1 'scripts/pre-push ✓ Reduced test set'
-}
-
-@test "scripts/pre-commit run_tests fail test" {
-    function bats() {
-        echo 'Error!'
-        return 1
-    }
-    export -f bats
-
-    run run_tests
-
-    assert_failure
-    assert_line -n 0 'Error!'
-    assert_line -n 1 'scripts/pre-push ✗ Reduced test set failed'
-}

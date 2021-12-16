@@ -17,18 +17,8 @@ function run_pre-commit() {
     fi
 }
 
-# Run quick test set
-function run_tests() {
-    if bats tests; then
-        out "Quick test set"
-    else
-        err "Quick test set failed"
-        return "$status_err"
-    fi
-}
-
 # Skip functions execution under test
 if [ -z "${UNDER_TEST+x}" ]; then
     run_pre-commit
-    run_tests
+    scripts/test quick
 fi
