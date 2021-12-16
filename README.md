@@ -124,7 +124,8 @@ When `feat` or `fix` commit is present, the publish release:
 
 [Pre-commit](https://github.com/pre-commit/pre-commit-hooks) is by default configured to run these hooks:
 
-- Lints git commit message using [gitlint](https://github.com/jorisroovers/gitlint) #TODO: CC
+- Lints git commit message using [gitlint](https://github.com/jorisroovers/gitlint)
+  - Prevents messages not following [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
   - Prevents words `wip`, `todo`, or `tbd` at the commit message title
 - Enforces max file size to 1024 kB using [pre-commit/pre-commit-hooks: check-added-large-files](https://github.com/pre-commit/pre-commit-hooks#check-added-large-files)
 - Prevents case insensitive filename conflict using [pre-commit/pre-commit-hooks: check-case-conflict](https://github.com/pre-commit/pre-commit-hooks#check-case-conflict)
@@ -147,7 +148,7 @@ When `feat` or `fix` commit is present, the publish release:
 - Lints Markdown using [igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli) (except [CHANGELOG.md](CHANGELOG.md))
 - Lints YAML using [adrienverge/yamllint](https://github.com/adrienverge/yamllint)
 - Lints [`.gitlab-ci.yml`](.gitlab-ci.yml) file using [devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter) when `GL_TOKEN` environment variable is set to **GitLab Personal Token**
-- Prevents pushing words `wip`, `todo`, or `tbd` preceded with `#` at the codebase #TODO: regex
+- Prevents pushing words `wip`, `todo`, or `tbd` preceded with `#` at a text file, checked by regex `(?i)#\s*\b(wip|todo|tbd)\b`, see <https://regex101.com/r/mKueFx/1>
 - Lints shell scripts formatting using [mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
 - Checks shell scripts using [koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
 - Detects hardcoded secrets like passwords, api keys, and tokens in git repos using [GitHub - zricethezav/gitleaks: Scan git repos (or files) for secrets using regex and entropy key](https://github.com/zricethezav/gitleaks)

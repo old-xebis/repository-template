@@ -6,7 +6,7 @@ LANG=C
 # shellcheck source=./lib.sh
 . "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/lib.sh"
 
-# Check codebase changes
+# Check committed codebase changes
 function run_pre-commit() {
     # Skip GitLab CI Linter if GitLab Personal Access Token is not set
     if [ -z "${GL_TOKEN:-}" ]; then

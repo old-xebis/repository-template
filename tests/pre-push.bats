@@ -37,7 +37,7 @@ setup() {
     assert_output 'scripts/pre-push ✗ git unstaged changes detected'
 }
 
-@test "scripts/pre-push run_pre-commit test" {
+@test "scripts/pre-push run_pre-commit success test" {
     function pre-commit() {
         if [ -z "${GITLAB_PRIVATE_TOKEN:-}" ]; then
             echo "Error"
@@ -46,7 +46,7 @@ setup() {
     }
     export -f pre-commit
 
-    export GITLAB_PRIVATE_TOKEN='secret'
+    export GL_TOKEN='secret'
     run run_pre-commit
 
     assert_success
@@ -55,19 +55,30 @@ setup() {
 
 @test "scripts/pre-push run_pre-commit with skip hook test" {
     function pre-commit() {
-        if [ "${SKIP_HOOK:-}" == 'skipped-hook' ]; then
+        if [ "${SKIP:-}" == 'gitlab-ci-linter' ]; then
             echo 'Skipping skipped-hook'
         fi
         echo 'OK'
     }
     export -f pre-commit
 
-    export SKIP_HOOK='skipped-hook'
     run run_pre-commit
 
     assert_success
     assert_line -n 0 'Skipping skipped-hook'
     assert_line -n 1 'OK'
+}
+
+@test "scripts/pre-push run_pre-commit with arguments and stdin test" {
+    function pre-commit() {
+        cat <&0
+    }
+    export -f pre-commit
+
+    run run_pre-commit 'origin' 'remote' <<<'Test'
+
+    assert_success
+    assert_output 'Test'
 }
 
 @test "scripts/pre-push run_tests success test" {

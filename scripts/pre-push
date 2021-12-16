@@ -18,14 +18,20 @@ function check_unstaged() {
     out "git unstaged changes"
 }
 
-# Check full codebase
+# Check pushed codebase changes or without arguments the whole codebase
 function run_pre-commit() {
     # Skip GitLab CI Linter if GitLab Personal Access Token is not set
     if [ -z "${GL_TOKEN:-}" ]; then
-        SKIP=gitlab-ci-linter pre-commit run --hook-stage push
+        export SKIP=gitlab-ci-linter
     else
         export GITLAB_PRIVATE_TOKEN="$GL_TOKEN"
-        pre-commit run --hook-stage push
+    fi
+
+    # Check the whole codebase instead of pushed changes if there are not arguments $1 and $2
+    if [ -z "${1:-}" ] || [ -z "${2:-}" ]; then
+        pre-commit run -a --hook-stage push
+    else
+        pre-commit hook-impl --hook-type=pre-push --hook-dir /home/mb/Projects/repository-template/.git/hooks -- "$1" "$2" <&0
     fi
 }
 
@@ -42,6 +48,6 @@ function run_tests() {
 # Skip functions execution if under test
 if [ -z "${UNDER_TEST+x}" ]; then
     check_unstaged
-    run_pre-commit
+    run_pre-commit "$@"
     run_tests
 fi
