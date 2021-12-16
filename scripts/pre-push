@@ -19,7 +19,7 @@ function check_unstaged() {
 }
 
 # Check pushed codebase changes or without arguments the whole codebase
-function run_pre-commit() {
+function run_pre_commit() {
     # Skip GitLab CI Linter if GitLab Personal Access Token is not set
     if [ -z "${GL_TOKEN:-}" ]; then
         export SKIP=gitlab-ci-linter
@@ -38,6 +38,6 @@ function run_pre-commit() {
 # Skip functions execution if under test
 if [ -z "${UNDER_TEST+x}" ]; then
     check_unstaged
-    run_pre-commit "$@"
+    run_pre_commit "$@"
     scripts/test reduced
 fi

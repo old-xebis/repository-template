@@ -7,7 +7,7 @@ LANG=C
 . "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/lib.sh"
 
 # Check committed codebase changes
-function run_pre-commit() {
+function run_pre_commit() {
     # Skip GitLab CI Linter if GitLab Personal Access Token is not set
     if [ -z "${GL_TOKEN:-}" ]; then
         SKIP=gitlab-ci-linter pre-commit
@@ -19,6 +19,6 @@ function run_pre-commit() {
 
 # Skip functions execution under test
 if [ -z "${UNDER_TEST+x}" ]; then
-    run_pre-commit
+    run_pre_commit
     scripts/test quick
 fi
