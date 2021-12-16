@@ -1,5 +1,10 @@
 ---
+default_stages: [commit, manual, merge-commit, push]
 repos:
+  - repo: https://github.com/jorisroovers/gitlint
+    rev: v0.17.0
+    hooks:
+      - id: gitlint
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.0.1
     hooks:
@@ -44,6 +49,12 @@ repos:
       - id: gitlab-ci-linter
   - repo: local
     hooks:
+      - id: anti-todo
+        name: anti-todo
+        entry: (?i)#\s*\b(wip|todo|tbd)\b
+        language: pygrep
+        types: [text]
+        stages: [push, manual]
       - id: shfmt
         name: shfmt
         entry: shfmt -i 4
@@ -57,6 +68,10 @@ repos:
         files: .*\.bats$
       - id: shellcheck
         name: shellcheck
-        entry: shellcheck
+        entry: shellcheck -x
         language: system
         types: [shell]
+  - repo: https://github.com/zricethezav/gitleaks
+    rev: v8.2.0
+    hooks:
+      - id: gitleaks

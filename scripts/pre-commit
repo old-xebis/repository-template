@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+LANG=C
+
+# shellcheck source=./lib.sh
+. "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/lib.sh"
+
+# Check committed codebase changes
+function run_pre_commit() {
+    # Skip GitLab CI Linter if GitLab Personal Access Token is not set
+    if [ -z "${GL_TOKEN:-}" ]; then
+        SKIP=gitlab-ci-linter pre-commit
+    else
+        export GITLAB_PRIVATE_TOKEN="$GL_TOKEN"
+        pre-commit
+    fi
+}
+
+# Skip functions execution under test
+if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
+    run_pre_commit
+    scripts/test quick
+fi

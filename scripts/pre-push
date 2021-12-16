@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+LANG=C
+
+# shellcheck source=./lib.sh
+. "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/lib.sh"
+
+# Check for unstaged changes
+function check_unstaged() {
+    local git_unstaged
+    git_unstaged=$(git ls-files -dmo --exclude-standard)
+
+    if [ -n "$git_unstaged" ]; then
+        err 'git unstaged changes detected'
+        return "$status_err"
+    fi
+    out 'git unstaged changes'
+}
+
+# Check pushed codebase changes or without arguments the whole codebase
+function run_pre_commit() {
+    # Skip GitLab CI Linter if GitLab Personal Access Token is not set
+    if [ -z "${GL_TOKEN:-}" ]; then
+        export SKIP=gitlab-ci-linter
+    else
+        export GITLAB_PRIVATE_TOKEN="$GL_TOKEN"
+    fi
+
+    # Check the whole codebase instead of pushed changes if there are not arguments $1 and $2
+    if [ -z "${1:-}" ] || [ -z "${2:-}" ]; then
+        pre-commit run -a --hook-stage push
+    else
+        pre-commit hook-impl --hook-type pre-push --hook-dir /home/mb/Projects/repository-template/.git/hooks -- "$1" "$2" <&0
+    fi
+}
+
+# Skip functions execution if under test
+if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
+    check_unstaged
+    run_pre_commit "$@"
+    scripts/test reduced
+fi

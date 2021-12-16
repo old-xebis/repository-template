@@ -17,13 +17,16 @@ lint:
     PRE_COMMIT_HOME: $CI_PROJECT_DIR/.cache/pre-commit
   before_script:
     - *default_before_script
-    - apk add bash git grep npm py-pip python3-dev shellcheck shfmt
-    - pip install gitlint pre-commit yamllint
+    - apk add bash git go grep npm py-pip python3-dev shellcheck shfmt
+    - pip install pre-commit
     - npm install -g markdownlint-cli
   script:
-    - gitlint
-    - tools/check-sanity
-    - GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run -a
+    - |
+      if [ -z "${GL_TOKEN:-}" ]; then
+          SKIP=gitlab-ci-linter pre-commit run -a --hook-stage manual
+      else
+          GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run -a --hook-stage manual
+      fi
   cache:
     paths:
       - $PRE_COMMIT_HOME
@@ -38,8 +41,7 @@ test-full:
     - *default_before_script
     - apk add bats
   script:
-    - bats tests
-    - echo "$0 ✓ Full test set"
+    - scripts/test full
   interruptible: true
   rules:
     - if: $CI_PIPELINE_SOURCE != "schedule"
@@ -50,8 +52,7 @@ test-nightly:
     - *default_before_script
     - apk add bats
   script:
-    - bats tests
-    - echo "$0 ✓ Nightly test set"
+    - scripts/test nightly
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
 
