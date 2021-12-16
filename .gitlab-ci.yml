@@ -18,10 +18,9 @@ lint:
   before_script:
     - *default_before_script
     - apk add bash git go grep npm py-pip python3-dev shellcheck shfmt
-    - pip install gitlint pre-commit yamllint
+    - pip install pre-commit
     - npm install -g markdownlint-cli
   script:
-    - gitlint
     - |
       if [ -z "${GL_TOKEN:-}" ]; then
           SKIP=gitlab-ci-linter pre-commit run -a --hook-stage manual
