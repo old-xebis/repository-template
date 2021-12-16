@@ -1,3 +1,29 @@
+# [0.19.0](https://gitlab.com/xebis/repository-template/compare/v0.18.0...v0.19.0) (2021-12-16)
+
+
+### Bug Fixes
+
+* pre-commit script test fails on env var collision with bats ([d57fc8a](https://gitlab.com/xebis/repository-template/commit/d57fc8a129a0bff11f37b66fd3628aa7addcb85b))
+* pre-push hook should run pre-commit hooks on changed, not all files ([531b584](https://gitlab.com/xebis/repository-template/commit/531b584e65d785c827ec77f3c8617d8299e5b1cd))
+* pre-push hook should run pre-commit hooks on changed, not all files ([c34c0d6](https://gitlab.com/xebis/repository-template/commit/c34c0d665c1810bd440e649ea53893dc1877ce65))
+* pre-push hook skips changed files ([acc8021](https://gitlab.com/xebis/repository-template/commit/acc8021691cd9ece4f641724c085c1974a063d6c))
+* refactored scripts fails on non-existent environment variable ([f2cd6a1](https://gitlab.com/xebis/repository-template/commit/f2cd6a1d1cbd475fcee5f35efb2858766c7d5767))
+* shellcheck fails on included scripts ([e40610a](https://gitlab.com/xebis/repository-template/commit/e40610a1e811ce2b40d9917ff25e57999071ea3c))
+
+
+### Features
+
+* add git-merge-commit hook ([9a3be21](https://gitlab.com/xebis/repository-template/commit/9a3be21f0ec7699d432af075dd0b93348c4d6a57))
+* add gitleaks pre-commit hook ([b402316](https://gitlab.com/xebis/repository-template/commit/b40231671bf636703dd58c4a68a6609b55afee34))
+* add scripts/test test runner ([07e5554](https://gitlab.com/xebis/repository-template/commit/07e55545e731559eb8cf69e955a06ee5c790b232))
+* anti-todo hook checks word boundaries and replaces check-sanity ([a05773d](https://gitlab.com/xebis/repository-template/commit/a05773d6b5f964b41a0de0f510e90850a2a47a65))
+* rename tools to scripts ([bffa6e4](https://gitlab.com/xebis/repository-template/commit/bffa6e413c54d4abf4709e7a1216855112f81879))
+* rename, rewrite, and refactor scripts/check-sanity ([2513adc](https://gitlab.com/xebis/repository-template/commit/2513adc7e00299e33f37106291930319dbb1bf6e))
+* rename, rewrite, and refactor scripts/pre-commit ([1664a1d](https://gitlab.com/xebis/repository-template/commit/1664a1d3d5459bf1612908c75b8b2e7127e1442b))
+* rename, rewrite, and refactor scripts/update ([52a657e](https://gitlab.com/xebis/repository-template/commit/52a657e1e04e25a8eb5626246390b2a71ef02b3f))
+* rewrite, and refactor scripts/pre-push ([59a24f3](https://gitlab.com/xebis/repository-template/commit/59a24f3a42fddff669dd92d799a16214e0c28232))
+* split setup-repo to bootstrap and setup scripts ([f85da8a](https://gitlab.com/xebis/repository-template/commit/f85da8a1fdbd5e6ee0eeaa17cf3a82869e012ace))
+
 # [0.18.0](https://gitlab.com/xebis/repository-template/compare/v0.17.2...v0.18.0) (2021-12-04)
 
 
