@@ -24,9 +24,9 @@ lint:
     - gitlint
     - |
       if [ -z "${GL_TOKEN:-}" ]; then
-          SKIP=gitlab-ci-linter pre-commit run -a
+          SKIP=gitlab-ci-linter pre-commit run -a --hook-stage manual
       else
-          GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run -a
+          GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run -a --hook-stage manual
       fi
   cache:
     paths:
