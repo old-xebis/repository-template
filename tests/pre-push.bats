@@ -39,7 +39,8 @@ setup() {
 
 @test "scripts/pre-push run_pre-commit success test" {
     function pre-commit() {
-        if [ -z "${GITLAB_PRIVATE_TOKEN:-}" ]; then
+        # shellcheck disable=SC2030,SC2031
+        if [ -z "${GITLAB_PRIVATE_TOKEN-}" ]; then
             echo "Error"
         fi
         echo 'OK'
@@ -55,13 +56,15 @@ setup() {
 
 @test "scripts/pre-push run_pre-commit with skip hook test" {
     function pre-commit() {
-        if [ "${SKIP:-}" == 'gitlab-ci-linter' ]; then
+        # shellcheck disable=SC2030,SC2031
+        if [ -z "${GITLAB_PRIVATE_TOKEN-}" ]; then
             echo 'Skipping skipped-hook'
         fi
         echo 'OK'
     }
     export -f pre-commit
 
+    unset GL_TOKEN
     run run_pre-commit
 
     assert_success
