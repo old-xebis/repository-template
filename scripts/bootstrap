@@ -147,6 +147,6 @@ function main() {
 }
 
 # Skip functions execution under test
-if [ -z "${UNDER_TEST+x}" ]; then
+if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
     main
 fi

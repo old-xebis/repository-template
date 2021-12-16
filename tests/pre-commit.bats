@@ -7,7 +7,6 @@ setup() {
     load 'helpers/bats-support/load'
     load 'helpers/bats-assert/load'
 
-    export UNDER_TEST=0
     export TEST_MOCK_ARGV=('scripts/pre-commit')
 
     . scripts/pre-commit

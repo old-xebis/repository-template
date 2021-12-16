@@ -18,7 +18,7 @@ function run_pre_commit() {
 }
 
 # Skip functions execution under test
-if [ -z "${UNDER_TEST+x}" ]; then
+if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
     run_pre_commit
     scripts/test quick
 fi
