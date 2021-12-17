@@ -8,7 +8,7 @@ LANG=C
 
 function setup() {
     # Install pre-commit for commit-msg hook
-    if pre-commit install -t commit-msg; then
+    if pre-commit install -t commit-msg 1>/dev/null; then
         out 'pre-commit hook is installed.'
     else
         err 'pre-commit hook installation failed'
@@ -17,7 +17,7 @@ function setup() {
 
     REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && git rev-parse --show-toplevel)"
 
-    pushd "$REPO_DIR"
+    pushd "$REPO_DIR" 1>/dev/null
 
     # Install pre-commit hook if it's not present or doesn't point to the right location
     if [[ ! -L '.git/hooks/pre-commit' ]] || [ "$(readlink .git/hooks/pre-commit)" != '../../scripts/pre-commit' ]; then
@@ -63,7 +63,7 @@ function setup() {
         out 'GL_TOKEN is set.'
     fi
 
-    popd
+    popd 1>/dev/null
 }
 
 # Main
@@ -72,6 +72,7 @@ function main() {
         err 'Superpowers might be more harmful than useful. Please run as a regular user.'
         return "$status_err"
     fi
+
     scripts/bootstrap
     setup
 }
