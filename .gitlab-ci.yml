@@ -64,8 +64,8 @@ release:
   before_script:
     - *default_before_script
     - apk add git
-  script:
     - npm install -g semantic-release @semantic-release/gitlab @semantic-release/github @semantic-release/git @semantic-release/changelog
+  script:
     - npx semantic-release
   rules:
     - if: $CI_COMMIT_BRANCH =~ /^(((0|[1-9]\d*)\.)(((0|[1-9]\d*|x)\.)?x)|main|next(-major)?|beta|alpha)$/ && $CI_PIPELINE_SOURCE != "schedule"
