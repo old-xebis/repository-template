@@ -1,8 +1,8 @@
 # shellcheck shell=bash
 script_path="${BASH_SOURCE[0]}"
 script_dir=$(dirname "$(readlink -f "$script_path")")
-# shellcheck source=./lib.sh
-. "$script_dir/lib.sh"
+# shellcheck source=./shellib/src/shellib.sh
+. "$script_dir/shellib/src/shellib.sh"
 
 # Load secrets
 function load_secrets() {
