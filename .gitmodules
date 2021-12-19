@@ -7,3 +7,6 @@
 [submodule "tests/helpers/bats-file"]
 	path = tests/helpers/bats-file
 	url = https://github.com/bats-core/bats-file.git
+[submodule "scripts/shellib"]
+	path = scripts/shellib
+	url = https://github.com/xebis/shellib.git
