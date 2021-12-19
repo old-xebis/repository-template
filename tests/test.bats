@@ -13,13 +13,13 @@ setup() {
 }
 
 @test 'scripts/test run_test_file success test' {
-    run run_test_file tests/lib.sh.bats
+    run run_test_file tests/update.bats
 
     assert_success
     last_line="${#lines[@]}"
     ((last_line--))
-    assert_line -n 0 'scripts/test … running tests/lib.sh.bats:'
-    assert_line -n "$last_line" 'scripts/test 🗹 tests/lib.sh.bats done'
+    assert_line -n 0 'scripts/test … running tests/update.bats:'
+    assert_line -n "$last_line" 'scripts/test 🗹 tests/update.bats done'
 }
 
 @test 'scripts/test run_test_file non-existent file test' {
@@ -36,12 +36,12 @@ setup() {
     }
     export -f bats
 
-    run run_test_file tests/lib.sh.bats
+    run run_test_file tests/update.bats
 
     assert_failure
-    assert_line -n 0 'scripts/test … running tests/lib.sh.bats:'
+    assert_line -n 0 'scripts/test … running tests/update.bats:'
     assert_line -n 1 'Error!'
-    assert_line -n 2 'scripts/test ☒ tests/lib.sh.bats failed'
+    assert_line -n 2 'scripts/test ☒ tests/update.bats failed'
 }
 
 @test 'scripts/test run_test_set success test' {

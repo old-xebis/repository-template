@@ -3,8 +3,8 @@ set -euo pipefail
 IFS=$'\n\t'
 LANG=C
 
-# shellcheck source=./lib.sh
-. "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/lib.sh"
+# shellcheck source=./shellib/src/shellib.sh
+. "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/shellib/src/shellib.sh"
 
 # Check for unstaged changes
 function check_unstaged() {
