@@ -1,3 +1,10 @@
+# [0.20.0](https://gitlab.com/xebis/repository-template/compare/v0.19.1...v0.20.0) (2021-12-19)
+
+
+### Features
+
+* add shellib ([bd555a5](https://gitlab.com/xebis/repository-template/commit/bd555a5c7f3eee8f64374d1ad1bca56417052667))
+
 ## [0.19.1](https://gitlab.com/xebis/repository-template/compare/v0.19.0...v0.19.1) (2021-12-19)
 
 
