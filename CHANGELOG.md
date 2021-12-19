@@ -1,3 +1,10 @@
+## [0.19.1](https://gitlab.com/xebis/repository-template/compare/v0.19.0...v0.19.1) (2021-12-19)
+
+
+### Bug Fixes
+
+* scripts/setup remove unnecessary output ([12d712c](https://gitlab.com/xebis/repository-template/commit/12d712c7f397f310c209311c3a8d48d6272427d2))
+
 # [0.19.0](https://gitlab.com/xebis/repository-template/compare/v0.18.0...v0.19.0) (2021-12-16)
 
 
