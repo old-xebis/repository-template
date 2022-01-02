@@ -35,7 +35,7 @@ function run_pre_commit() {
     fi
 }
 
-# Skip functions execution if under test
+# Skip execution if under test
 if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
     check_unstaged
     run_pre_commit "$@"

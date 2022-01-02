@@ -25,7 +25,7 @@ function protect_secrets() {
     fi
 }
 
-# Skip functions execution under test
+# Skip execution under test
 if [ -z "${UNDER_TEST+x}" ]; then
     load_secrets
     protect_secrets

@@ -147,7 +147,7 @@ function main() {
     fi
 }
 
-# Skip functions execution under test
+# Skip execution under test
 if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
     main
 fi
