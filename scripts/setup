@@ -68,16 +68,19 @@ function setup() {
 
 # Main
 function main() {
-    if [[ "$EUID" -eq '0' ]]; then
+    if is_root; then
         err 'Superpowers might be more harmful than useful. Please run as a regular user.'
         return "$status_err"
+    else
+        # Skip execution under test
+        if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
+            scripts/bootstrap
+        fi
+        setup
     fi
-
-    scripts/bootstrap
-    setup
 }
 
-# Skip functions execution under test
+# Skip execution under test
 if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
     main
 fi

@@ -16,7 +16,7 @@ function update_git_submodules() {
     git submodule update --remote --merge
 }
 
-# Skip functions execution under test
+# Skip execution under test
 if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
     update_pre_commit
     update_git_submodules
