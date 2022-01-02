@@ -3,8 +3,8 @@ set -euo pipefail
 IFS=$'\n\t'
 LANG=C
 
-# shellcheck source=./shellib/src/shellib.sh
-. "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/shellib/src/shellib.sh"
+# shellcheck source=./scripts/shellib/shellib.sh
+. "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/shellib/shellib.sh"
 
 # Check for unstaged changes
 function check_unstaged() {
@@ -15,7 +15,7 @@ function check_unstaged() {
         err 'git unstaged changes detected'
         return "$status_err"
     fi
-    out 'git unstaged changes'
+    info 'git unstaged changes'
 }
 
 # Check pushed codebase changes or without arguments the whole codebase

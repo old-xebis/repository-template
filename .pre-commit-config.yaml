@@ -68,7 +68,7 @@ repos:
         files: .*\.bats$
       - id: shellcheck
         name: shellcheck
-        entry: shellcheck -x
+        entry: shellcheck -x -P scripts:scripts/shellib
         language: system
         types: [shell]
   - repo: https://github.com/zricethezav/gitleaks
