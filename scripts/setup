@@ -3,13 +3,13 @@ set -euo pipefail
 IFS=$'\n\t'
 LANG=C
 
-# shellcheck source=./shellib/src/shellib.sh
-. "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/shellib/src/shellib.sh"
+# shellcheck source=shellib/shellib.sh
+. "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/shellib/shellib.sh"
 
 function setup() {
     # Install pre-commit for commit-msg hook
     if pre-commit install -t commit-msg 1>/dev/null; then
-        out 'pre-commit hook is installed.'
+        info 'pre-commit hook is installed.'
     else
         err 'pre-commit hook installation failed'
         exit "$status_err"
@@ -22,45 +22,45 @@ function setup() {
     # Install pre-commit hook if it's not present or doesn't point to the right location
     if [[ ! -L '.git/hooks/pre-commit' ]] || [ "$(readlink .git/hooks/pre-commit)" != '../../scripts/pre-commit' ]; then
         if ln -s ../../scripts/pre-commit .git/hooks/pre-commit; then
-            out 'pre-commit hook has been installed.' "$symbol_done"
+            info 'pre-commit hook has been installed.' "$symbol_done"
         else
             err 'pre-commit hook installation failed, cannot create symbolic link.'
             exit "$status_err"
         fi
     else
-        out 'pre-commit hook is installed.'
+        info 'pre-commit hook is installed.'
     fi
 
     # Install pre-merge-commit hook if it's not present or doesn't point to the right location
     if [[ ! -L '.git/hooks/pre-merge-commit' ]] || [ "$(readlink .git/hooks/pre-merge-commit)" != '../../scripts/pre-commit' ]; then
         if ln -s ../../scripts/pre-commit .git/hooks/pre-merge-commit; then
-            out 'pre-merge-commit hook has been installed.' "$symbol_done"
+            info 'pre-merge-commit hook has been installed.' "$symbol_done"
         else
             err 'pre-merge-commit hook installation failed, cannot create symbolic link.'
             exit "$status_err"
         fi
     else
-        out 'pre-merge-commit hook is installed.'
+        info 'pre-merge-commit hook is installed.'
     fi
 
     # Install pre-push hook if it's not present or doesn't point to the right location
     if [[ ! -L '.git/hooks/pre-push' ]] || [ "$(readlink .git/hooks/pre-push)" != '../../scripts/pre-push' ]; then
         if ln -s ../../scripts/pre-push .git/hooks/pre-push; then
-            out 'pre-push hook has been installed.' "$symbol_done"
+            info 'pre-push hook has been installed.' "$symbol_done"
         else
             err 'pre-push hook installation failed, cannot create symbolic link.'
             exit "$status_err"
         fi
     else
-        out 'pre-push hook is installed.'
+        info 'pre-push hook is installed.'
     fi
 
     # Check if GL_TOKEN is set
     if [ -z "${GL_TOKEN:-}" ]; then
-        out 'environment variable GL_TOKEN is not set, gitlab-ci-linter will be skipped.' "$symbol_warn"
-        out 'You might set up environment variable GL_TOKEN at scripts/secrets.sh and source it.' "$symbol_tip"
+        warn 'environment variable GL_TOKEN is not set, gitlab-ci-linter will be skipped.'
+        info 'You might set up environment variable GL_TOKEN at scripts/secrets.sh and source it.' "$symbol_tip"
     else
-        out 'GL_TOKEN is set.'
+        info 'GL_TOKEN is set.'
     fi
 
     popd 1>/dev/null

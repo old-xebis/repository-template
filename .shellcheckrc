@@ -1,2 +1,2 @@
 external-sources=true
-source-path=scripts
+source-path=scripts:scripts/shellib
