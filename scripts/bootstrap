@@ -139,11 +139,12 @@ function install_dependencies() {
 
 # Main
 function main() {
-    if [[ "$EUID" -eq '0' ]]; then
+    if is_root; then
         err 'Superpowers might be more harmful than useful. Please run as a regular user.'
         return "$status_err"
+    else
+        install_dependencies
     fi
-    install_dependencies
 }
 
 # Skip functions execution under test
