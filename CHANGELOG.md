@@ -1,3 +1,15 @@
+# [0.21.0](https://gitlab.com/xebis/repository-template/compare/v0.20.0...v0.21.0) (2022-01-03)
+
+
+### Bug Fixes
+
+* scripts/update failed on unspecified shellib branch ([3f580e0](https://gitlab.com/xebis/repository-template/commit/3f580e0fa5b018eb29cb2ebabdcc6fa8a9ea192f))
+
+
+### Features
+
+* switch from own package management to shellib pkgs ([efc518e](https://gitlab.com/xebis/repository-template/commit/efc518e6f7956bd38b533321df59155a01bb2339))
+
 # [0.20.0](https://gitlab.com/xebis/repository-template/compare/v0.19.1...v0.20.0) (2021-12-19)
 
 
