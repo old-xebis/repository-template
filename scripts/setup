@@ -72,10 +72,6 @@ function main() {
         err 'Superpowers might be more harmful than useful. Please run as a regular user.'
         return "$status_err"
     else
-        # Skip execution under test
-        if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
-            scripts/bootstrap
-        fi
         setup
     fi
 }

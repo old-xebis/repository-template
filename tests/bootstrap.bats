@@ -13,34 +13,11 @@ setup() {
 }
 
 @test 'scripts/bootstrap install_dependencies test' {
-    skip
-}
-
-@test 'scripts/bootstrap main under root user test' {
-    function is_root() {
-        return 0
+    function pkgs() {
+        echo 'OK'
     }
-    export -f is_root
+    export -f pkgs
 
-    run main
-
-    assert_failure
-    assert_output "scripts/bootstrap ✗ Superpowers might be more harmful than useful. Please run as a regular user."
-}
-
-@test 'scripts/bootstrap main under non-root user test' {
-    function is_root() {
-        return 1
-    }
-    export -f is_root
-
-    function install_dependencies() {
-        return 0
-    }
-    export -f install_dependencies
-
-    run main
-
-    assert_success
-    refute_output
+    run install_dependencies
+    assert_output 'OK'
 }
