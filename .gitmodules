@@ -10,3 +10,4 @@
 [submodule "scripts/shellib"]
 	path = scripts/shellib
 	url = https://github.com/xebis/shellib.git
+	branch = main

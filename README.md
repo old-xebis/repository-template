@@ -100,7 +100,7 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - When merged to `next`, `next-major`, `beta`, or `alpha` branch, publish pre-release [release](#releases)
   - When merged to the `main` branch publish [release](#releases)
 - Included scripts for your convenience in a fashion of [The GitHub Blog: Scripts to Rule Them All](https://github.blog/2015-06-30-scripts-to-rule-them-all/)
-  - `scripts/setup` checks environment, installs dependencies, and setups `commit-msg`, `pre-commit`, `pre-merge-commit`, and `pre-push` hooks
+  - `scripts/setup` setups `commit-msg`, `pre-commit`, `pre-merge-commit`, and `pre-push` hooks
   - `scripts/bootstrap` installs dependencies
   - Source `scripts/secrets.sh` to load secrets (GitLab Personal Access Token)
   - `scripts/test` runs tests, as arguments accepts test files or test sets (`quick`, `reduced`, `full`, or `nightly`)
@@ -176,14 +176,15 @@ Tests are written using BATS - [GitHub - bats-core/bats-core: Bash Automated Tes
 
 ### Local Environment
 
-Clone the project with `--recursive` option, run `scripts/setup` for a complete setup, or `scripts/bootstrap` to just install dependencies, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` is present, otherwise `gitlab-ci-linter` is skipped. You can edit and source `scripts/secrets.sh`, **please make sure you won't commit your secrets**. Sourcing the script should do the magic for you, if it fails, try `git update-index --skip-worktree scripts/secrets.sh`.
+Clone the project with `--recursive` option, run `scripts/bootstrap` as root to install dependencies, `scripts/setup` for a complete setup, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` is present, otherwise `gitlab-ci-linter` is skipped. You can edit and source `scripts/secrets.sh`, **please make sure you won't commit your secrets**. Sourcing the script should do the magic for you, if it fails, try `git update-index --skip-worktree scripts/secrets.sh`.
 
 Example:
 
 ```bash
 git clone --recursive git@gitlab.com:xebis/repository-template.git
 cd repository-template
-scripts/setup
+sudo scripts/setup
+scripts/bootstrap
 # Add your secrets to scripts/secrets.sh
 . scripts/secrets.sh
 ```
@@ -267,7 +268,7 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 - Make sure all `scripts/*`, git hooks, and GitLab pipelines work as expected, testing checklist:
 
 - `scripts/*` scripts
-  - [ ] [`scripts/bootstrap`](scripts/bootstrap)
+  - [ ] [`scripts/bootstrap`](scripts/bootstrap) - covered by unit tests
   - [ ] [`scripts/lib.sh`](scripts/lib.sh) - covered by unit tests
   - [ ] [`scripts/pre-commit`](scripts/pre-commit) - covered by unit tests
   - [ ] [`scripts/pre-push`](scripts/pre-push) - covered by unit tests
@@ -359,11 +360,14 @@ bats tests
 - [GitLab - devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter)
 - [GitHub - mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
 - [GitHub - koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
-- [GitHub - bats-core/bats-core: Bash Automated Testing System](https://github.com/bats-core/bats-core)
-  - [GitHub - bats-core/bats-support: Supporting library for Bats test helpers](https://github.com/bats-core/bats-support)
-  - [GitHub - bats-core/bats-assert: Common assertions for Bats](https://github.com/bats-core/bats-assert)
-  - [GitHub - bats-core/bats-file: Common filesystem assertions for Bats](https://github.com/bats-core/bats-file)
 - [GitHub - zricethezav/gitleaks: Scan git repos (or files) for secrets using regex and entropy key](https://github.com/zricethezav/gitleaks)
+- For scripts and hooks:
+  - Tools standard in any Linux (Bash, Coreutils, Grep)
+  - [GitHub - xebis/shellib: Simple Bash scripting library.](https://github.com/xebis/shellib)
+  - [GitHub - bats-core/bats-core: Bash Automated Testing System](https://github.com/bats-core/bats-core)
+    - [GitHub - bats-core/bats-support: Supporting library for Bats test helpers](https://github.com/bats-core/bats-support)
+    - [GitHub - bats-core/bats-assert: Common assertions for Bats](https://github.com/bats-core/bats-assert)
+    - [GitHub - bats-core/bats-file: Common filesystem assertions for Bats](https://github.com/bats-core/bats-file)
 
 ### Recommendations
 
