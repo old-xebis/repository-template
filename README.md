@@ -327,6 +327,7 @@ bats tests
 
 - [ ] Find a satisfactory way how to manage (list, install, update) dependencies across various distributions and package managers
 - [ ] Add [pre-commit meta hooks](https://pre-commit.com/#meta-hooks)
+- [ ] Add [jumanjihouse/pre-commit-hooks hook protect-first-parent](https://github.com/jumanjihouse/pre-commit-hooks#protect-first-parent)
 - [ ] Speed up CI/CD by preparing a set of Docker images with pre-installed dependencies for each CI/CD stage, or by cache for `apk`, `pip`, and `npm`
 
 ## Credits and Acknowledgments
