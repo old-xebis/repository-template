@@ -1,3 +1,11 @@
+# [0.22.0](https://gitlab.com/xebis/repository-template/compare/v0.21.0...v0.22.0) (2022-01-05)
+
+
+### Features
+
+* add pre-commit hooks git-check, git-dirty, protect-first-parent ([2a6e4a9](https://gitlab.com/xebis/repository-template/commit/2a6e4a9af4bfa10a8e46c4e6cbc203a3672f66e3))
+* remove pre-push unstaged files check, pre-commit warning is enough ([f534123](https://gitlab.com/xebis/repository-template/commit/f534123d991470d7e69ea205f9fcb546ecbcfd42))
+
 # [0.21.0](https://gitlab.com/xebis/repository-template/compare/v0.20.0...v0.21.0) (2022-01-03)
 
 
