@@ -267,15 +267,15 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 - Git hooks check a lot of things for you, including running automated tests `scripts/test full`
 - Make sure all `scripts/*`, git hooks, and GitLab pipelines work as expected, testing checklist:
 
-- `scripts/*` scripts
-  - [ ] [`scripts/bootstrap`](scripts/bootstrap) - covered by unit tests
-  - [ ] [`scripts/lib.sh`](scripts/lib.sh) - covered by unit tests
-  - [ ] [`scripts/pre-commit`](scripts/pre-commit) - covered by unit tests
-  - [ ] [`scripts/pre-push`](scripts/pre-push) - covered by unit tests
-  - [ ] [`scripts/secrets.sh`](scripts/secrets.sh) - covered by unit tests
+- `scripts/*` scripts - covered by unit tests `tests/*`
+  - [ ] [`scripts/bootstrap`](scripts/bootstrap)
+  - [ ] [`scripts/lib.sh`](scripts/lib.sh)
+  - [ ] [`scripts/pre-commit`](scripts/pre-commit)
+  - [ ] [`scripts/pre-push`](scripts/pre-push)
+  - [ ] [`scripts/secrets.sh`](scripts/secrets.sh)
   - [ ] [`scripts/setup`](scripts/setup)
-  - [ ] [`scripts/test`](scripts/test) - covered by unit tests
-  - [ ] [`scripts/update`](scripts/update) - covered by unit tests
+  - [ ] [`scripts/test`](scripts/test)
+  - [ ] [`scripts/update`](scripts/update)
 - Local working directory
   - [ ] `git commit` runs `pre-commit` hook-type `commit-msg` and [`scripts/pre-commit`](scripts/pre-commit)
   - [ ] `git merge`

@@ -6,70 +6,64 @@ LANG=C
 # shellcheck source=shellib/shellib.sh
 . "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/shellib/shellib.sh"
 
+function setup_hook() {
+    local hook="$1"
+    local script="scripts/${2:-$1}"
+
+    if [ -L ".git/hooks/$hook" ] && [ "$(readlink .git/hooks/"$hook")" == "../../$script" ]; then
+        info "$1 hook is installed" "$symbol_done"
+    else
+        if [ ! -f ".git/hooks/$hook" ]; then
+            if ln -s "../../$script" ".git/hooks/$hook"; then
+                info "$hook hook has been installed" "$symbol_done"
+            else
+                err "$hook hook installation failed, cannot create symbolic link" "$symbol_failed"
+                return "$status_err"
+            fi
+        else
+            err "$hook cannot be installed" "$symbol_failed"
+            info "Try to remove '.git/hooks/$hook' first" "$symbol_tip"
+            return "$status_err"
+        fi
+    fi
+}
+
 function setup() {
     # Install pre-commit for commit-msg hook
     if pre-commit install -t commit-msg 1>/dev/null; then
-        info 'pre-commit hook is installed.'
+        info 'commit-msg hook is installed'
     else
-        err 'pre-commit hook installation failed'
-        exit "$status_err"
+        err 'commit-msg hook installation failed'
+        return "$status_err"
     fi
 
     REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && git rev-parse --show-toplevel)"
 
     pushd "$REPO_DIR" 1>/dev/null
 
-    # Install pre-commit hook if it's not present or doesn't point to the right location
-    if [[ ! -L '.git/hooks/pre-commit' ]] || [ "$(readlink .git/hooks/pre-commit)" != '../../scripts/pre-commit' ]; then
-        if ln -s ../../scripts/pre-commit .git/hooks/pre-commit; then
-            info 'pre-commit hook has been installed.' "$symbol_done"
-        else
-            err 'pre-commit hook installation failed, cannot create symbolic link.'
-            exit "$status_err"
-        fi
-    else
-        info 'pre-commit hook is installed.'
-    fi
-
-    # Install pre-merge-commit hook if it's not present or doesn't point to the right location
-    if [[ ! -L '.git/hooks/pre-merge-commit' ]] || [ "$(readlink .git/hooks/pre-merge-commit)" != '../../scripts/pre-commit' ]; then
-        if ln -s ../../scripts/pre-commit .git/hooks/pre-merge-commit; then
-            info 'pre-merge-commit hook has been installed.' "$symbol_done"
-        else
-            err 'pre-merge-commit hook installation failed, cannot create symbolic link.'
-            exit "$status_err"
-        fi
-    else
-        info 'pre-merge-commit hook is installed.'
-    fi
-
-    # Install pre-push hook if it's not present or doesn't point to the right location
-    if [[ ! -L '.git/hooks/pre-push' ]] || [ "$(readlink .git/hooks/pre-push)" != '../../scripts/pre-push' ]; then
-        if ln -s ../../scripts/pre-push .git/hooks/pre-push; then
-            info 'pre-push hook has been installed.' "$symbol_done"
-        else
-            err 'pre-push hook installation failed, cannot create symbolic link.'
-            exit "$status_err"
-        fi
-    else
-        info 'pre-push hook is installed.'
-    fi
-
-    # Check if GL_TOKEN is set
-    if [ -z "${GL_TOKEN:-}" ]; then
-        warn 'environment variable GL_TOKEN is not set, gitlab-ci-linter will be skipped.'
-        info 'You might set up environment variable GL_TOKEN at scripts/secrets.sh and source it.' "$symbol_tip"
-    else
-        info 'GL_TOKEN is set.'
+    # Setup git hooks
+    if ! setup_hook 'pre-commit' ||
+        ! setup_hook 'pre-merge-commit' 'pre-commit' ||
+        ! setup_hook 'pre-push'; then
+        return "$status_err"
     fi
 
     popd 1>/dev/null
+
+    # Check if GL_TOKEN is set
+    if [ -z "${GL_TOKEN:-}" ]; then
+        notice 'environment variable GL_TOKEN is not set, pre-commit hook gitlab-ci-linter will be skipped'
+        info 'You might set up environment variable GL_TOKEN at scripts/secrets.sh and source it' "$symbol_tip"
+    else
+        info 'GL_TOKEN is set'
+    fi
 }
 
 # Main
 function main() {
     if is_root; then
-        err 'Superpowers might be more harmful than useful. Please run as a regular user.'
+        err "Shouldn't be run as root"
+        info 'Try again as non-root' "$symbol_tip"
         return "$status_err"
     else
         setup
