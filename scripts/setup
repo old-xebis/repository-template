@@ -3,7 +3,7 @@ set -euo pipefail
 IFS=$'\n\t'
 LANG=C
 
-# shellcheck source=shellib/shellib.sh
+# shellcheck source=./shellib/shellib.sh
 . "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/shellib/shellib.sh"
 
 function setup_hook() {

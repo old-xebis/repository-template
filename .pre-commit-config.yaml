@@ -31,6 +31,8 @@ repos:
       - id: check-mailmap
       - id: forbid-binary
         exclude: .*\.png$
+      - id: git-check
+      - id: git-dirty
       - id: script-must-have-extension
         exclude: .*\.bats$
       - id: script-must-not-have-extension

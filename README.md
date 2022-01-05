@@ -84,7 +84,6 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Runs quick test set
   - Lints the commit message
 - Git `push` is checked, and tested:
-  - Prevents existence of unstaged files
   - Runs [hooks](#hooks)
   - Runs reduced test set
   - Create merge request directly by **git push options**, see <https://docs.gitlab.com/ee/user/project/push_options.html#push-options-for-merge-requests>
@@ -143,6 +142,9 @@ When `feat` or `fix` commit is present, the publish release:
 - Prevents trailing whitespaces using [pre-commit/pre-commit-hooks: trailing-whitespace](https://github.com/pre-commit/pre-commit-hooks#trailing-whitespace)
 - Prevents botched name/email translations in git history using [jumanjihouse/pre-commit-hooks: check-mailmap](https://github.com/jumanjihouse/pre-commit-hooks#check-mailmap)
 - Prevents binary files from being added by accident using [jumanjihouse/pre-commit-hooks: forbid-binary](https://github.com/jumanjihouse/pre-commit-hooks#forbid-binary)
+- Prevents git conflict markers and whitespace errors by using [jumanjihouse/pre-commit-hooks: git-check](https://github.com/jumanjihouse/pre-commit-hooks#git-check)
+- Prevents modified, staged, or untracked by using [jumanjihouse/pre-commit-hooks: git-dirty](https://github.com/jumanjihouse/pre-commit-hooks#git-dirty)
+- Prevents foxtrot merges by using [jumanjihouse/pre-commit-hooks: protect-first-parent](https://github.com/jumanjihouse/pre-commit-hooks#protect-first-parent)
 - Enforces executable scripts have no extension using [jumanjihouse/pre-commit-hooks: script-must-not-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-not-have-extension)
 - Enforces non-executable script libraries have extension using [jumanjihouse/pre-commit-hooks: script-must-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-have-extension)
 - Lints Markdown using [igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli) (except [CHANGELOG.md](CHANGELOG.md))
@@ -324,6 +326,7 @@ bats tests
 
 - [ ] Find a satisfactory way how to manage (list, install, update) dependencies across various distributions and package managers
 - [ ] Add [pre-commit meta hooks](https://pre-commit.com/#meta-hooks)
+- [ ] Add [jumanjihouse/pre-commit-hooks hook protect-first-parent](https://github.com/jumanjihouse/pre-commit-hooks#protect-first-parent)
 - [ ] Speed up CI/CD by preparing a set of Docker images with pre-installed dependencies for each CI/CD stage, or by cache for `apk`, `pip`, and `npm`
 
 ## Credits and Acknowledgments
