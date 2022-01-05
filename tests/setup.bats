@@ -79,6 +79,11 @@ setup() {
     }
     export -f pre-commit
 
+    function git() {
+        pwd
+    }
+    export -f git
+
     function setup_hook() {
         err 'setup hook installation failed'
         return 1
@@ -96,6 +101,11 @@ setup() {
         return 0
     }
     export -f pre-commit
+
+    function git() {
+        pwd
+    }
+    export -f git
 
     function setup_hook() {
         return 0
@@ -116,6 +126,11 @@ setup() {
         return 0
     }
     export -f pre-commit
+
+    function git() {
+        pwd
+    }
+    export -f git
 
     function setup_hook() {
         return 0
