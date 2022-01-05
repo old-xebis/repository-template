@@ -17,6 +17,7 @@ setup() {
     local hook='test'
     local file=".git/hooks/$hook"
 
+    [ -d '.git/hooks' ] || mkdir -p '.git/hooks'
     setup_hook "$hook"
     run setup_hook "$hook"
     rm "$file"
@@ -29,6 +30,7 @@ setup() {
     local hook='test'
     local file=".git/hooks/$hook"
 
+    [ -d '.git/hooks' ] || mkdir -p '.git/hooks'
     touch "$file"
     run setup_hook "$hook"
     rm "$file"
@@ -42,6 +44,7 @@ setup() {
     local hook='test/'
     local file=".git/hooks/$hook"
 
+    [ -d '.git/hooks' ] || mkdir -p '.git/hooks'
     run setup_hook "$hook"
 
     assert_not_exist "$file"
@@ -53,6 +56,7 @@ setup() {
     local hook='test'
     local file=".git/hooks/$hook"
 
+    [ -d '.git/hooks' ] || mkdir -p '.git/hooks'
     run setup_hook "$hook"
 
     assert_link_exist "$file"
