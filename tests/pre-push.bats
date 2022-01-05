@@ -12,30 +12,6 @@ setup() {
     . scripts/pre-push
 }
 
-@test 'scripts/pre-push check_unstaged success test' {
-    function git() {
-        echo -n
-    }
-    export -f git
-
-    run check_unstaged
-
-    assert_success
-    assert_output 'scripts/pre-push ✓ git unstaged changes'
-}
-
-@test 'scripts/pre-push check_unstaged fail test' {
-    function git() {
-        echo 'changed/file'
-    }
-    export -f git
-
-    run check_unstaged
-
-    assert_failure
-    assert_output 'scripts/pre-push ✗ git unstaged changes detected'
-}
-
 @test 'scripts/pre-push run_pre_commit success test' {
     function pre-commit() {
         # shellcheck disable=SC2030,SC2031

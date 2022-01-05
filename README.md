@@ -84,7 +84,6 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Runs quick test set
   - Lints the commit message
 - Git `push` is checked, and tested:
-  - Prevents existence of unstaged files
   - Runs [hooks](#hooks)
   - Runs reduced test set
   - Create merge request directly by **git push options**, see <https://docs.gitlab.com/ee/user/project/push_options.html#push-options-for-merge-requests>
