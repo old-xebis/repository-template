@@ -1,3 +1,10 @@
+# [0.23.0](https://gitlab.com/xebis/repository-template/compare/v0.22.0...v0.23.0) (2022-01-07)
+
+
+### Features
+
+* secrets.sh symbols better match shellib's style ([6707322](https://gitlab.com/xebis/repository-template/commit/67073223278b94d520d0474e181a09b6619af8e0))
+
 # [0.22.0](https://gitlab.com/xebis/repository-template/compare/v0.21.0...v0.22.0) (2022-01-05)
 
 
