@@ -74,6 +74,6 @@ repos:
         language: system
         types: [shell]
   - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.2.5
+    rev: v8.2.6
     hooks:
       - id: gitleaks
