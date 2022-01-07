@@ -64,7 +64,7 @@ release:
   before_script:
     - *default_before_script
     - apk add git
-    - npm install -g semantic-release @semantic-release/gitlab @semantic-release/github @semantic-release/git @semantic-release/changelog
+    - npm install -g semantic-release @semantic-release/gitlab @semantic-release/git @semantic-release/changelog
   script:
     - npx semantic-release
   rules:
