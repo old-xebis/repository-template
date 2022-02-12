@@ -17,7 +17,7 @@ lint:
     PRE_COMMIT_HOME: $CI_PROJECT_DIR/.cache/pre-commit
   before_script:
     - *default_before_script
-    - apk add bash git go grep npm py-pip python3-dev shellcheck shfmt
+    - apk --no-cache add bash git go grep npm py-pip python3-dev shellcheck shfmt
     - pip install pre-commit
     - npm install -g markdownlint-cli
   script:
@@ -39,7 +39,7 @@ test-full:
   stage: validate
   before_script:
     - *default_before_script
-    - apk add bats
+    - apk --no-cache add bats
   script:
     - scripts/test full
   interruptible: true
@@ -50,7 +50,7 @@ test-nightly:
   stage: validate
   before_script:
     - *default_before_script
-    - apk add bats
+    - apk --no-cache add bats
   script:
     - scripts/test nightly
   rules:
@@ -63,7 +63,7 @@ release:
     entrypoint: [""]
   before_script:
     - *default_before_script
-    - apk add git
+    - apk --no-cache add git
     - npm install -g semantic-release @semantic-release/gitlab @semantic-release/git @semantic-release/changelog
   script:
     - npx semantic-release
