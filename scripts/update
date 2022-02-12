@@ -12,6 +12,7 @@ function update_pre_commit {
     pre-commit gc
 }
 
+# Update repository submodules
 function update_git_submodules() {
     git submodule update --remote --merge
 }
