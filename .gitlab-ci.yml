@@ -1,12 +1,12 @@
 ---
+stages:
+  - validate
+  - release
+
 default:
   image: alpine:latest
   before_script: &default_before_script
     - apk -U upgrade
-
-stages:
-  - validate
-  - release
 
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
