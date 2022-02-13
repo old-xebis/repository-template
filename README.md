@@ -209,7 +209,7 @@ To create working GitLab to GitHub repository synchronization:
   - Repository
     - Mirroring repositories, *Expand*
       - *Add new mirror*:
-        - Git repository URL: **<https://user@github.com/org/repo.git>**, please replace _user_, _org_, and _repo_
+        - Git repository URL: **<https://user@github.com/org/repo.git>**, please replace *user*, *org*, and *repo*
         - Mirror direction: **Push**
         - Password: **`GitLab GitHub Sync` token**
         - Keep divergent refs: **On** or **Off**
@@ -285,7 +285,7 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
     - [ ] Manually resolved `merge commit` runs `pre-commit` hook-type `commit-msg` and [`scripts/pre-commit`](scripts/pre-commit)
   - [ ] `git push` runs [`scripts/pre-push`](scripts/pre-push)
 - GitLab CI
-  - [ ] Commit in _non_-`main` branch runs `validate:lint` and `validate:test-full`
+  - [ ] Commit in *non*-`main` branch runs `validate:lint` and `validate:test-full`
   - [ ] Merge to `main` branch runs `validate:lint`, `validate:test-full`, and `release:release`
     - [ ] With a new `feat` or `fix` commit releases a new version
     - [ ] Without a new feature or fix commit does not release a new version
