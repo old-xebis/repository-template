@@ -12,9 +12,9 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/xebis/repository-template)
 [![pipeline status](https://gitlab.com/xebis/repository-template/badges/main/pipeline.svg?ignore_skipped=true)](https://gitlab.com/xebis/repository-template/-/commits/main)
 
-Template for highly automated, up-to-date, and well-documented repositories.
+Highly automated, up-to-date, and well-documented repository template.
 
-Covers documentation and license templates, check numerous common problems, Markdown, YAML, Bash, and run tests - all of it before commit, push, and at CI. Releases to GitLab and GitHub using semantic versioning and generating changelog.
+Checks for common problems, Markdown, YAML, Bash, formats, lints, and tests before committing or pushing so you don't have any surprises at CI or when releasing your code to GitLab and GitHub!
 
 **The project is under active development.**
 
