@@ -1,3 +1,10 @@
+## [0.23.1](https://gitlab.com/xebis/repository-template/compare/v0.23.0...v0.23.1) (2022-08-14)
+
+
+### Bug Fixes
+
+* skip pre-commit hook variable doesn't work without gitlab token ([845da3f](https://gitlab.com/xebis/repository-template/commit/845da3f3839dc574404d27a748de7446263f3758))
+
 # [0.23.0](https://gitlab.com/xebis/repository-template/compare/v0.22.0...v0.23.0) (2022-01-07)
 
 
