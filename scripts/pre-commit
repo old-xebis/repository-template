@@ -10,11 +10,16 @@ LANG=C
 function run_pre_commit() {
     # Skip GitLab CI Linter if GitLab Personal Access Token is not set
     if [ -z "${GL_TOKEN:-}" ]; then
-        SKIP=gitlab-ci-linter pre-commit
+        if [ -z "${SKIP:-}" ]; then
+            export SKIP=gitlab-ci-linter
+        else
+            export SKIP="$SKIP,gitlab-ci-linter"
+        fi
     else
         export GITLAB_PRIVATE_TOKEN="$GL_TOKEN"
-        pre-commit
     fi
+
+    pre-commit
 }
 
 # Skip execution under test
