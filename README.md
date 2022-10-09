@@ -147,6 +147,7 @@ When `feat` or `fix` commit is present, the publish release:
 - Prevents foxtrot merges by using [jumanjihouse/pre-commit-hooks: protect-first-parent](https://github.com/jumanjihouse/pre-commit-hooks#protect-first-parent)
 - Enforces executable scripts have no extension using [jumanjihouse/pre-commit-hooks: script-must-not-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-not-have-extension)
 - Enforces non-executable script libraries have extension using [jumanjihouse/pre-commit-hooks: script-must-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-have-extension)
+- Prevents useless pre-commit hook exclude directives using [pre-commit/pre-commit-hooks: meta hook check-useless-excludes](https://pre-commit.com/#meta-check_useless_excludes)
 - Lints Markdown using [igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli) (except [CHANGELOG.md](CHANGELOG.md))
 - Lints YAML using [adrienverge/yamllint](https://github.com/adrienverge/yamllint)
 - Lints [`.gitlab-ci.yml`](.gitlab-ci.yml) file using [devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter) when `GL_TOKEN` environment variable is set to **GitLab Personal Token**
