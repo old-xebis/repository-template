@@ -1,3 +1,10 @@
+# [0.24.0](https://gitlab.com/xebis/repository-template/compare/v0.23.1...v0.24.0) (2022-10-09)
+
+
+### Features
+
+* add pre-commit useless excludes check ([a72a834](https://gitlab.com/xebis/repository-template/commit/a72a834cf006b5ae0892888740934ac466632d80))
+
 ## [0.23.1](https://gitlab.com/xebis/repository-template/compare/v0.23.0...v0.23.1) (2022-08-14)
 
 
