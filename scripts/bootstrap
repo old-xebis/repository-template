@@ -8,8 +8,8 @@ LANG=C
 
 # Install dependencies
 function install_dependencies() {
-    pkgs install 'apt:git' 'apt:python3-pip' 'pip:pre-commit' 'pip:gitlint' 'apt:npm' 'npm:markdownlint-cli' \
-        'pip:yamllint' 'snap:shfmt' 'apt:shellcheck' 'apt:bats'
+    pkgs install 'apt:git' 'apt:python3-pip' 'pip:pre-commit' 'pip:gitlint' 'snap:node' 'npm:markdownlint-cli' \
+        'pip:yamllint' 'snap:shfmt' 'snap:shellcheck' 'apt:bats'
 }
 
 # Skip execution under test
