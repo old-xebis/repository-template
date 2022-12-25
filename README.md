@@ -186,8 +186,8 @@ Example:
 ```bash
 git clone --recursive git@gitlab.com:xebis/repository-template.git
 cd repository-template
-sudo scripts/setup
-scripts/bootstrap
+sudo scripts/bootstrap
+scripts/setup
 # Add your secrets to scripts/secrets.sh
 . scripts/secrets.sh
 ```
