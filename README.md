@@ -107,9 +107,11 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
 
 ### Releases
 
+![Example of a release workflow](images/workflow-release.png)
+
 Release branches must match regex `^(((0|[1-9]\d*)\.)(((0|[1-9]\d*|x)\.)?x)|main|next(-major)?|beta|alpha)$`, see <https://regex101.com/r/gH9dCG/2/>.
 
-When `feat` or `fix` commit is present, the publish release:
+When `feat` or `fix` commit is present in the merge (to be more precise since the last release tag) to `main`, `next`, `next-major`, `beta`, `alpha`, *`major`*`.x`, or *`major.minor`*`.x` branch, the publish release:
 
 - Determines major, minor, or patch version bump using [semantic-release/commit-analyzer](https://github.com/semantic-release/commit-analyzer)
 - Generates release notes using [semantic-release/release-notes-generator](https://github.com/semantic-release/release-notes-generator)
@@ -172,6 +174,7 @@ Tests are written using BATS - [GitHub - bats-core/bats-core: Bash Automated Tes
 
 - [Git workflow examples & template](images/workflow.drawio)
 - [Example of the full workflow](images/workflow-full.png)
+- [Example of a release workflow](images/workflow-release.png)
 - [Example of a feature workflow](images/workflow-feature.png)
 - [Example of a bugfix workflow](images/workflow-fix.png)
 
