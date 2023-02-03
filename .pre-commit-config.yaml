@@ -2,11 +2,11 @@
 default_stages: [commit, manual, merge-commit, push]
 repos:
   - repo: https://github.com/jorisroovers/gitlint
-    rev: v0.18.0
+    rev: v0.19.0dev
     hooks:
       - id: gitlint
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.3.0
+    rev: v4.4.0
     hooks:
       - id: check-added-large-files
         args: [--maxkb=1024]
@@ -40,11 +40,11 @@ repos:
     hooks:
       - id: check-useless-excludes
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.32.2
+    rev: v0.33.0
     hooks:
       - id: markdownlint
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.28.0
+    rev: v1.29.0
     hooks:
       - id: yamllint
         args: [--strict]
@@ -76,6 +76,6 @@ repos:
         language: system
         types: [shell]
   - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.15.0
+    rev: v8.15.3
     hooks:
       - id: gitleaks
