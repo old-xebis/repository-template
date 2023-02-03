@@ -152,6 +152,7 @@ When `feat` or `fix` commit is present in the merge (to be more precise since th
 - Enforces executable scripts have no extension using [jumanjihouse/pre-commit-hooks: script-must-not-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-not-have-extension)
 - Enforces non-executable script libraries have extension using [jumanjihouse/pre-commit-hooks: script-must-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-have-extension)
 - Prevents useless pre-commit hook exclude directives using [pre-commit/pre-commit-hooks: meta hook check-useless-excludes](https://pre-commit.com/#meta-check_useless_excludes)
+- Checks spelling using [GitHub - codespell-project/codespell: check code for common misspellings](https://github.com/codespell-project/codespell)
 - Lints Markdown using [igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli) (except [CHANGELOG.md](CHANGELOG.md))
 - Lints YAML using [adrienverge/yamllint](https://github.com/adrienverge/yamllint)
 - Lints [`.gitlab-ci.yml`](.gitlab-ci.yml) file using [devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter) when `GL_TOKEN` environment variable is set to **GitLab Personal Token**
@@ -363,6 +364,7 @@ bats tests
 - [GitHub - pre-commit/pre-commit-hooks: Some out-of-the-box hooks for pre-commit](https://github.com/pre-commit/pre-commit-hooks)
 - [GitHub - jumanjihouse/pre-commit-hooks: git pre-commit hooks that work with http://pre-commit.com/](https://github.com/jumanjihouse/pre-commit-hooks)
 - [GitHub - jorisroovers/gitlint: Linting for your git commit messages](https://github.com/jorisroovers/gitlint)
+- [GitHub - codespell-project/codespell: check code for common misspellings](https://github.com/codespell-project/codespell)
 - [GitHub - igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli)
 - [GitHub - adrienverge/yamllint: A linter for YAML files.](https://github.com/adrienverge/yamllint)
 - [GitLab - devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter)
@@ -406,7 +408,6 @@ bats tests
     - [ShellCheck](https://marketplace.visualstudio.com/items?itemName=timonwong.shellcheck)
     - [shell-format](https://marketplace.visualstudio.com/items?itemName=foxundermoon.shell-format)
     - [Bats (Bash Automated Testing System)](https://marketplace.visualstudio.com/items?itemName=jetmartin.bats)
-  - [GitHub - codespell-project/codespell: check code for common misspellings](https://github.com/codespell-project/codespell)
 
 ### Further Reading
 
