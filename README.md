@@ -18,6 +18,8 @@ Checks for common problems, Markdown, YAML, Bash, formats, lints, and tests befo
 
 **The project is under active development.**
 
+<!-- cSpell:ignore gitlint, jumanjihouse, igorshubovych, adrienverge, devopshq, mvdan, shfmt, koalaman, shellcheck, zricethezav, gitleaks, shellib, shellcheckrc, jorisroovers, matiassingers, Grammarly, codespell, romversioning, romver, Programster's -->
+
 <!-- omit in toc -->
 ## The Purpose
 
@@ -141,7 +143,7 @@ When `feat` or `fix` commit is present in the merge (to be more precise since th
 - Prevents new git submodules [pre-commit/pre-commit-hooks: forbid-new-submodules](https://github.com/pre-commit/pre-commit-hooks#forbid-new-submodules)
 - Converts line endings to LF using [pre-commit/pre-commit-hooks: mixed-line-ending](https://github.com/pre-commit/pre-commit-hooks#mixed-line-ending)
 - Prevents commits to protected branches using [pre-commit/pre-commit-hooks: no-commit-to-branch](https://github.com/pre-commit/pre-commit-hooks#no-commit-to-branch)
-- Prevents trailing whitespaces using [pre-commit/pre-commit-hooks: trailing-whitespace](https://github.com/pre-commit/pre-commit-hooks#trailing-whitespace)
+- Prevents trailing whitespace characters using [pre-commit/pre-commit-hooks: trailing-whitespace](https://github.com/pre-commit/pre-commit-hooks#trailing-whitespace)
 - Prevents botched name/email translations in git history using [jumanjihouse/pre-commit-hooks: check-mailmap](https://github.com/jumanjihouse/pre-commit-hooks#check-mailmap)
 - Prevents binary files from being added by accident using [jumanjihouse/pre-commit-hooks: forbid-binary](https://github.com/jumanjihouse/pre-commit-hooks#forbid-binary)
 - Prevents git conflict markers and whitespace errors by using [jumanjihouse/pre-commit-hooks: git-check](https://github.com/jumanjihouse/pre-commit-hooks#git-check)
@@ -157,7 +159,7 @@ When `feat` or `fix` commit is present in the merge (to be more precise since th
 - Lints shell scripts formatting using [mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
 - Checks shell scripts using [koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
 - Detects hardcoded secrets like passwords, api keys, and tokens in git repos using [GitHub - zricethezav/gitleaks: Scan git repos (or files) for secrets using regex and entropy key](https://github.com/zricethezav/gitleaks)
-- For other formats and rules see [pre-commit: Supported hooks](https://pre-commit.com/hooks.html), there are many for .NET, Ansible, AWS, C, CMake, CSV, C++, Chef, Dart, Docker, Flutter, git, GitHub, GitLab, Go, HTML, INI, Java, JavaScript, Jenkins, Jinja, JSON, Kotlin, Lisp, Lua, Mac, Markdown, Node.js, Perl, PHP, Prometheus, Protobufs, Puppet, Python, R, Ruby, Rust, Shell, Swift, Terraform, TOML, Typescript, XML, YAML, ... or create new using regular expressions.
+- For other formats and rules see [pre-commit: Supported hooks](https://pre-commit.com/hooks.html), there are many for .NET, Ansible, AWS, C, CMake, CSV, C++, Chef, Dart, Docker, Flutter, git, GitHub, GitLab, Go, HTML, INI, Java, JavaScript, Jenkins, Jinja, JSON, Kotlin, Lisp, Lua, Mac, Markdown, Node.js, Perl, PHP, Prometheus, Protocol Buffers, Puppet, Python, R, Ruby, Rust, Shell, Swift, Terraform, TOML, Typescript, XML, YAML, ... or create new using regular expressions.
 
 ### Tests
 
