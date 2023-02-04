@@ -3,7 +3,7 @@
 
 - *Change all emphasized texts*
 - *Delete unused sections*
-- *Use `code formating`*
+- *Use `code formatting`*
 - *Replace `org` and `proj` in badges link with respective slugs*
 
 ![GitHub top language](https://img.shields.io/github/languages/top/org/proj)
