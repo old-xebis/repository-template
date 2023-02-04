@@ -1,5 +1,9 @@
 ---
-MD003: atx
-MD004: dash
+default: true
+MD003:
+  style: atx
+MD004:
+  style: dash
 MD013: false
-MD035: ---
+MD035: 
+  style: ---
