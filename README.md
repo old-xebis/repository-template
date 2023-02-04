@@ -18,7 +18,7 @@ Checks for common problems, Markdown, YAML, Bash, formats, lints, and tests befo
 
 **The project is under active development.**
 
-<!-- cSpell:ignore gitlint, jumanjihouse, igorshubovych, adrienverge, devopshq, mvdan, shfmt, koalaman, shellcheck, zricethezav, gitleaks, shellib, shellcheckrc, jorisroovers, matiassingers, Grammarly, codespell, romversioning, romver, Programster's -->
+<!-- cSpell:ignore gitlint, jumanjihouse, igorshubovych, adrienverge, devopshq, mvdan, shfmt, koalaman, shellcheck, zricethezav, gitleaks, shellib, shellcheckrc, jorisroovers, matiassingers, Grammarly, codespell, romversioning, romver, Programster's, FiraCode -->
 
 <!-- omit in toc -->
 ## The Purpose
@@ -390,7 +390,10 @@ bats tests
 
 - [Shields.io: Quality metadata badges for open source projects](https://shields.io/)
 - [Visual Studio Code](https://code.visualstudio.com/) with [Extensions for Visual Studio Code](https://marketplace.visualstudio.com/VSCode):
-  - [Gremlins tracker for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=nhoizey.gremlins)
+  - DX & UX
+    - [One Dark Pro++ (TPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.tpack) - contains One Dark Pro, Material Icon Theme, and FiraCode Font
+    - [DX Enhancer Pack (EPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.epack) - contains Project Manager, Better Comments, Markdown Preview Enhanced, file-size, Error Lens
+    - [Gremlins tracker for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=nhoizey.gremlins)
   - English, and grammar:
     - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
     - [Grammarly (unofficial)](https://marketplace.visualstudio.com/items?itemName=znck.grammarly)
