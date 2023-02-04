@@ -14,13 +14,13 @@ function load_secrets() {
 
 # Try to protect secrets from accidental commit by telling git to not track this file
 function protect_secrets() {
-    # Set skip-worktree bit on this file to make sure the file wouldn't be commited or pushed, for more information see
-    # <https://git-scm.com/docs/git-update-index#_skip_worktree_bit>
+    # Set skip-worktree bit on this file to make sure the file wouldn't be committed or pushed, for more information
+    # see <https://git-scm.com/docs/git-update-index#_skip_worktree_bit>
     if git update-index --skip-worktree "$script_path"; then
         info 'git skip-worktree bit set' "$symbol_done" "$script_path"
     else
         err 'git skip-worktree bit NOT set' "$symbol_failed" "$script_path"
-        sec 'Your secrets could be compromised, please make sure they are not commited or pushed!' '' "$script_path"
+        sec 'Your secrets could be compromised, please make sure they are not committed or pushed!' '' "$script_path"
         return "$status_err"
     fi
 }

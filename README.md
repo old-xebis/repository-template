@@ -1,6 +1,8 @@
 <!-- omit in toc -->
 # Repository Template
 
+<!-- cSpell:ignore jumanjihouse, igorshubovych, adrienverge, devopshq, mvdan, koalaman, zricethezav, shellcheckrc, jorisroovers, matiassingers, Grammarly, romversioning, romver, Programster's, FiraCode -->
+
 ![GitHub top language](https://img.shields.io/github/languages/top/xebis/repository-template)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
@@ -107,9 +109,11 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
 
 ### Releases
 
+![Example of a release workflow](images/workflow-release.png)
+
 Release branches must match regex `^(((0|[1-9]\d*)\.)(((0|[1-9]\d*|x)\.)?x)|main|next(-major)?|beta|alpha)$`, see <https://regex101.com/r/gH9dCG/2/>.
 
-When `feat` or `fix` commit is present, the publish release:
+When `feat` or `fix` commit is present in the merge (to be more precise since the last release tag) to `main`, `next`, `next-major`, `beta`, `alpha`, *`major`*`.x`, or *`major.minor`*`.x` branch, the publish release:
 
 - Determines major, minor, or patch version bump using [semantic-release/commit-analyzer](https://github.com/semantic-release/commit-analyzer)
 - Generates release notes using [semantic-release/release-notes-generator](https://github.com/semantic-release/release-notes-generator)
@@ -139,7 +143,7 @@ When `feat` or `fix` commit is present, the publish release:
 - Prevents new git submodules [pre-commit/pre-commit-hooks: forbid-new-submodules](https://github.com/pre-commit/pre-commit-hooks#forbid-new-submodules)
 - Converts line endings to LF using [pre-commit/pre-commit-hooks: mixed-line-ending](https://github.com/pre-commit/pre-commit-hooks#mixed-line-ending)
 - Prevents commits to protected branches using [pre-commit/pre-commit-hooks: no-commit-to-branch](https://github.com/pre-commit/pre-commit-hooks#no-commit-to-branch)
-- Prevents trailing whitespaces using [pre-commit/pre-commit-hooks: trailing-whitespace](https://github.com/pre-commit/pre-commit-hooks#trailing-whitespace)
+- Prevents trailing whitespace characters using [pre-commit/pre-commit-hooks: trailing-whitespace](https://github.com/pre-commit/pre-commit-hooks#trailing-whitespace)
 - Prevents botched name/email translations in git history using [jumanjihouse/pre-commit-hooks: check-mailmap](https://github.com/jumanjihouse/pre-commit-hooks#check-mailmap)
 - Prevents binary files from being added by accident using [jumanjihouse/pre-commit-hooks: forbid-binary](https://github.com/jumanjihouse/pre-commit-hooks#forbid-binary)
 - Prevents git conflict markers and whitespace errors by using [jumanjihouse/pre-commit-hooks: git-check](https://github.com/jumanjihouse/pre-commit-hooks#git-check)
@@ -148,6 +152,7 @@ When `feat` or `fix` commit is present, the publish release:
 - Enforces executable scripts have no extension using [jumanjihouse/pre-commit-hooks: script-must-not-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-not-have-extension)
 - Enforces non-executable script libraries have extension using [jumanjihouse/pre-commit-hooks: script-must-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-have-extension)
 - Prevents useless pre-commit hook exclude directives using [pre-commit/pre-commit-hooks: meta hook check-useless-excludes](https://pre-commit.com/#meta-check_useless_excludes)
+- Checks spelling using [GitHub - codespell-project/codespell: check code for common misspellings](https://github.com/codespell-project/codespell)
 - Lints Markdown using [igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli) (except [CHANGELOG.md](CHANGELOG.md))
 - Lints YAML using [adrienverge/yamllint](https://github.com/adrienverge/yamllint)
 - Lints [`.gitlab-ci.yml`](.gitlab-ci.yml) file using [devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter) when `GL_TOKEN` environment variable is set to **GitLab Personal Token**
@@ -155,7 +160,7 @@ When `feat` or `fix` commit is present, the publish release:
 - Lints shell scripts formatting using [mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
 - Checks shell scripts using [koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
 - Detects hardcoded secrets like passwords, api keys, and tokens in git repos using [GitHub - zricethezav/gitleaks: Scan git repos (or files) for secrets using regex and entropy key](https://github.com/zricethezav/gitleaks)
-- For other formats and rules see [pre-commit: Supported hooks](https://pre-commit.com/hooks.html), there are many for .NET, Ansible, AWS, C, CMake, CSV, C++, Chef, Dart, Docker, Flutter, git, GitHub, GitLab, Go, HTML, INI, Java, JavaScript, Jenkins, Jinja, JSON, Kotlin, Lisp, Lua, Mac, Markdown, Node.js, Perl, PHP, Prometheus, Protobufs, Puppet, Python, R, Ruby, Rust, Shell, Swift, Terraform, TOML, Typescript, XML, YAML, ... or create new using regular expressions.
+- For other formats and rules see [pre-commit: Supported hooks](https://pre-commit.com/hooks.html), there are many for .NET, Ansible, AWS, C, CMake, CSV, C++, Chef, Dart, Docker, Flutter, git, GitHub, GitLab, Go, HTML, INI, Java, JavaScript, Jenkins, Jinja, JSON, Kotlin, Lisp, Lua, Mac, Markdown, Node.js, Perl, PHP, Prometheus, Protocol Buffers, Puppet, Python, R, Ruby, Rust, Shell, Swift, Terraform, TOML, Typescript, XML, YAML, ... or create new using regular expressions.
 
 ### Tests
 
@@ -172,6 +177,7 @@ Tests are written using BATS - [GitHub - bats-core/bats-core: Bash Automated Tes
 
 - [Git workflow examples & template](images/workflow.drawio)
 - [Example of the full workflow](images/workflow-full.png)
+- [Example of a release workflow](images/workflow-release.png)
 - [Example of a feature workflow](images/workflow-feature.png)
 - [Example of a bugfix workflow](images/workflow-fix.png)
 
@@ -186,8 +192,8 @@ Example:
 ```bash
 git clone --recursive git@gitlab.com:xebis/repository-template.git
 cd repository-template
-sudo scripts/setup
-scripts/bootstrap
+sudo scripts/bootstrap
+scripts/setup
 # Add your secrets to scripts/secrets.sh
 . scripts/secrets.sh
 ```
@@ -358,6 +364,7 @@ bats tests
 - [GitHub - pre-commit/pre-commit-hooks: Some out-of-the-box hooks for pre-commit](https://github.com/pre-commit/pre-commit-hooks)
 - [GitHub - jumanjihouse/pre-commit-hooks: git pre-commit hooks that work with http://pre-commit.com/](https://github.com/jumanjihouse/pre-commit-hooks)
 - [GitHub - jorisroovers/gitlint: Linting for your git commit messages](https://github.com/jorisroovers/gitlint)
+- [GitHub - codespell-project/codespell: check code for common misspellings](https://github.com/codespell-project/codespell)
 - [GitHub - igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli)
 - [GitHub - adrienverge/yamllint: A linter for YAML files.](https://github.com/adrienverge/yamllint)
 - [GitLab - devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter)
@@ -383,7 +390,10 @@ bats tests
 
 - [Shields.io: Quality metadata badges for open source projects](https://shields.io/)
 - [Visual Studio Code](https://code.visualstudio.com/) with [Extensions for Visual Studio Code](https://marketplace.visualstudio.com/VSCode):
-  - [Gremlins tracker for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=nhoizey.gremlins)
+  - DX & UX
+    - [One Dark Pro++ (TPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.tpack) - contains One Dark Pro, Material Icon Theme, and FiraCode Font
+    - [DX Enhancer Pack (EPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.epack) - contains Project Manager, Better Comments, Markdown Preview Enhanced, file-size, Error Lens
+    - [Gremlins tracker for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=nhoizey.gremlins)
   - English, and grammar:
     - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
     - [Grammarly (unofficial)](https://marketplace.visualstudio.com/items?itemName=znck.grammarly)
@@ -398,11 +408,9 @@ bats tests
     - [HTTP/s and relative link checker](https://marketplace.visualstudio.com/items?itemName=blackmist.LinkCheckMD)
   - Bash or shell:
     - [Bash IDE](https://marketplace.visualstudio.com/items?itemName=mads-hartmann.bash-ide-vscode)
-    - [Bash Beautify](https://marketplace.visualstudio.com/items?itemName=shakram02.bash-beautify)
     - [ShellCheck](https://marketplace.visualstudio.com/items?itemName=timonwong.shellcheck)
     - [shell-format](https://marketplace.visualstudio.com/items?itemName=foxundermoon.shell-format)
     - [Bats (Bash Automated Testing System)](https://marketplace.visualstudio.com/items?itemName=jetmartin.bats)
-  - [GitHub - codespell-project/codespell: check code for common misspellings](https://github.com/codespell-project/codespell)
 
 ### Further Reading
 

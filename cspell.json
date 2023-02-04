@@ -1,0 +1,19 @@
+{
+    "version": "0.2",
+    "language": "en",
+    "words": [
+        "Bružina",
+        "codespell",
+        "Coreutils",
+        "drawio",
+        "gitleaks",
+        "gitlint",
+        "markdownlint",
+        "roadmap",
+        "shellcheck",
+        "shellib",
+        "shfmt",
+        "worktree"
+    ],
+    "flagWords": []
+}

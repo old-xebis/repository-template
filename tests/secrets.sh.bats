@@ -41,5 +41,5 @@ setup() {
 
     assert_failure
     assert_line -n 0 'scripts/secrets.sh ☒ git skip-worktree bit NOT set'
-    assert_line -n 1 'scripts/secrets.sh ☠ Your secrets could be compromised, please make sure they are not commited or pushed!'
+    assert_line -n 1 'scripts/secrets.sh ☠ Your secrets could be compromised, please make sure they are not committed or pushed!'
 }
