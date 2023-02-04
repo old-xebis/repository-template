@@ -2,17 +2,18 @@
     "version": "0.2",
     "language": "en",
     "words": [
-        "roadmap",
-        "worktree",
         "Bružina",
+        "codespell",
         "Coreutils",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
+        "drawio",
+        "gitleaks",
+        "gitlint",
+        "markdownlint",
+        "roadmap",
+        "shellcheck",
+        "shellib",
+        "shfmt",
+        "worktree"
     ],
     "flagWords": []
 }

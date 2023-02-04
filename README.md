@@ -1,6 +1,8 @@
 <!-- omit in toc -->
 # Repository Template
 
+<!-- cSpell:ignore jumanjihouse, igorshubovych, adrienverge, devopshq, mvdan, koalaman, zricethezav, shellcheckrc, jorisroovers, matiassingers, Grammarly, romversioning, romver, Programster's, FiraCode -->
+
 ![GitHub top language](https://img.shields.io/github/languages/top/xebis/repository-template)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
@@ -17,8 +19,6 @@ Highly automated, up-to-date, and well-documented repository template.
 Checks for common problems, Markdown, YAML, Bash, formats, lints, and tests before committing or pushing so you don't have any surprises at CI or when releasing your code to GitLab and GitHub!
 
 **The project is under active development.**
-
-<!-- cSpell:ignore gitlint, jumanjihouse, igorshubovych, adrienverge, devopshq, mvdan, shfmt, koalaman, shellcheck, zricethezav, gitleaks, shellib, shellcheckrc, jorisroovers, matiassingers, Grammarly, codespell, romversioning, romver, Programster's, FiraCode -->
 
 <!-- omit in toc -->
 ## The Purpose
