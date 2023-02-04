@@ -1,3 +1,10 @@
+# [0.25.0](https://gitlab.com/xebis/repository-template/compare/v0.24.0...v0.25.0) (2023-02-04)
+
+
+### Features
+
+* add codespell pre-commit hook ([76bb588](https://gitlab.com/xebis/repository-template/commit/76bb5885d321197a1820498349887fff747822f5))
+
 # [0.24.0](https://gitlab.com/xebis/repository-template/compare/v0.23.1...v0.24.0) (2022-10-09)
 
 
