@@ -393,19 +393,19 @@ bats tests
 - [Shields.io: Quality metadata badges for open source projects](https://shields.io/)
 - [Visual Studio Code](https://code.visualstudio.com/) with [Extensions for Visual Studio Code](https://marketplace.visualstudio.com/VSCode):
   - DX & UX
-    - [One Dark Pro++ (TPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.tpack) - contains One Dark Pro, Material Icon Theme, and FiraCode Font
-    - [DX Enhancer Pack (EPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.epack) - contains Project Manager, Better Comments, Markdown Preview Enhanced, file-size, Error Lens
+    - [One Dark Pro++ (TPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.tpack) - includes [One Dark Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme), [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme), and [FiraCode Font](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.firacode)
+    - [DX Enhancer Pack (EPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.epack) - includes [Project Manager](https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager), [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments), [Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced), [file-size](https://marketplace.visualstudio.com/items?itemName=zh9528.file-size), [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
     - [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
     - [Gremlins tracker for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=nhoizey.gremlins)
   - English, and grammar:
     - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
     - [Grammarly (unofficial)](https://marketplace.visualstudio.com/items?itemName=znck.grammarly)
   - Git, and GitLab:
-    - [Git Extension Pack (GPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.gpack) - contains Git History, GitLens, Git Graph, Git File History, Conventional Commits, and Checkpoints
+    - [Git Extension Pack (GPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.gpack) - includes [Git History](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory), [GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens), [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph), [Git File History](https://marketplace.visualstudio.com/items?itemName=pomber.git-file-history), [Conventional Commits](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits), and [Checkpoints](https://marketplace.visualstudio.com/items?itemName=micnil.vscode-checkpoints)
     - [gitignore](https://marketplace.visualstudio.com/items?itemName=codezombiech.gitignore)
     - [GitLab Workflow](https://marketplace.visualstudio.com/items?itemName=GitLab.gitlab-workflow)
   - Markdown:
-    - [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) - contains Github Markdown Preview, Markdown Checkboxes, Markdown Emoji, Markdown PDF, and markdownlint
+    - [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) - includes [Github Markdown Preview](https://marketplace.visualstudio.com/items?itemName=bierner.github-markdown-preview), [Markdown Checkboxes](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-checkbox), [Markdown Emoji](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-emoji), [Markdown PDF](https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf), and [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
     - [Paste Image](https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image)
     - [Markdown yaml Preamble](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-yaml-preamble)
     - [HTTP/s and relative link checker](https://marketplace.visualstudio.com/items?itemName=blackmist.LinkCheckMD)
