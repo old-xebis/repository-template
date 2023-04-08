@@ -1,3 +1,18 @@
+# [0.26.0](https://gitlab.com/xebis/repository-template/compare/v0.25.0...v0.26.0) (2023-04-08)
+
+
+### Bug Fixes
+
+* cspell warnings ([fbedcf3](https://gitlab.com/xebis/repository-template/commit/fbedcf384ac813a5cfff3aea9e71464f38abbc07))
+* shellcheck warns about unreachable command in tests ([94cc929](https://gitlab.com/xebis/repository-template/commit/94cc92958c7ba3c4d93166669bbd8f119c8c813c))
+* when a hook is installed setup script has a wrong icon ([86b113b](https://gitlab.com/xebis/repository-template/commit/86b113b16e34320c00d194ec405432b2a813ac5c))
+
+
+### Features
+
+* add .editorconfig ([b5b2894](https://gitlab.com/xebis/repository-template/commit/b5b2894327d6863405f1d5bcd00b0ef8aabfe6d6))
+* json validation and linting ([6e7af63](https://gitlab.com/xebis/repository-template/commit/6e7af631576c1e5ad522d5f8fbf9255d0f0b06da))
+
 # [0.25.0](https://gitlab.com/xebis/repository-template/compare/v0.24.0...v0.25.0) (2023-02-04)
 
 
