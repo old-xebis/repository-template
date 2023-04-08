@@ -266,7 +266,7 @@ Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-templ
 
 For usage examples, you might take a look at:
 
-- [GitHub - xebis/shellib: Simple Bash scripting library.](https://github.com/xebis/shellib) - example of version bumping and packaging
+- [GitHub - xebis/shellib: Simple Bash scripting library.](https://github.com/xebis/shellib) - example of version bumping and creating deb package
 - [GitHub - xebis/infrastructure-template: Template for automated GitOps and IaC in a cloud. GitLab CI handles static and dynamic environments. Environments are created, updated, and destroyed by Terraform, then configured by cloud-init and Ansible.](https://github.com/xebis/infrastructure-template) - example of GitOps (IaC + MRs + CI/CD) and multiple environments orchestration
 
 ## Contributing
@@ -429,4 +429,5 @@ bats tests
 - [Programster's Blog: Git Workflows](https://blog.programster.org/git-workflows)
   - [GitHub Guides: Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
   - [GitLab Docs: Introduction to GitLab Flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html)
+  - [GitHub Docs: Introduction to GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/introduction-to-github-actions) - contains CI/CD workflow terminology
 - [The GitHub Blog: Scripts to Rule Them All](https://github.blog/2015-06-30-scripts-to-rule-them-all/)
