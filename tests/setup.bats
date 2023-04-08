@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2317
 set -euo pipefail
 IFS=$'\n\t'
 LANG=C
@@ -23,7 +24,7 @@ setup() {
     rm "$file"
 
     assert_success
-    assert_line -n 0 "scripts/setup 🗹 $hook hook is installed"
+    assert_line -n 0 "scripts/setup ✓ $hook hook is installed"
 }
 
 @test 'scripts/setup setup_hook hook exists failed test' {

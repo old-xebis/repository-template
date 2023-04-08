@@ -11,7 +11,7 @@ function setup_hook() {
     local script="scripts/${2:-$1}"
 
     if [ -L ".git/hooks/$hook" ] && [ "$(readlink .git/hooks/"$hook")" == "../../$script" ]; then
-        info "$1 hook is installed" "$symbol_done"
+        info "$1 hook is installed"
     else
         if [ ! -f ".git/hooks/$hook" ]; then
             if ln -s "../../$script" ".git/hooks/$hook"; then
