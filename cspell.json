@@ -13,7 +13,8 @@
         "shellcheck",
         "shellib",
         "shfmt",
-        "worktree"
+        "worktree",
+        "Xebis"
     ],
     "flagWords": []
 }
