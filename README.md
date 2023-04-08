@@ -395,6 +395,7 @@ bats tests
   - DX & UX
     - [One Dark Pro++ (TPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.tpack) - contains One Dark Pro, Material Icon Theme, and FiraCode Font
     - [DX Enhancer Pack (EPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.epack) - contains Project Manager, Better Comments, Markdown Preview Enhanced, file-size, Error Lens
+    - [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
     - [Gremlins tracker for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=nhoizey.gremlins)
   - English, and grammar:
     - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
