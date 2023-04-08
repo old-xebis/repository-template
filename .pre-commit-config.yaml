@@ -3,7 +3,7 @@
 default_stages: [commit, manual, merge-commit, push]
 repos:
   - repo: https://github.com/jorisroovers/gitlint
-    rev: v0.19.0dev
+    rev: v0.19.1
     hooks:
       - id: gitlint
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -13,6 +13,7 @@ repos:
         args: [--maxkb=1024]
       - id: check-case-conflict
       - id: check-executables-have-shebangs
+      - id: check-json
       - id: check-merge-conflict
       - id: check-symlinks
       - id: check-vcs-permalinks
@@ -25,6 +26,8 @@ repos:
       - id: mixed-line-ending
         args: [--fix=lf]
       - id: no-commit-to-branch
+      - id: pretty-format-json
+        args: [--no-ensure-ascii]
       - id: trailing-whitespace
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
     rev: 3.0.0
@@ -41,7 +44,7 @@ repos:
     hooks:
       - id: check-useless-excludes
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.2
+    rev: v2.2.4
     hooks:
       - id: codespell
   - repo: https://github.com/igorshubovych/markdownlint-cli
@@ -49,7 +52,7 @@ repos:
     hooks:
       - id: markdownlint
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.29.0
+    rev: v1.30.0
     hooks:
       - id: yamllint
         args: [--strict]
@@ -81,6 +84,6 @@ repos:
         language: system
         types: [shell]
   - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.15.3
+    rev: v8.16.2
     hooks:
       - id: gitleaks

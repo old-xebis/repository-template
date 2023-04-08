@@ -133,6 +133,7 @@ When `feat` or `fix` commit is present in the merge (to be more precise since th
 - Enforces max file size to 1024 kB using [pre-commit/pre-commit-hooks: check-added-large-files](https://github.com/pre-commit/pre-commit-hooks#check-added-large-files)
 - Prevents case insensitive filename conflict using [pre-commit/pre-commit-hooks: check-case-conflict](https://github.com/pre-commit/pre-commit-hooks#check-case-conflict)
 - Enforces executables have shebangs using [pre-commit/pre-commit-hooks: check-executables-have-shebangs](https://github.com/pre-commit/pre-commit-hooks#check-executables-have-shebangs)
+- Loads JSON to validate it using [pre-commit/pre-commit-hooks: check-json](https://github.com/pre-commit/pre-commit-hooks#check-json)
 - Prevents merge conflict strings using [pre-commit/pre-commit-hooks: check-merge-conflict](https://github.com/pre-commit/pre-commit-hooks#check-merge-conflict)
 - Prevents stale symlinks using [pre-commit/pre-commit-hooks: check-symlinks](https://github.com/pre-commit/pre-commit-hooks#check-symlinks)
 - Prevents non-permanent GitHub links using [pre-commit/pre-commit-hooks: check-vcs-permalinks](https://github.com/pre-commit/pre-commit-hooks#check-vcs-permalinks)
@@ -143,6 +144,7 @@ When `feat` or `fix` commit is present in the merge (to be more precise since th
 - Prevents new git submodules [pre-commit/pre-commit-hooks: forbid-new-submodules](https://github.com/pre-commit/pre-commit-hooks#forbid-new-submodules)
 - Converts line endings to LF using [pre-commit/pre-commit-hooks: mixed-line-ending](https://github.com/pre-commit/pre-commit-hooks#mixed-line-ending)
 - Prevents commits to protected branches using [pre-commit/pre-commit-hooks: no-commit-to-branch](https://github.com/pre-commit/pre-commit-hooks#no-commit-to-branch)
+- Enforces pretty JSON format using [pre-commit/pre-commit-hooks: pretty-format-json](https://github.com/pre-commit/pre-commit-hooks#pretty-format-json)
 - Prevents trailing whitespace characters using [pre-commit/pre-commit-hooks: trailing-whitespace](https://github.com/pre-commit/pre-commit-hooks#trailing-whitespace)
 - Prevents botched name/email translations in git history using [jumanjihouse/pre-commit-hooks: check-mailmap](https://github.com/jumanjihouse/pre-commit-hooks#check-mailmap)
 - Prevents binary files from being added by accident using [jumanjihouse/pre-commit-hooks: forbid-binary](https://github.com/jumanjihouse/pre-commit-hooks#forbid-binary)
@@ -264,7 +266,7 @@ Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-templ
 
 For usage examples, you might take a look at:
 
-- [GitHub - xebis/shellib: Simple Bash scripting library.](https://github.com/xebis/shellib) - example of version bumping and packaging
+- [GitHub - xebis/shellib: Simple Bash scripting library.](https://github.com/xebis/shellib) - example of version bumping and creating deb package
 - [GitHub - xebis/infrastructure-template: Template for automated GitOps and IaC in a cloud. GitLab CI handles static and dynamic environments. Environments are created, updated, and destroyed by Terraform, then configured by cloud-init and Ansible.](https://github.com/xebis/infrastructure-template) - example of GitOps (IaC + MRs + CI/CD) and multiple environments orchestration
 
 ## Contributing
@@ -391,18 +393,19 @@ bats tests
 - [Shields.io: Quality metadata badges for open source projects](https://shields.io/)
 - [Visual Studio Code](https://code.visualstudio.com/) with [Extensions for Visual Studio Code](https://marketplace.visualstudio.com/VSCode):
   - DX & UX
-    - [One Dark Pro++ (TPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.tpack) - contains One Dark Pro, Material Icon Theme, and FiraCode Font
-    - [DX Enhancer Pack (EPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.epack) - contains Project Manager, Better Comments, Markdown Preview Enhanced, file-size, Error Lens
+    - [One Dark Pro++ (TPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.tpack) - includes [One Dark Pro](https://marketplace.visualstudio.com/items?itemName=zhuangtongfa.Material-theme), [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme), and [FiraCode Font](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.firacode)
+    - [DX Enhancer Pack (EPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.epack) - includes [Project Manager](https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager), [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments), [Markdown Preview Enhanced](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced), [file-size](https://marketplace.visualstudio.com/items?itemName=zh9528.file-size), [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
+    - [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
     - [Gremlins tracker for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=nhoizey.gremlins)
   - English, and grammar:
     - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
     - [Grammarly (unofficial)](https://marketplace.visualstudio.com/items?itemName=znck.grammarly)
   - Git, and GitLab:
-    - [Git Extension Pack (GPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.gpack) - contains Git History, GitLens, Git Graph, Git File History, Conventional Commits, and Checkpoints
+    - [Git Extension Pack (GPack)](https://marketplace.visualstudio.com/items?itemName=SeyyedKhandon.gpack) - includes [Git History](https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory), [GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens), [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph), [Git File History](https://marketplace.visualstudio.com/items?itemName=pomber.git-file-history), [Conventional Commits](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits), and [Checkpoints](https://marketplace.visualstudio.com/items?itemName=micnil.vscode-checkpoints)
     - [gitignore](https://marketplace.visualstudio.com/items?itemName=codezombiech.gitignore)
     - [GitLab Workflow](https://marketplace.visualstudio.com/items?itemName=GitLab.gitlab-workflow)
   - Markdown:
-    - [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) - contains Github Markdown Preview, Markdown Checkboxes, Markdown Emoji, Markdown PDF, and markdownlint
+    - [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) - includes [Github Markdown Preview](https://marketplace.visualstudio.com/items?itemName=bierner.github-markdown-preview), [Markdown Checkboxes](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-checkbox), [Markdown Emoji](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-emoji), [Markdown PDF](https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf), and [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
     - [Paste Image](https://marketplace.visualstudio.com/items?itemName=mushan.vscode-paste-image)
     - [Markdown yaml Preamble](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-yaml-preamble)
     - [HTTP/s and relative link checker](https://marketplace.visualstudio.com/items?itemName=blackmist.LinkCheckMD)
@@ -426,4 +429,5 @@ bats tests
 - [Programster's Blog: Git Workflows](https://blog.programster.org/git-workflows)
   - [GitHub Guides: Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
   - [GitLab Docs: Introduction to GitLab Flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html)
+  - [GitHub Docs: Introduction to GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/introduction-to-github-actions) - contains CI/CD workflow terminology
 - [The GitHub Blog: Scripts to Rule Them All](https://github.blog/2015-06-30-scripts-to-rule-them-all/)

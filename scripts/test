@@ -30,7 +30,7 @@ function run_test_set() {
         #
         # For example, number and type of tests in test sets could be:
         #     quick (selected unit tests) < reduced (all unit tests) < full (all unit and integration tests) < nightly
-        #         (all unit, integration, and E2E tests)
+        #         (all unit, integration, E2E, performance, compatibility, and other tests)
         info "running ${1^} test set:" "$symbol_doing"
         if bats tests/*.bats; then
             info "${1^} test set done" "$symbol_done"
