@@ -27,6 +27,7 @@ repos:
         args: [--fix=lf]
       - id: no-commit-to-branch
       - id: pretty-format-json
+        args: [--no-ensure-ascii]
       - id: trailing-whitespace
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
     rev: 3.0.0

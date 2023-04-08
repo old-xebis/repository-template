@@ -1,20 +1,20 @@
 {
-    "version": "0.2",
-    "language": "en",
-    "words": [
-        "Bružina",
-        "codespell",
-        "Coreutils",
-        "drawio",
-        "gitleaks",
-        "gitlint",
-        "markdownlint",
-        "roadmap",
-        "shellcheck",
-        "shellib",
-        "shfmt",
-        "worktree",
-        "Xebis"
-    ],
-    "flagWords": []
+  "flagWords": [],
+  "language": "en",
+  "version": "0.2",
+  "words": [
+    "Bružina",
+    "codespell",
+    "Coreutils",
+    "drawio",
+    "gitleaks",
+    "gitlint",
+    "markdownlint",
+    "roadmap",
+    "shellcheck",
+    "shellib",
+    "shfmt",
+    "worktree",
+    "Xebis"
+  ]
 }
