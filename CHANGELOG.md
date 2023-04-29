@@ -1,3 +1,10 @@
+# [0.27.0](https://gitlab.com/xebis/repository-template/compare/v0.26.0...v0.27.0) (2023-04-29)
+
+
+### Features
+
+* test sets specified as a file instead of hardcoded lists ([2fb290c](https://gitlab.com/xebis/repository-template/commit/2fb290cc9c50cf5c08ef761eb73e37a11751ce3f))
+
 # [0.26.0](https://gitlab.com/xebis/repository-template/compare/v0.25.0...v0.26.0) (2023-04-08)
 
 
