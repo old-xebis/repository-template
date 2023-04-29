@@ -25,5 +25,5 @@ function run_pre_commit() {
 # Skip execution under test
 if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
     run_pre_commit
-    scripts/test quick
+    scripts/test tests/fast.set
 fi

@@ -1,0 +1,8 @@
+# Run with each CI/CD pipeline - should be thorough and within CI/CD timeouts,
+# e.g. all unit, integration, E2E, performance, compatibility, and other tests
+
+reduced.set
+
+bootstrap.bats
+setup.bats
+update.bats

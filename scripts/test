@@ -9,7 +9,7 @@ LANG=C
 # Run test file $1
 function run_test_file() {
     if [ -f "$1" ] && [ -r "$1" ]; then
-        info "running $1:" "$symbol_doing"
+        info "running test file $1:" "$symbol_doing"
         if bats "$1"; then
             info "$1 done" "$symbol_done"
         else
@@ -24,23 +24,40 @@ function run_test_file() {
 
 # Run named test set $1
 function run_test_set() {
+    if [ -f "$1" ] && [ -r "$1" ]; then
+        info "running test set $1" "$symbol_doing"
+        test_path="$(dirname "$1")"
+        mapfile -t set_lines <"$1"
+        for set_line in "${set_lines[@]}"; do
+            case "$set_line" in
+            '') ;;  # Ignore empty lines
+            \#*) ;; # Ignore comments
+            *\.bats | *\.set)
+                run_test "$test_path/$set_line"
+                ;;
+            *)
+                warn "Unexpected test set $1 line $set_line"
+                ;;
+            esac
+        done
+    else
+        err "Could not run test set $1"
+        return "$status_err"
+    fi
+}
+
+# Run test file or test set $1
+function run_test() {
     case "$1" in
-    quick | reduced | full | nightly)
-        # We run all tests in all cases, but on a larger project, these should be separate.
-        #
-        # For example, number and type of tests in test sets could be:
-        #     quick (selected unit tests) < reduced (all unit tests) < full (all unit and integration tests) < nightly
-        #         (all unit, integration, E2E, performance, compatibility, and other tests)
-        info "running ${1^} test set:" "$symbol_doing"
-        if bats tests/*.bats; then
-            info "${1^} test set done" "$symbol_done"
-        else
-            err "${1^} test set failed" "$symbol_failed"
-            return "$status_err"
-        fi
+    *.bats)
+        run_test_file "$1"
+        ;;
+    *.set)
+        run_test_set "$1"
         ;;
     *)
-        err "Unknown test set ${1^}"
+        err "Unknown test type $1"
+        usage
         return "$status_err"
         ;;
     esac
@@ -48,15 +65,14 @@ function run_test_set() {
 
 # Print usage
 function usage() {
-    echo "Usage: ${TEST_ARGV:-$0} [test-set | path [test-set | path [...]]]"
+    echo "Usage: ${TEST_ARGV:-$0} [path [...]]]"
     echo
-    echo '    test-set    Test set name: quick, reduced, full, or nightly'
-    echo '    path        Path to the test file'
+    echo '    path  Path to test file or test set'
 }
 
 # Main
 # For zero arguments: prints usage
-# One or more arguments: runs test set OR runs test file
+# One or more arguments: runs test
 function main() {
     if [ -z "${1+x}" ]; then
         usage
@@ -64,14 +80,13 @@ function main() {
     fi
 
     for arg in "$@"; do
-        case "$arg" in
-        quick | reduced | full | nightly)
-            run_test_set "$arg"
-            ;;
-        *)
-            run_test_file "$arg"
-            ;;
-        esac
+        if [ -f "$arg" ]; then
+            run_test "$arg"
+        else
+            err "Unknown test type $1"
+            usage
+            return "$status_err"
+        fi
     done
 }
 
