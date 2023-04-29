@@ -48,6 +48,7 @@ Strategies and tactics to achieve objectives:
   - [Releases](#releases)
   - [Hooks](#hooks)
   - [Tests](#tests)
+    - [Test Set](#test-set)
   - [Templates](#templates)
   - [Images](#images)
 - [Installation and Configuration](#installation-and-configuration)
@@ -83,17 +84,17 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Commit messages are checked using [gitlint](https://github.com/jorisroovers/gitlint), commit message should follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 - Git `commit` (both regular and merge) is normalized, checked, and tested:
   - Runs [hooks](#hooks)
-  - Runs quick test set
+  - Runs [fast test set](tests/fast.set)
   - Lints the commit message
 - Git `push` is checked, and tested:
   - Runs [hooks](#hooks)
-  - Runs reduced test set
+  - Runs [reduced test set](tests/reduced.set)
   - Create merge request directly by **git push options**, see <https://docs.gitlab.com/ee/user/project/push_options.html#push-options-for-merge-requests>
 - GitLab CI run is checked, and tested:
   - Lints the latest commit message (except `release` commits)
   - Runs [hooks](#hooks)
-  - Runs full test set on non-scheduled pipeline runs
-  - Runs nightly test set on scheduled pipeline runs
+  - Runs [full test set](tests/full.set) on non-scheduled pipeline runs
+  - Runs [nightly test set](tests/nightly.set) on scheduled pipeline runs
   - Skip GitLab CI run if commit message contains `[ci skip]` or `[skip ci]`, using any capitalization, or pass **git push option** `ci.skip` (`git push -o ci.skip` git >= 2.17, `git push --push-option=ci.skip` git >= 2.10)
 - Hooks could be skipped by setting `SKIP` variable to a comma-separated list of skipped hooks, for example, `SKIP=forbid-new-submodules,gitlab-ci-linter git commit`
 - When `feat` or `fix` commit is present, GitLab CI job `release` publishes release using [semantic-release/semantic-release](https://github.com/semantic-release/semantic-release)
@@ -104,7 +105,7 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - `scripts/setup` setups `commit-msg`, `pre-commit`, `pre-merge-commit`, and `pre-push` hooks
   - `scripts/bootstrap` installs dependencies
   - Source `scripts/secrets.sh` to load secrets (GitLab Personal Access Token)
-  - `scripts/test` runs tests, as arguments accepts test files or test sets (`quick`, `reduced`, `full`, or `nightly`)
+  - `scripts/test` runs tests, as arguments accepts test files or test sets (see `*.bats` or `*.set` files at the [tests](tests) directory)
   - `scripts/update` updates used dependencies
 
 ### Releases
@@ -166,7 +167,23 @@ When `feat` or `fix` commit is present in the merge (to be more precise since th
 
 ### Tests
 
-Tests are written using BATS - [GitHub - bats-core/bats-core: Bash Automated Testing System](https://github.com/bats-core/bats-core), [GitHub - bats-core/bats-support: Supporting library for Bats test helpers](https://github.com/bats-core/bats-support), [GitHub - bats-core/bats-assert: Common assertions for Bats](https://github.com/bats-core/bats-assert), and [GitHub - bats-core/bats-file: Common filesystem assertions for Bats](https://github.com/bats-core/bats-file)
+Tests are written using BATS - [GitHub - bats-core/bats-core: Bash Automated Testing System](https://github.com/bats-core/bats-core), [GitHub - bats-core/bats-support: Supporting library for Bats test helpers](https://github.com/bats-core/bats-support), [GitHub - bats-core/bats-assert: Common assertions for Bats](https://github.com/bats-core/bats-assert), and [GitHub - bats-core/bats-file: Common filesystem assertions for Bats](https://github.com/bats-core/bats-file) and organized in test sets.
+
+#### Test Set
+
+Test set is a simple text file format. Each line must begin or end without leading or trailing whitespaces. Each line should contain included test sets (`*.set`), test files to be run (`*.bats`), comments starting with `#` as the first character on the line, or empty lines. File paths are relative to the test set file.
+
+Example:
+
+```text
+# Commented and empty lines are ignored
+
+another.set
+
+script1.bats
+script2.bats
+script3.bats
+```
 
 ### Templates
 
@@ -255,11 +272,11 @@ Set up the GitLab scheduled pipeline:
 
 Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-template/-/forks/new) or [GitHub](https://github.com/xebis/repository-template/fork), **delete** all git tags, and **tag** the last commit to the desired starting version, e.g. `v0.0.0`. Clone the repository with `--recursive` option, run `scripts/setup`, and enjoy!
 
-- `git commit`, or `git merge` runs checks on changed files and runs quick test set
-- `git push` runs checks on all files and runs reduced test set
-- GitLab `push`, `merge request` runs checks on all files and runs full test set
-- GitLab `merge to main` runs checks on all files, runs full test set, and publishes a new version release
-- GitLab `schedule` runs checks on all files, runs nightly test set
+- `git commit`, or `git merge` runs checks on changed files and runs [fast test set](tests/fast.set)
+- `git push` runs checks on all files and runs [reduced test set](tests/reduced.set)
+- GitLab `push`, `merge request` runs checks on all files and runs [full test set](tests/reduced.set)
+- GitLab `merge to main` runs checks on all files, runs [full test set](tests/reduced.set), and publishes a new version release
+- GitLab `schedule` runs checks on all files, runs [nightly test set](tests/nightly.set)
 - Run `scripts/update` manually from time to time to update repository dependencies
 
 ### Usage Examples

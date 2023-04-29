@@ -19,7 +19,7 @@ setup() {
     assert_success
     last_line="${#lines[@]}"
     ((last_line--))
-    assert_line -n 0 'scripts/test … running tests/update.bats:'
+    assert_line -n 0 'scripts/test … running test file tests/update.bats:'
     assert_line -n "$last_line" 'scripts/test 🗹 tests/update.bats done'
 }
 
@@ -40,7 +40,7 @@ setup() {
     run run_test_file tests/update.bats
 
     assert_failure
-    assert_line -n 0 'scripts/test … running tests/update.bats:'
+    assert_line -n 0 'scripts/test … running test file tests/update.bats:'
     assert_line -n 1 'Error!'
     assert_line -n 2 'scripts/test ☒ tests/update.bats failed'
 }
@@ -51,20 +51,19 @@ setup() {
     }
     export -f bats
 
-    run run_test_set full
+    run run_test_set tests/fast.set
 
     assert_success
     last_line="${#lines[@]}"
     ((last_line--))
-    assert_line -n 0 'scripts/test … running Full test set:'
-    assert_line -n "$last_line" 'scripts/test 🗹 Full test set done'
+    assert_line -n 0 'scripts/test … running test set tests/fast.set'
 }
 
 @test 'scripts/test run_test_set non-existent test set test' {
     run run_test_set nonsense
 
     assert_failure
-    assert_output 'scripts/test ✗ Unknown test set Nonsense'
+    assert_output 'scripts/test ✗ Could not run test set nonsense'
 }
 
 @test 'scripts/test run_test_set failing test set test' {
@@ -74,21 +73,59 @@ setup() {
     }
     export -f bats
 
-    run run_test_set full
+    run run_test_set tests/fast.set
 
     assert_failure
-    assert_line -n 0 'scripts/test … running Full test set:'
-    assert_line -n 1 'Error!'
-    assert_line -n 2 'scripts/test ☒ Full test set failed'
+    assert_line -n 0 'scripts/test … running test set tests/fast.set'
+    assert_line -n 2 'Error!'
+}
+
+@test 'scripts/test run_test success file test' {
+    run run_test tests/update.bats
+
+    assert_success
+    last_line="${#lines[@]}"
+    ((last_line--))
+    assert_line -n 0 'scripts/test … running test file tests/update.bats:'
+    assert_line -n "$last_line" 'scripts/test 🗹 tests/update.bats done'
+}
+
+@test 'scripts/test run_test success set test' {
+    function bats() {
+        echo 'OK'
+    }
+    export -f bats
+
+    run run_test tests/fast.set
+
+    assert_success
+    last_line="${#lines[@]}"
+    ((last_line--))
+    assert_line -n 0 'scripts/test … running test set tests/fast.set'
+}
+
+@test 'scripts/test run_test non-existent test type test' {
+    run run_test nonsense
+
+    assert_failure
+    assert_line -n 0 'scripts/test ✗ Unknown test type nonsense'
+    assert_line -n 1 'Usage: scripts/test [path [...]]]'
+    assert_line -n 2 '    path  Path to test file or test set'
+}
+
+@test 'scripts/test run_test non-existent test' {
+    run run_test nonsense.bats
+
+    assert_failure
+    assert_output 'scripts/test ✗ Could not run test file nonsense.bats'
 }
 
 @test 'scripts/test usage test' {
     run usage
 
     assert_success
-    assert_line -n 0 'Usage: scripts/test [test-set | path [test-set | path [...]]]'
-    assert_line -n 1 '    test-set    Test set name: quick, reduced, full, or nightly'
-    assert_line -n 2 '    path        Path to the test file'
+    assert_line -n 0 'Usage: scripts/test [path [...]]]'
+    assert_line -n 1 '    path  Path to test file or test set'
 }
 
 @test 'scripts/test main with zero arguments test' {
@@ -109,10 +146,10 @@ setup() {
     }
     export -f run_test_file
 
-    run main 'pass'
+    run main 'tests/update.bats'
 
     assert_success
-    assert_output 'OK: pass'
+    assert_output 'OK: tests/update.bats'
 }
 
 @test 'scripts/test main with test set argument test' {
@@ -121,10 +158,10 @@ setup() {
     }
     export -f run_test_set
 
-    run main 'full'
+    run main 'tests/fast.set'
 
     assert_success
-    assert_output 'OK: full'
+    assert_output 'OK: tests/fast.set'
 }
 
 @test 'scripts/test main with two arguments success test' {
@@ -138,11 +175,11 @@ setup() {
     export -f run_test_file
     export -f run_test_set
 
-    run main 'pass' 'full'
+    run main 'tests/update.bats' 'tests/fast.set'
 
     assert_success
-    assert_line -n 0 'OK: pass'
-    assert_line -n 1 'OK: full'
+    assert_line -n 0 'OK: tests/update.bats'
+    assert_line -n 1 'OK: tests/fast.set'
 }
 
 @test 'scripts/test main with two arguments one failed test' {
@@ -157,9 +194,9 @@ setup() {
     export -f run_test_file
     export -f run_test_set
 
-    run main 'pass' 'full'
+    run main 'tests/update.bats' 'tests/fast.set'
 
     assert_failure
-    assert_line -n 0 'OK: pass'
-    assert_line -n 1 'Err: full'
+    assert_line -n 0 'OK: tests/update.bats'
+    assert_line -n 1 'Err: tests/fast.set'
 }

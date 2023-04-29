@@ -1,0 +1,4 @@
+# Run with each commit - should be really fast and shallow, e.g. only a few
+# selected tests
+
+secrets.sh.bats

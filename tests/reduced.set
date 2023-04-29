@@ -1,0 +1,9 @@
+# Run with each push - should be fast but representative, e.g. carefully
+# selected representative subset of unit, integration, and perhaps other fast
+# tests
+
+fast.set
+
+pre-commit.bats
+pre-push.bats
+test.bats

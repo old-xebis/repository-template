@@ -30,5 +30,5 @@ function run_pre_commit() {
 # Skip execution if under test
 if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
     run_pre_commit "$@"
-    scripts/test reduced
+    scripts/test tests/reduced.set
 fi
