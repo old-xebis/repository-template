@@ -1,7 +1,7 @@
 <!-- omit in toc -->
 # Repository Template
 
-<!-- cSpell:ignore jumanjihouse, igorshubovych, adrienverge, devopshq, mvdan, koalaman, zricethezav, shellcheckrc, jorisroovers, matiassingers, Grammarly, romversioning, romver, Programster's, FiraCode -->
+<!-- cSpell:ignore jumanjihouse, igorshubovych, adrienverge, devopshq, mvdan, koalaman, shellcheckrc, jorisroovers, matiassingers, Grammarly, romversioning, romver, Programster's, FiraCode -->
 
 ![GitHub top language](https://img.shields.io/github/languages/top/xebis/repository-template)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
@@ -162,7 +162,7 @@ When `feat` or `fix` commit is present in the merge (to be more precise since th
 - Prevents pushing words `wip`, `todo`, or `tbd` preceded with `#` at a text file, checked by regex `(?i)#\s*\b(wip|todo|tbd)\b`, see <https://regex101.com/r/mKueFx/1>
 - Lints shell scripts formatting using [mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
 - Checks shell scripts using [koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
-- Detects hardcoded secrets like passwords, api keys, and tokens in git repos using [GitHub - zricethezav/gitleaks: Scan git repos (or files) for secrets using regex and entropy key](https://github.com/zricethezav/gitleaks)
+- Detects hardcoded secrets like passwords, api keys, and tokens in git repos using [GitHub - gitleaks/gitleaks: Scan git repos (or files) for secrets using regex and entropy key](https://github.com/gitleaks/gitleaks)
 - For other formats and rules see [pre-commit: Supported hooks](https://pre-commit.com/hooks.html), there are many for .NET, Ansible, AWS, C, CMake, CSV, C++, Chef, Dart, Docker, Flutter, git, GitHub, GitLab, Go, HTML, INI, Java, JavaScript, Jenkins, Jinja, JSON, Kotlin, Lisp, Lua, Mac, Markdown, Node.js, Perl, PHP, Prometheus, Protocol Buffers, Puppet, Python, R, Ruby, Rust, Shell, Swift, Terraform, TOML, Typescript, XML, YAML, ... or create new using regular expressions.
 
 ### Tests
@@ -389,7 +389,7 @@ bats tests
 - [GitLab - devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter)
 - [GitHub - mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
 - [GitHub - koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
-- [GitHub - zricethezav/gitleaks: Scan git repos (or files) for secrets using regex and entropy key](https://github.com/zricethezav/gitleaks)
+- [GitHub - gitleaks/gitleaks: Scan git repos (or files) for secrets using regex and entropy key](https://github.com/gitleaks/gitleaks)
 - For scripts and hooks:
   - Tools standard in any Linux (Bash, Coreutils, Grep)
   - [GitHub - xebis/shellib: Simple Bash scripting library.](https://github.com/xebis/shellib)
