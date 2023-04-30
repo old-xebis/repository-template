@@ -1,3 +1,11 @@
+## [0.27.1](https://gitlab.com/xebis/repository-template/compare/v0.27.0...v0.27.1) (2023-04-30)
+
+
+### Bug Fixes
+
+* execute pre-commit from hook scripts as from the original hooks ([9d2bb21](https://gitlab.com/xebis/repository-template/commit/9d2bb219739e0f2371b7a03236c7de1e5eb0665d))
+* pre-push script shouldn't have hardcoded repository path ([d4ecf0e](https://gitlab.com/xebis/repository-template/commit/d4ecf0e6290bc9792794f145cb08723037657e71))
+
 # [0.27.0](https://gitlab.com/xebis/repository-template/compare/v0.26.0...v0.27.0) (2023-04-29)
 
 
