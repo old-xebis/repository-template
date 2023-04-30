@@ -1,5 +1,5 @@
 ---
-# cSpell:ignore interruptible
+# cSpell:ignore unprotect interruptible
 stages:
   - validate
   - release
@@ -15,6 +15,7 @@ variables:
 lint:
   stage: validate
   variables:
+    PIP_CACHE_DIR: $CI_PROJECT_DIR/.cache/pip
     PRE_COMMIT_HOME: $CI_PROJECT_DIR/.cache/pre-commit
   before_script:
     - *default_before_script
@@ -30,9 +31,18 @@ lint:
           SKIP=gitlab-ci-linter GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run -a --hook-stage manual
       fi
   cache:
-    paths:
-      - $PRE_COMMIT_HOME
-    when: always
+    - key: default
+      paths:
+        - $PIP_CACHE_DIR
+      unprotect: true
+      when: always
+    - key:
+        files:
+          - .pre-commit-config.yaml
+      paths:
+        - $PRE_COMMIT_HOME
+      unprotect: true
+      when: always
   interruptible: true
   rules:
     - when: always
@@ -41,7 +51,7 @@ test-full:
   stage: validate
   before_script:
     - *default_before_script
-    - apk --no-cache add bats
+    - apk --no-cache add bats git
   script:
     - scripts/test tests/full.set
   interruptible: true
@@ -52,7 +62,7 @@ test-nightly:
   stage: validate
   before_script:
     - *default_before_script
-    - apk --no-cache add bats
+    - apk --no-cache add bats git
   script:
     - scripts/test tests/nightly.set
   rules:

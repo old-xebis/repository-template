@@ -19,11 +19,11 @@ function run_pre_commit() {
         export GITLAB_PRIVATE_TOKEN="$GL_TOKEN"
     fi
 
-    pre-commit
+    pre-commit hook-impl --hook-type=pre-commit --config=.pre-commit-config.yaml --hook-dir "$(cd "$(dirname "$0")" && pwd)" -- "$@"
 }
 
 # Skip execution under test
 if [ "${BASH_SOURCE[0]}" == "${0}" ]; then
-    run_pre_commit
+    run_pre_commit "$@"
     scripts/test tests/fast.set
 fi

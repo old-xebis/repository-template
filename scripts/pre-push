@@ -19,12 +19,7 @@ function run_pre_commit() {
         export GITLAB_PRIVATE_TOKEN="$GL_TOKEN"
     fi
 
-    # Check the whole codebase instead of pushed changes if there are not arguments $1 and $2
-    if [ -z "${1:-}" ] || [ -z "${2:-}" ]; then
-        pre-commit run -a --hook-stage push
-    else
-        pre-commit hook-impl --hook-type pre-push --hook-dir /home/mb/Projects/repository-template/.git/hooks -- "$1" "$2" <&0
-    fi
+    pre-commit hook-impl --hook-type=pre-push --config=.pre-commit-config.yaml --hook-dir "$(cd "$(dirname "$0")" && pwd)" -- "$@"
 }
 
 # Skip execution if under test
