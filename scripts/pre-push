@@ -23,7 +23,8 @@ function run_pre_commit() {
     if [ -z "${1:-}" ] || [ -z "${2:-}" ]; then
         pre-commit run -a --hook-stage push
     else
-        pre-commit hook-impl --hook-type pre-push --hook-dir /home/mb/Projects/repository-template/.git/hooks -- "$1" "$2" <&0
+        GIT_ROOT=$(git rev-parse --show-toplevel)
+        pre-commit hook-impl --hook-type pre-push --hook-dir "$GIT_ROOT/.git/hooks" -- "$1" "$2" <&0
     fi
 }
 

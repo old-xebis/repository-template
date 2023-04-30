@@ -51,7 +51,7 @@ test-full:
   stage: validate
   before_script:
     - *default_before_script
-    - apk --no-cache add bats
+    - apk --no-cache add bats git
   script:
     - scripts/test tests/full.set
   interruptible: true
@@ -62,7 +62,7 @@ test-nightly:
   stage: validate
   before_script:
     - *default_before_script
-    - apk --no-cache add bats
+    - apk --no-cache add bats git
   script:
     - scripts/test tests/nightly.set
   rules:
