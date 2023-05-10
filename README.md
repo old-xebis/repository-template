@@ -270,7 +270,7 @@ Set up the GitLab scheduled pipeline:
 
 ## Usage
 
-Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-template/-/forks/new) or [GitHub](https://github.com/xebis/repository-template/fork), **delete** all git tags, and **tag** the last commit to the desired starting version, e.g. `v0.0.0`. Clone the repository with `--recursive` option, run `scripts/setup`, and enjoy!
+Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-template/-/forks/new) or [GitHub](https://github.com/xebis/repository-template/fork), **delete** all git tags, and **tag** the last commit to the desired starting version, e.g. `v0.0.0`. Clone the repository with `--recursive` option, run `sudo scripts/bootstrap`, `scripts/setup`, `scripts/update`, and enjoy!
 
 - `git commit`, or `git merge` runs checks on changed files and runs [fast test set](tests/fast.set)
 - `git push` runs checks on all files and runs [reduced test set](tests/reduced.set)
