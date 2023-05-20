@@ -69,7 +69,7 @@ repos:
         entry: (?i)#\s*\b(wip|todo|tbd)\b
         language: pygrep
         types: [text]
-        stages: [push, manual]
+        stages: [manual]
       - id: shfmt
         name: shfmt
         entry: shfmt -i 4

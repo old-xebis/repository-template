@@ -127,7 +127,7 @@ When `feat` or `fix` commit is present in the merge (to be more precise since th
 
 ### Hooks
 
-[Pre-commit](https://github.com/pre-commit/pre-commit-hooks) is by default configured to run these hooks:
+[Pre-commit](https://github.com/pre-commit/pre-commit) is by default configured to run these hooks:
 
 - Lints git commit message using [gitlint](https://github.com/jorisroovers/gitlint)
   - Prevents messages not following [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
@@ -155,13 +155,13 @@ When `feat` or `fix` commit is present in the merge (to be more precise since th
 - Prevents foxtrot merges by using [jumanjihouse/pre-commit-hooks: protect-first-parent](https://github.com/jumanjihouse/pre-commit-hooks#protect-first-parent)
 - Enforces executable scripts have no extension using [jumanjihouse/pre-commit-hooks: script-must-not-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-not-have-extension)
 - Enforces non-executable script libraries have extension using [jumanjihouse/pre-commit-hooks: script-must-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-have-extension)
-- Prevents hooks not applied to any file in the repository using [pre-commit/pre-commit-hooks: meta hook check-hooks-apply](https://pre-commit.com/#meta-check_hooks_apply)
+- When manually run, prevents hooks not applied to any file in the repository using [pre-commit/pre-commit-hooks: meta hook check-hooks-apply](https://pre-commit.com/#meta-check_hooks_apply)
 - Prevents useless pre-commit hook exclude directives using [pre-commit/pre-commit-hooks: meta hook check-useless-excludes](https://pre-commit.com/#meta-check_useless_excludes)
 - Checks spelling using [GitHub - codespell-project/codespell: check code for common misspellings](https://github.com/codespell-project/codespell)
 - Lints Markdown using [igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli) (except [CHANGELOG.md](CHANGELOG.md))
 - Lints YAML using [adrienverge/yamllint](https://github.com/adrienverge/yamllint)
 - Lints [`.gitlab-ci.yml`](.gitlab-ci.yml) file using [devopshq/gitlab-ci-linter](https://gitlab.com/devopshq/gitlab-ci-linter) when `GL_TOKEN` environment variable is set to **GitLab Personal Token**
-- Prevents pushing words `wip`, `todo`, or `tbd` preceded with `#` at a text file, checked by regex `(?i)#\s*\b(wip|todo|tbd)\b`, see <https://regex101.com/r/mKueFx/1>
+- When MR (merge request) is created or updated, or when manually run, prevents presence of words `wip`, `todo`, or `tbd` preceded with `#` at a text file, checked by regex `(?i)#\s*\b(wip|todo|tbd)\b`, see <https://regex101.com/r/mKueFx/1>
 - Lints shell scripts formatting using [mvdan/sh: A shell parser, formatter, and interpreter with bash support; includes shfmt](https://github.com/mvdan/sh)
 - Checks shell scripts using [koalaman/shellcheck: ShellCheck, a static analysis tool for shell scripts](https://github.com/koalaman/shellcheck)
 - Detects hardcoded secrets like passwords, api keys, and tokens in git repos using [GitHub - gitleaks/gitleaks: Scan git repos (or files) for secrets using regex and entropy key](https://github.com/gitleaks/gitleaks)

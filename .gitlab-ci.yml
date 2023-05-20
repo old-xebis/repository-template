@@ -12,7 +12,7 @@ default:
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
 
-lint:
+.lint:
   stage: validate
   variables:
     PIP_CACHE_DIR: $CI_PROJECT_DIR/.cache/pip
@@ -22,15 +22,6 @@ lint:
     - apk --no-cache add bash git go grep npm py-pip python3-dev shellcheck shfmt
     - pip install pre-commit
     - npm install -g markdownlint-cli
-  script:
-    - |
-      SKIP="check-hooks-apply"
-      if [ -z "${GL_TOKEN:-}" ]; then
-          SKIP="$SKIP,gitlab-ci-linter" pre-commit run -a --hook-stage manual
-      else
-          # Temporary skip gitlab-ci-linter pre-commit hook until `urllib.error.HTTPError: HTTP Error 410: Gone` is fixed
-          SKIP="$SKIP,gitlab-ci-linter" GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run -a --hook-stage manual
-      fi
   cache:
     - key: default
       paths:
@@ -45,8 +36,34 @@ lint:
       unprotect: true
       when: always
   interruptible: true
+
+lint:
+  extends: [.lint]
+  script:
+    - |
+      SKIP="check-hooks-apply,anti-todo"
+      if [ -z "${GL_TOKEN:-}" ]; then
+          SKIP="$SKIP,gitlab-ci-linter" pre-commit run -a --hook-stage manual
+      else
+          # Temporary skip gitlab-ci-linter pre-commit hook until `urllib.error.HTTPError: HTTP Error 410: Gone` is fixed
+          SKIP="$SKIP,gitlab-ci-linter" GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run -a --hook-stage manual
+      fi
   rules:
-    - when: always
+    - if: $CI_PIPELINE_SOURCE != 'merge_request_event'
+
+lint-merge-request:
+  extends: [.lint]
+  script:
+    - |
+      SKIP="check-hooks-apply"
+      if [ -z "${GL_TOKEN:-}" ]; then
+          SKIP="$SKIP,gitlab-ci-linter" pre-commit run -a --hook-stage manual
+      else
+          # Temporary skip gitlab-ci-linter pre-commit hook until `urllib.error.HTTPError: HTTP Error 410: Gone` is fixed
+          SKIP="$SKIP,gitlab-ci-linter" GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run -a --hook-stage manual
+      fi
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
 
 test-full:
   stage: validate
