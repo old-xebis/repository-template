@@ -41,7 +41,8 @@ lint:
   extends: [.lint]
   script:
     - |
-      SKIP="check-hooks-apply,anti-todo"
+      # Temporary skip protect-first-parent pre-commit hook until `[ERROR] caught error 1 on line 69 of ...: FIRST_PARENT="$(git show-ref -s "${BASE}")"` is fixed
+      SKIP="check-hooks-apply,anti-todo,protect-first-parent"
       if [ -z "${GL_TOKEN:-}" ]; then
           SKIP="$SKIP,gitlab-ci-linter" pre-commit run -a --hook-stage manual
       else
@@ -55,7 +56,8 @@ lint-merge-request:
   extends: [.lint]
   script:
     - |
-      SKIP="check-hooks-apply"
+      # Temporary skip protect-first-parent pre-commit hook until `[ERROR] caught error 1 on line 69 of ...: FIRST_PARENT="$(git show-ref -s "${BASE}")"` is fixed
+      SKIP="check-hooks-apply,protect-first-parent"
       if [ -z "${GL_TOKEN:-}" ]; then
           SKIP="$SKIP,gitlab-ci-linter" pre-commit run -a --hook-stage manual
       else
