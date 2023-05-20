@@ -36,6 +36,7 @@ repos:
         exclude: .*\.png$
       - id: git-check
       - id: git-dirty
+      - id: protect-first-parent
       - id: script-must-have-extension
         exclude: .*\.bats$
       - id: script-must-not-have-extension
