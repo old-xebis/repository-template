@@ -97,6 +97,7 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Runs [nightly test set](tests/nightly.set) on scheduled pipeline runs
   - Skip GitLab CI run if commit message contains `[ci skip]` or `[skip ci]`, using any capitalization, or pass **git push option** `ci.skip` (`git push -o ci.skip` git >= 2.17, `git push --push-option=ci.skip` git >= 2.10)
 - Hooks could be skipped by setting `SKIP` variable to a comma-separated list of skipped hooks, for example, `SKIP=forbid-new-submodules,gitlab-ci-linter git commit`
+- Hooks could be run manually `pre-commit run -a --hook-stage manual`
 - When `feat` or `fix` commit is present, GitLab CI job `release` publishes release using [semantic-release/semantic-release](https://github.com/semantic-release/semantic-release)
   - When merged to the maintenance release branch (`N.N.x` or `N.x.x` or `N.x` with `N` being a number), publish maintenance [release](#releases)
   - When merged to `next`, `next-major`, `beta`, or `alpha` branch, publish pre-release [release](#releases)
@@ -154,6 +155,7 @@ When `feat` or `fix` commit is present in the merge (to be more precise since th
 - Prevents foxtrot merges by using [jumanjihouse/pre-commit-hooks: protect-first-parent](https://github.com/jumanjihouse/pre-commit-hooks#protect-first-parent)
 - Enforces executable scripts have no extension using [jumanjihouse/pre-commit-hooks: script-must-not-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-not-have-extension)
 - Enforces non-executable script libraries have extension using [jumanjihouse/pre-commit-hooks: script-must-have-extension](https://github.com/jumanjihouse/pre-commit-hooks#script-must-have-extension)
+- Prevents hooks not applied to any file in the repository using [pre-commit/pre-commit-hooks: meta hook check-hooks-apply](https://pre-commit.com/#meta-check_hooks_apply)
 - Prevents useless pre-commit hook exclude directives using [pre-commit/pre-commit-hooks: meta hook check-useless-excludes](https://pre-commit.com/#meta-check_useless_excludes)
 - Checks spelling using [GitHub - codespell-project/codespell: check code for common misspellings](https://github.com/codespell-project/codespell)
 - Lints Markdown using [igorshubovych/markdownlint-cli: MarkdownLint Command Line Interface](https://github.com/igorshubovych/markdownlint-cli) (except [CHANGELOG.md](CHANGELOG.md))
@@ -310,6 +312,7 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
     - [ ] Automatically resolved `merge commit` runs `pre-commit` hook-type `commit-msg` and [`scripts/pre-commit`](scripts/pre-commit)
     - [ ] Manually resolved `merge commit` runs `pre-commit` hook-type `commit-msg` and [`scripts/pre-commit`](scripts/pre-commit)
   - [ ] `git push` runs [`scripts/pre-push`](scripts/pre-push)
+  - [ ] `pre-commit run -a --hook-stage manual` runs all hooks and `check-hooks-apply` hook fails on `check-symlinks` and `forbid-binary`
 - GitLab CI
   - [ ] Commit in *non*-`main` branch runs `validate:lint` and `validate:test-full`
   - [ ] Merge to `main` branch runs `validate:lint`, `validate:test-full`, and `release:release`
@@ -350,7 +353,6 @@ bats tests
 ## Roadmap
 
 - [ ] Find a satisfactory way how to manage (list, install, update) dependencies across various distributions and package managers
-- [ ] Add [pre-commit meta hooks](https://pre-commit.com/#meta-hooks)
 - [ ] Add [jumanjihouse/pre-commit-hooks hook protect-first-parent](https://github.com/jumanjihouse/pre-commit-hooks#protect-first-parent)
 - [ ] Speed up CI/CD by preparing a set of Docker images with pre-installed dependencies for each CI/CD stage, or by cache for `apk`, `pip`, and `npm`
 

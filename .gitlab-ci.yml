@@ -1,5 +1,5 @@
 ---
-# cSpell:ignore unprotect interruptible
+# cSpell:ignore urllib unprotect interruptible
 stages:
   - validate
   - release
@@ -24,11 +24,12 @@ lint:
     - npm install -g markdownlint-cli
   script:
     - |
+      SKIP="check-hooks-apply"
       if [ -z "${GL_TOKEN:-}" ]; then
-          SKIP=gitlab-ci-linter pre-commit run -a --hook-stage manual
+          SKIP="$SKIP,gitlab-ci-linter" pre-commit run -a --hook-stage manual
       else
           # Temporary skip gitlab-ci-linter pre-commit hook until `urllib.error.HTTPError: HTTP Error 410: Gone` is fixed
-          SKIP=gitlab-ci-linter GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run -a --hook-stage manual
+          SKIP="$SKIP,gitlab-ci-linter" GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run -a --hook-stage manual
       fi
   cache:
     - key: default

@@ -42,6 +42,8 @@ repos:
       - id: script-must-not-have-extension
   - repo: meta
     hooks:
+      - id: check-hooks-apply
+        stages: [manual]
       - id: check-useless-excludes
   - repo: https://github.com/codespell-project/codespell
     rev: v2.2.4
