@@ -96,16 +96,16 @@ lint-merge-request:
     - if: $CI_PIPELINE_SOURCE == "schedule"
 
 test-alpine-full:
-  except: [.test-alpine, .test-full]
+  extends: [.test-alpine, .test-full]
 
 test-alpine-nightly:
-  except: [.test-alpine, .test-nightly]
+  extends: [.test-alpine, .test-nightly]
 
 test-ubuntu-full:
-  except: [.test-ubuntu, .test-full]
+  extends: [.test-ubuntu, .test-full]
 
 test-ubuntu-nightly:
-  except: [.test-ubuntu, .test-nightly]
+  extends: [.test-ubuntu, .test-nightly]
 
 release:
   stage: release
