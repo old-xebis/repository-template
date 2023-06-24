@@ -1,10 +1,10 @@
 <!-- omit in toc -->
-# *Project*
+# _Project_
 
-- *Change all emphasized texts*
-- *Delete unused sections*
-- *Use `code formatting`*
-- *Replace `org` and `proj` in badges link with respective slugs*
+- _Change all emphasized texts_
+- _Delete unused sections_
+- _Use `code formatting`_
+- _Replace `org` and `proj` in badges link with respective slugs_
 
 ![GitHub top language](https://img.shields.io/github/languages/top/org/proj)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
@@ -16,7 +16,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/org/proj)
 ![GitHub last commit](https://img.shields.io/github/last-commit/org/proj)
 
-*A concise description of the project specifically.*
+_A concise description of the project specifically._
 
 **The project is under active development.**
 
@@ -46,11 +46,11 @@
 
 ## Features
 
-*Features. Demos and visuals - images, animations, and videos are highly encouraged.*
+_Features. Demos and visuals - images, animations, and videos are highly encouraged._
 
 ## Installation and Configuration
 
-*Installation and configuration guidance.*
+_Installation and configuration guidance._
 
 ```shell
 # Installation steps
@@ -58,7 +58,7 @@
 
 ## Usage
 
-*Usage examples.*
+_Usage examples._
 
 ```shell
 # ...
@@ -70,40 +70,40 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 
 ### Development
 
-*Development stack and tooling.*
+_Development stack and tooling._
 
 ### Testing
 
-*Testing stack and how to run tests.*
+_Testing stack and how to run tests._
 
 ### Operations
 
-*Operations.*
+_Operations._
 
 ## Contact
 
-*Contacts.*
+_Contacts._
 
 ### Troubleshooting and Support
 
-*Troubleshooting and preferred ways of providing support.*
+_Troubleshooting and preferred ways of providing support._
 
 ## To-Do list
 
-*TODO list.*
+_TODO list._
 
 ## Roadmap
 
-*Roadmap.*
+_Roadmap._
 
 ## Known Bugs
 
-*Known Bugs.*
+_Known Bugs._
 
 ## Credits and Acknowledgments
 
 - [Name Surname](https://example.com/) - author
-- *Appreciation of other contributors is welcome*
+- _Appreciation of other contributors is welcome_
 
 ## Copyright and Licensing
 
@@ -113,13 +113,13 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 ## Changelog and News
 
 - [Changelog](../CHANGELOG.md)
-- *List other important or interesting news here*
+- _List other important or interesting news here_
 
 ## Notes and References
 
 ### Dependencies
 
-*List dependencies here, or delete the section, if none.*
+_List dependencies here, or delete the section, if none._
 
 - [Web: Page](https://example.com/) - the preferred way of referencing
 - [Web Page Title](https://example.com/) - also OK
@@ -127,19 +127,19 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 
 ### Recommendations
 
-*List recommended references here, or delete the section.*
+_List recommended references here, or delete the section._
 
 - [Shields.io: Quality metadata badges for open source projects](https://shields.io/)
 
 ### Suggestions
 
-*List suggested references here, or delete the section.*
+_List suggested references here, or delete the section._
 
 - [readme.so: Easiest Way to Create A README](https://readme.so/)
 
 ### Further Reading
 
-*List further reading links here, or delete the section.*
+_List further reading links here, or delete the section._
 
 - [Wikipedia: README](https://en.wikipedia.org/wiki/README)
 - [Make a README: Because no one can read your mind (yet)](https://www.makeareadme.com/)

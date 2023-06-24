@@ -1,0 +1,27 @@
+{
+  "recommendations": [
+    "alefragnani.Bookmarks",
+    "blackmist.LinkCheckMD",
+    "codezombiech.gitignore",
+    "DavidAnson.vscode-markdownlint",
+    "donjayamanne.githistory",
+    "EditorConfig.EditorConfig",
+    "foxundermoon.shell-format",
+    "GitLab.gitlab-workflow",
+    "Gruntfuggly.todo-tree",
+    "gurumukhi.selected-lines-count",
+    "jetmartin.bats",
+    "mads-hartmann.bash-ide-vscode",
+    "mhutchie.git-graph",
+    "mushan.vscode-paste-image",
+    "nhoizey.gremlins",
+    "redhat.vscode-yaml",
+    "SeyyedKhandon.epack",
+    "SeyyedKhandon.gpack",
+    "SeyyedKhandon.tpack",
+    "streetsidesoftware.code-spell-checker",
+    "timonwong.shellcheck",
+    "yzhang.markdown-all-in-one",
+    "znck.grammarly"
+  ]
+}

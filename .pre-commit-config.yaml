@@ -37,22 +37,25 @@ repos:
         exclude: .*\.png$
       - id: git-check
       - id: git-dirty
+      - id: protect-first-parent
       - id: script-must-have-extension
         exclude: .*\.bats$
       - id: script-must-not-have-extension
   - repo: meta
     hooks:
+      - id: check-hooks-apply
+        stages: [manual]
       - id: check-useless-excludes
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.4
+    rev: v2.2.5
     hooks:
       - id: codespell
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.34.0
+    rev: v0.35.0
     hooks:
       - id: markdownlint
   - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.31.0
+    rev: v1.32.0
     hooks:
       - id: yamllint
         args: [--strict]
@@ -67,7 +70,7 @@ repos:
         entry: (?i)#\s*\b(wip|todo|tbd)\b
         language: pygrep
         types: [text]
-        stages: [push, manual]
+        stages: [manual]
       - id: shfmt
         name: shfmt
         entry: shfmt -i 4
@@ -84,6 +87,6 @@ repos:
         language: system
         types: [shell]
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.16.3
+    rev: v8.17.0
     hooks:
       - id: gitleaks
