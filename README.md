@@ -24,11 +24,11 @@ Checks for common problems, Markdown, YAML, Bash, formats, lints, and tests befo
 <!-- omit in toc -->
 ## The Purpose
 
-The purpose is to have a template repository and to have it *well-manageable* and *well-maintainable* by both human beings and automation tools.
+The purpose is to have a template repository and to have it _well-manageable_ and _well-maintainable_ by both human beings and automation tools.
 
 The rationale behind this is that taking care of tens or hundreds of repositories while keeping them working, tidy, consistent, and up-to-date, might be a daunting task.
 
-The way how to achieve the desired state of manageability and maintainability is to *unify* and *automate* workflow to allow frequent small changes for multiple projects at scale.
+The way how to achieve the desired state of manageability and maintainability is to _unify_ and _automate_ workflow to allow frequent small changes for multiple projects at scale.
 
 Objectives:
 
@@ -116,7 +116,7 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
 
 Release branches must match regex `^(((0|[1-9]\d*)\.)(((0|[1-9]\d*|x)\.)?x)|main|next(-major)?|beta|alpha)$`, see <https://regex101.com/r/gH9dCG/2/>.
 
-When `feat` or `fix` commit is present in the merge (to be more precise since the last release tag) to `main`, `next`, `next-major`, `beta`, `alpha`, *`major`*`.x`, or *`major.minor`*`.x` branch, the publish release:
+When `feat` or `fix` commit is present in the merge (to be more precise since the last release tag) to `main`, `next`, `next-major`, `beta`, `alpha`, _`major`_`.x`, or _`major.minor`_`.x` branch, the publish release:
 
 - Determines major, minor, or patch version bump using [semantic-release/commit-analyzer](https://github.com/semantic-release/commit-analyzer)
 - Generates release notes using [semantic-release/release-notes-generator](https://github.com/semantic-release/release-notes-generator)
@@ -236,9 +236,9 @@ To create working GitLab to GitHub repository synchronization:
 - Have or create a GitHub repository
 - Set up GitLab GitHub synchronization: Settings
   - Repository
-    - Mirroring repositories, *Expand*
-      - *Add new mirror*:
-        - Git repository URL: **<https://user@github.com/org/repo.git>**, please replace *user*, *org*, and *repo*
+    - Mirroring repositories, _Expand_
+      - _Add new mirror_:
+        - Git repository URL: **<https://user@github.com/org/repo.git>**, please replace _user_, _org_, and _repo_
         - Mirror direction: **Push**
         - Password: **`GitLab GitHub Sync` token**
         - Keep divergent refs: **On** or **Off**
@@ -255,10 +255,10 @@ Set up release and GitLab CI Linter tokens as the GitLab group or the GitLab pro
 
 - Settings
   - CI/CD
-    - Variables, *Expand*
-      - *Add Variable*:
+    - Variables, _Expand_
+      - _Add Variable_:
         - Key: `GL_TOKEN` or `GH_TOKEN`
-        - Value: *token*
+        - Value: _token_
         - Flags:
           - Protect variable: **On** (GitLab & GitHub Releases and GitLab CI Linter will work only on protected branches) or **Off** (insecure - accessible to anybody, who can create a commit in GitLab)
 
@@ -268,8 +268,8 @@ Set up the GitLab scheduled pipeline:
 
 - CI/CD
   - Schedules
-    - *New schedule*
-      - *Fill* and *Save pipeline schedule*
+    - _New schedule_
+      - _Fill_ and _Save pipeline schedule_
 
 ## Usage
 
@@ -315,7 +315,7 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
   - [ ] `git push` runs [`scripts/pre-push`](scripts/pre-push)
   - [ ] `pre-commit run -a --hook-stage manual` runs all hooks and `check-hooks-apply` hook fails on `check-symlinks` and `forbid-binary`
 - GitLab CI
-  - [ ] Commit in *non*-`main` branch runs `validate:lint` and `validate:test-full`
+  - [ ] Commit in _non_-`main` branch runs `validate:lint` and `validate:test-full`
   - [ ] Merge to `main` branch runs `validate:lint`, `validate:test-full`, and `release:release`
     - [ ] With a new `feat` or `fix` commit releases a new version
     - [ ] Without a new feature or fix commit does not release a new version
