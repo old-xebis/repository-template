@@ -1,3 +1,18 @@
+# [0.28.0](https://gitlab.com/xebis/repository-template/compare/v0.27.1...v0.28.0) (2023-06-24)
+
+
+### Bug Fixes
+
+* foxtrot merges are not prevented ([ef7254c](https://gitlab.com/xebis/repository-template/commit/ef7254c41687f8276aef0e2fb4eec5f675ff5ad4))
+* hooks are run twice during a commit ([0ca75f3](https://gitlab.com/xebis/repository-template/commit/0ca75f34b1552eb754fa488d256ac7a015989856))
+
+
+### Features
+
+* add pre-commit meta hook check-hooks-apply ([f09026c](https://gitlab.com/xebis/repository-template/commit/f09026cd4800e37ab727881fad8360463395aa14))
+* add suggested vscode extensions as vscode recommendations ([1eef470](https://gitlab.com/xebis/repository-template/commit/1eef470d5d8d2b1ff57613be53d61796914a8228))
+* anti-todo hook is run only manually or in a merge request pipeline ([e6f62c9](https://gitlab.com/xebis/repository-template/commit/e6f62c9f8ad37e4514e2a5ff83e12d70f812178f))
+
 ## [0.27.1](https://gitlab.com/xebis/repository-template/compare/v0.27.0...v0.27.1) (2023-04-30)
 
 
