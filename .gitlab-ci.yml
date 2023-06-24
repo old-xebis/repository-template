@@ -67,26 +67,45 @@ lint-merge-request:
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
 
-test-full:
+.test:
   stage: validate
+
+.test-alpine:
+  extends: [.test]
   before_script:
     - *default_before_script
     - apk --no-cache add bats git
+
+.test-ubuntu:
+  extends: [.test]
+  before_script:
+    - apt-get update && apt-get upgrade -y
+    - apt-get install -y bats git
+
+.test-full:
   script:
     - scripts/test tests/full.set
   interruptible: true
   rules:
     - if: $CI_PIPELINE_SOURCE != "schedule"
 
-test-nightly:
-  stage: validate
-  before_script:
-    - *default_before_script
-    - apk --no-cache add bats git
+.test-nightly:
   script:
     - scripts/test tests/nightly.set
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
+
+test-alpine-full:
+  except: [.test-alpine, .test-full]
+
+test-alpine-nightly:
+  except: [.test-alpine, .test-nightly]
+
+test-ubuntu-full:
+  except: [.test-ubuntu, .test-full]
+
+test-ubuntu-nightly:
+  except: [.test-ubuntu, .test-nightly]
 
 release:
   stage: release
