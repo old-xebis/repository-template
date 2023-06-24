@@ -1,7 +1,7 @@
 <!-- omit in toc -->
 # Repository Template
 
-<!-- cSpell:ignore jumanjihouse, igorshubovych, adrienverge, devopshq, mvdan, koalaman, shellcheckrc, jorisroovers, matiassingers, Grammarly, romversioning, romver, Programster's, FiraCode -->
+<!-- cSpell:ignore jumanjihouse, igorshubovych, adrienverge, devopshq, mvdan, koalaman, shellcheckrc, jorisroovers, worktree, matiassingers, Grammarly, romversioning, romver, Programster's, FiraCode -->
 
 ![GitHub top language](https://img.shields.io/github/languages/top/xebis/repository-template)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
@@ -174,7 +174,7 @@ Tests are written using BATS - [GitHub - bats-core/bats-core: Bash Automated Tes
 
 #### Test Set
 
-Test set is a simple text file format. Each line must begin or end without leading or trailing whitespaces. Each line should contain included test sets (`*.set`), test files to be run (`*.bats`), comments starting with `#` as the first character on the line, or empty lines. File paths are relative to the test set file.
+Test set is a simple text file format. Each line must begin or end without leading or trailing whitespace. Each line should contain included test sets (`*.set`), test files to be run (`*.bats`), comments starting with `#` as the first character on the line, or empty lines. File paths are relative to the test set file.
 
 Example:
 
