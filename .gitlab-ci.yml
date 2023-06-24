@@ -78,6 +78,7 @@ lint-merge-request:
 
 .test-ubuntu:
   extends: [.test]
+  image: ubuntu:latest
   before_script:
     - apt-get update && apt-get upgrade -y
     - apt-get install -y bats git
