@@ -18,7 +18,13 @@ setup() {
         echo 'OK'
     }
     export -f pkgs
+    function pip() {
+        echo 'OK'
+    }
+    export -f pip
 
     run install_dependencies
-    assert_output 'OK'
+
+    assert_line -n 0 'OK'
+    assert_line -n 1 'OK'
 }
