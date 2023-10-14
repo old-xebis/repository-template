@@ -7,7 +7,7 @@ repos:
     hooks:
       - id: gitlint
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: check-added-large-files
         args: [--maxkb=1024]
@@ -47,11 +47,11 @@ repos:
         stages: [manual]
       - id: check-useless-excludes
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.5
+    rev: v2.2.6
     hooks:
       - id: codespell
   - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.35.0
+    rev: v0.37.0
     hooks:
       - id: markdownlint
   - repo: https://github.com/adrienverge/yamllint.git
@@ -60,7 +60,7 @@ repos:
       - id: yamllint
         args: [--strict]
   - repo: https://gitlab.com/devopshq/gitlab-ci-linter
-    rev: v1.0.3
+    rev: v1.0.6
     hooks:
       - id: gitlab-ci-linter
   - repo: local

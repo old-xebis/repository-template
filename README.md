@@ -109,6 +109,7 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
   - Source `scripts/secrets.sh` to load secrets (GitLab Personal Access Token)
   - `scripts/test` runs tests, as arguments accepts test files or test sets (see `*.bats` or `*.set` files at the [tests](tests) directory)
   - `scripts/update` updates used dependencies
+- [EditorConfig](.editorconfig)
 
 ### Releases
 
@@ -407,6 +408,7 @@ bats tests
 - [readme.so: Easiest Way to Create A README](https://readme.so/)
 - [GitHub - matiassingers/awesome-readme: A curated list of awesome READMEs](https://github.com/matiassingers/awesome-readme)
 - [Grammarly](https://www.grammarly.com/) or [Hemingway Editor](http://www.hemingwayapp.com/)
+- [EditorConfig](https://editorconfig.org/)
 
 ### Suggestions
 
