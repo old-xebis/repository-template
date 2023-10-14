@@ -1,3 +1,10 @@
+# [0.29.0](https://gitlab.com/xebis/repository-template/compare/v0.28.0...v0.29.0) (2023-10-14)
+
+
+### Features
+
+* extend editorconfig to include all file formats ([c7c9721](https://gitlab.com/xebis/repository-template/commit/c7c97217baeffbf95aac197478e627cbb4b12171))
+
 # [0.28.0](https://gitlab.com/xebis/repository-template/compare/v0.27.1...v0.28.0) (2023-06-24)
 
 
