@@ -10,6 +10,7 @@ words:
   - Bružina
   - codespell
   - Coreutils
+  - direnv
   - drawio
   - gitleaks
   - gitlint

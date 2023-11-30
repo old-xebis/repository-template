@@ -106,7 +106,6 @@ Optimized for [GitHub flow](https://guides.github.com/introduction/flow/), easil
 - Included scripts for your convenience in a fashion of [The GitHub Blog: Scripts to Rule Them All](https://github.blog/2015-06-30-scripts-to-rule-them-all/)
   - `scripts/setup` setups `commit-msg`, `pre-commit`, `pre-merge-commit`, and `pre-push` hooks
   - `scripts/bootstrap` installs dependencies
-  - Source `scripts/secrets.sh` to load secrets (GitLab Personal Access Token)
   - `scripts/test` runs tests, as arguments accepts test files or test sets (see `*.bats` or `*.set` files at the [tests](tests) directory)
   - `scripts/update` updates used dependencies
 - [EditorConfig](.editorconfig)
@@ -208,7 +207,7 @@ script3.bats
 
 ### Local Environment
 
-Clone the project with `--recursive` option, run `scripts/bootstrap` as root to install dependencies, `scripts/setup` for a complete setup, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` is present, otherwise `gitlab-ci-linter` is skipped. You can edit and source `scripts/secrets.sh`, **please make sure you won't commit your secrets**. Sourcing the script should do the magic for you, if it fails, try `git update-index --skip-worktree scripts/secrets.sh`.
+Clone the project with `--recursive` option, run `scripts/bootstrap` as root to install dependencies, `scripts/setup` for a complete setup, and adjust to Your needs. Make sure **GL_TOKEN**: [GitLab Personal Access Token](https://gitlab.com/-/profile/personal_access_tokens) with scope `api` is present, otherwise `gitlab-ci-linter` is skipped. To load secrets you can use shell extension like [direnv](https://direnv.net/), encryption like [SOPS](https://github.com/getsops/sops), or secrets manager [HashiCorp Vault](https://www.vaultproject.io/), **please make sure you won't commit your secrets**.
 
 Example:
 
@@ -217,8 +216,6 @@ git clone --recursive git@gitlab.com:xebis/repository-template.git
 cd repository-template
 sudo scripts/bootstrap
 scripts/setup
-# Add your secrets to scripts/secrets.sh
-. scripts/secrets.sh
 ```
 
 Run `scripts/update` from time to time to update repository dependencies.
@@ -303,7 +300,6 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
   - [ ] [`scripts/bootstrap`](scripts/bootstrap)
   - [ ] [`scripts/pre-commit`](scripts/pre-commit)
   - [ ] [`scripts/pre-push`](scripts/pre-push)
-  - [ ] [`scripts/secrets.sh`](scripts/secrets.sh)
   - [ ] [`scripts/setup`](scripts/setup)
   - [ ] [`scripts/test`](scripts/test)
   - [ ] [`scripts/update`](scripts/update)
@@ -409,6 +405,7 @@ bats tests
 - [GitHub - matiassingers/awesome-readme: A curated list of awesome READMEs](https://github.com/matiassingers/awesome-readme)
 - [Grammarly](https://www.grammarly.com/) or [Hemingway Editor](http://www.hemingwayapp.com/)
 - [EditorConfig](https://editorconfig.org/)
+- [direnv](https://direnv.net/), [SOPS](https://github.com/getsops/sops), or [HashiCorp Vault](https://www.vaultproject.io/)
 
 ### Suggestions
 

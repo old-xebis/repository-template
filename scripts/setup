@@ -53,7 +53,7 @@ function setup() {
     # Check if GL_TOKEN is set
     if [ -z "${GL_TOKEN:-}" ]; then
         notice 'environment variable GL_TOKEN is not set, pre-commit hook gitlab-ci-linter will be skipped'
-        info 'You might set up environment variable GL_TOKEN at scripts/secrets.sh and source it' "$symbol_tip"
+        info 'You might set up environment variable GL_TOKEN' "$symbol_tip"
     else
         info 'GL_TOKEN is set'
     fi
