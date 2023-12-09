@@ -123,7 +123,7 @@ setup() {
     assert_success
     assert_line -n 0 'scripts/setup ✓ commit-msg hook is installed'
     assert_line -n 1 'scripts/setup 🛈 environment variable GL_TOKEN is not set, pre-commit hook gitlab-ci-linter will be skipped'
-    assert_line -n 2 'scripts/setup 💡 You might set up environment variable GL_TOKEN at scripts/secrets.sh and source it'
+    assert_line -n 2 'scripts/setup 💡 You might set up environment variable GL_TOKEN'
 }
 
 @test 'scripts/setup setup with GL_TOKEN set success test' {

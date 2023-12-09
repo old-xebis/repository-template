@@ -10,11 +10,13 @@ words:
   - Bružina
   - codespell
   - Coreutils
+  - direnv
   - drawio
   - gitleaks
   - gitlint
   - markdownlint
   - roadmap
   - shellib
+  - venv
   - Xebis
 flagWords: []

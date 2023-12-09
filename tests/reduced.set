@@ -4,6 +4,4 @@
 
 fast.set
 
-pre-commit.bats
-pre-push.bats
 test.bats

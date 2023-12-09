@@ -17,16 +17,28 @@ variables:
   variables:
     PIP_CACHE_DIR: $CI_PROJECT_DIR/.cache/pip
     PRE_COMMIT_HOME: $CI_PROJECT_DIR/.cache/pre-commit
+    # Skip protect-first-parent pre-commit hook until `[ERROR] caught error 1 on line 69 of ...: FIRST_PARENT="$(git show-ref -s "${BASE}")"` is fixed
+    # Skip gitlab-ci-linter pre-commit hook until `urllib.error.HTTPError: HTTP Error 404: Not Found` is fixed
+    SKIP: check-hooks-apply,protect-first-parent,gitlab-ci-linter
   before_script:
     - *default_before_script
     - apk --no-cache add bash git go grep npm py-pip python3-dev shellcheck shfmt
+    - python3 -m venv .venv
+    - source .venv/bin/activate
     - pip install -r requirements.txt
     - npm install -g markdownlint-cli
+  script:
+    - pre-commit run -a --hook-stage manual
   cache:
     - key: default
       paths:
         - $PIP_CACHE_DIR
       unprotect: true
+    - key:
+        files:
+          - requirements.txt
+      paths:
+        - .venv
       when: always
     - key:
         files:
@@ -39,31 +51,13 @@ variables:
 
 lint:
   extends: [.lint]
-  script:
-    - |
-      # Temporary skip protect-first-parent pre-commit hook until `[ERROR] caught error 1 on line 69 of ...: FIRST_PARENT="$(git show-ref -s "${BASE}")"` is fixed
-      SKIP="check-hooks-apply,anti-todo,protect-first-parent"
-      if [ -z "${GL_TOKEN:-}" ]; then
-          SKIP="$SKIP,gitlab-ci-linter" pre-commit run -a --hook-stage manual
-      else
-          # Temporary skip gitlab-ci-linter pre-commit hook until `urllib.error.HTTPError: HTTP Error 410: Gone` is fixed
-          SKIP="$SKIP,gitlab-ci-linter" GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run -a --hook-stage manual
-      fi
+  variables:
+    SKIP: check-hooks-apply,protect-first-parent,gitlab-ci-linter,anti-todo
   rules:
     - if: $CI_PIPELINE_SOURCE != 'merge_request_event'
 
 lint-merge-request:
   extends: [.lint]
-  script:
-    - |
-      # Temporary skip protect-first-parent pre-commit hook until `[ERROR] caught error 1 on line 69 of ...: FIRST_PARENT="$(git show-ref -s "${BASE}")"` is fixed
-      SKIP="check-hooks-apply,protect-first-parent"
-      if [ -z "${GL_TOKEN:-}" ]; then
-          SKIP="$SKIP,gitlab-ci-linter" pre-commit run -a --hook-stage manual
-      else
-          # Temporary skip gitlab-ci-linter pre-commit hook until `urllib.error.HTTPError: HTTP Error 410: Gone` is fixed
-          SKIP="$SKIP,gitlab-ci-linter" GITLAB_PRIVATE_TOKEN="$GL_TOKEN" pre-commit run -a --hook-stage manual
-      fi
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
 
