@@ -17,5 +17,6 @@ words:
   - markdownlint
   - roadmap
   - shellib
+  - venv
   - Xebis
 flagWords: []

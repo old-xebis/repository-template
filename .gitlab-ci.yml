@@ -23,6 +23,8 @@ variables:
   before_script:
     - *default_before_script
     - apk --no-cache add bash git go grep npm py-pip python3-dev shellcheck shfmt
+    - python3 -m venv .venv
+    - source .venv/bin/activate
     - pip install -r requirements.txt
     - npm install -g markdownlint-cli
   script:
@@ -32,6 +34,11 @@ variables:
       paths:
         - $PIP_CACHE_DIR
       unprotect: true
+    - key:
+        files:
+          - requirements.txt
+      paths:
+        - .venv
       when: always
     - key:
         files:
