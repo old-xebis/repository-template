@@ -1,3 +1,10 @@
+# [0.30.0](https://gitlab.com/xebis/repository-template/compare/v0.29.0...v0.30.0) (2023-12-9)
+
+
+### Features
+
+* remove secrets.sh script ([62b571f](https://gitlab.com/xebis/repository-template/commit/62b571f1daec6a5319001acccefec6c323f0a47b))
+
 # [0.29.0](https://gitlab.com/xebis/repository-template/compare/v0.28.0...v0.29.0) (2023-10-14)
 
 
