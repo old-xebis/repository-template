@@ -313,11 +313,13 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
   - [ ] `git push` runs [`scripts/pre-push`](scripts/pre-push)
   - [ ] `pre-commit run -a --hook-stage manual` runs all hooks and `check-hooks-apply` hook fails on `check-symlinks` and `forbid-binary`
 - GitLab CI
-  - [ ] Commit in _non_-`main` branch runs `validate:lint` and `validate:test-full`
-  - [ ] Merge to `main` branch runs `validate:lint`, `validate:test-full`, and `release:release`
-    - [ ] With a new `feat` or `fix` commit releases a new version
+  - [ ] Commit in _non_-`main` branch runs `validate:lint` and `validate:test-*-full`
+  - [ ] Merge to `main` branch runs `validate:lint`, `validate:test-*-full`, and `release:release`
+    - [ ] With a new `feat` or `fix` commit releases a new version in GitHub and GitLab
+      - [ ] [GitHub - xebis/repository-template ∙ Releases](https://github.com/xebis/repository-template/releases)
+      - [ ] [GitLab - xebis/repository-template ∙ Releases](https://gitlab.com/xebis/repository-template/-/releases)
     - [ ] Without a new feature or fix commit does not release a new version
-  - [ ] Scheduled (nightly) pipeline runs `validate:lint` and `validate:test-nightly`
+  - [ ] Scheduled (nightly) pipeline runs `validate:lint` and `validate:test-*-nightly`
 
 #### Test at Docker Container
 
