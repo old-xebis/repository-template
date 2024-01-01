@@ -63,6 +63,7 @@ repos:
     rev: v1.0.6
     hooks:
       - id: gitlab-ci-linter
+        args: [--project, xebis/repository-template]
   - repo: local
     hooks:
       - id: anti-todo

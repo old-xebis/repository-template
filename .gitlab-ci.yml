@@ -18,8 +18,7 @@ variables:
     PIP_CACHE_DIR: $CI_PROJECT_DIR/.cache/pip
     PRE_COMMIT_HOME: $CI_PROJECT_DIR/.cache/pre-commit
     # Skip protect-first-parent pre-commit hook until `[ERROR] caught error 1 on line 69 of ...: FIRST_PARENT="$(git show-ref -s "${BASE}")"` is fixed
-    # Skip gitlab-ci-linter pre-commit hook until `urllib.error.HTTPError: HTTP Error 404: Not Found` is fixed
-    SKIP: check-hooks-apply,protect-first-parent,gitlab-ci-linter
+    SKIP: check-hooks-apply,protect-first-parent
   before_script:
     - *default_before_script
     - apk --no-cache add bash git go grep npm py-pip python3-dev shellcheck shfmt
@@ -52,7 +51,7 @@ variables:
 lint:
   extends: [.lint]
   variables:
-    SKIP: check-hooks-apply,protect-first-parent,gitlab-ci-linter,anti-todo
+    SKIP: check-hooks-apply,protect-first-parent,anti-todo
   rules:
     - if: $CI_PIPELINE_SOURCE != 'merge_request_event'
 
