@@ -17,6 +17,7 @@ variables:
   variables:
     PIP_CACHE_DIR: $CI_PROJECT_DIR/.cache/pip
     PRE_COMMIT_HOME: $CI_PROJECT_DIR/.cache/pre-commit
+    GITLAB_PRIVATE_TOKEN: $GL_TOKEN
     # Skip protect-first-parent pre-commit hook until `[ERROR] caught error 1 on line 69 of ...: FIRST_PARENT="$(git show-ref -s "${BASE}")"` is fixed
     SKIP: check-hooks-apply,protect-first-parent
   before_script:
