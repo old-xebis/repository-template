@@ -1,3 +1,10 @@
+## [0.30.1](https://gitlab.com/xebis/repository-template/compare/v0.30.0...v0.30.1) (2024-1-1)
+
+
+### Bug Fixes
+
+* gitlab ci linter fails on missing project argument ([27bfbaa](https://gitlab.com/xebis/repository-template/commit/27bfbaa8c875eae38f9258875b934165afd9101c))
+
 # [0.30.0](https://gitlab.com/xebis/repository-template/compare/v0.29.0...v0.30.0) (2023-12-9)
 
 
