@@ -271,7 +271,7 @@ Set up the GitLab scheduled pipeline:
 
 ## Usage
 
-Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-template/-/forks/new) or [GitHub](https://github.com/xebis/repository-template/fork), **delete** all git tags, and **tag** the last commit to the desired starting version, e.g. `v0.0.0`. Clone the repository with `--recursive` option, run `sudo scripts/bootstrap`, `scripts/setup`, `scripts/update`, and enjoy!
+Simply fork the repository at [GitLab](https://gitlab.com/xebis/repository-template/-/forks/new) or [GitHub](https://github.com/xebis/repository-template/fork), **delete** all git tags, and **tag** the last commit to the desired starting version, e.g. `v0.0.0`. Clone the repository with `--recursive` option, run `sudo scripts/bootstrap`, `scripts/setup`, `scripts/update`, at [`.pre-commit-config.yaml`](.pre-commit-config.yaml) replace `gitlab-ci-linter` project with _your project_, and enjoy!
 
 - `git commit`, or `git merge` runs checks on changed files and runs [fast test set](tests/fast.set)
 - `git push` runs checks on all files and runs [reduced test set](tests/reduced.set)
@@ -286,6 +286,7 @@ For usage examples, you might take a look at:
 
 - [GitHub - xebis/shellib: Simple Bash scripting library.](https://github.com/xebis/shellib) - example of version bumping and creating deb package
 - [GitHub - xebis/infrastructure-template: Template for automated GitOps and IaC in a cloud. GitLab CI handles static and dynamic environments. Environments are created, updated, and destroyed by Terraform, then configured by cloud-init and Ansible.](https://github.com/xebis/infrastructure-template) - example of GitOps (IaC + MRs + CI/CD) and multiple environments orchestration
+- [GitHub - xebis/xebis-ansible-collection: A collection of Xebis shared Ansible roles.](https://github.com/xebis/xebis-ansible-collection)
 
 ## Contributing
 
@@ -312,11 +313,13 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
   - [ ] `git push` runs [`scripts/pre-push`](scripts/pre-push)
   - [ ] `pre-commit run -a --hook-stage manual` runs all hooks and `check-hooks-apply` hook fails on `check-symlinks` and `forbid-binary`
 - GitLab CI
-  - [ ] Commit in _non_-`main` branch runs `validate:lint` and `validate:test-full`
-  - [ ] Merge to `main` branch runs `validate:lint`, `validate:test-full`, and `release:release`
-    - [ ] With a new `feat` or `fix` commit releases a new version
+  - [ ] Commit in _non_-`main` branch runs `validate:lint` and `validate:test-*-full`
+  - [ ] Merge to `main` branch runs `validate:lint`, `validate:test-*-full`, and `release:release`
+    - [ ] With a new `feat` or `fix` commit releases a new version in GitHub and GitLab
+      - [ ] [GitHub - xebis/repository-template ∙ Releases](https://github.com/xebis/repository-template/releases)
+      - [ ] [GitLab - xebis/repository-template ∙ Releases](https://gitlab.com/xebis/repository-template/-/releases)
     - [ ] Without a new feature or fix commit does not release a new version
-  - [ ] Scheduled (nightly) pipeline runs `validate:lint` and `validate:test-nightly`
+  - [ ] Scheduled (nightly) pipeline runs `validate:lint` and `validate:test-*-nightly`
 
 #### Test at Docker Container
 
@@ -344,7 +347,6 @@ bats tests
 
 ## To-Do list
 
-- [ ] Fix workaround for pre-commit `jumanjihouse/pre-commit-hooks` hook `script-must-have-extension` - `*.bats` shouldn't be excluded
 - [ ] Fix workaround for pre-commit `local` hook `shellcheck` - shellcheck has duplicated parameters from `.shellcheckrc`, because these are not taken into account
 
 ## Roadmap
